@@ -1,0 +1,211 @@
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'views/search/search_Box',
+  'views/book_collection/book_Collection',
+  'models/student',
+  'collections/books',
+  'text!templates/book_Collection/book_Catalog_Description.html',
+  'text!templates/login/login.html',
+  'models/login',
+  'text!templates/footer/footer.html',
+  'text!templates/message_Box/message_Box.html'
+  ]
+  , function($, _, Backbone, search_Box, book_Collection_View, Student, book_Collection,book_Catalog_Description_View,index_Login_View, login_Manager,footer, message_Box){
+
+  var indexView = Backbone.View.extend({
+    el: $("body"),
+    flagFilter: false,
+    book_Collection_Catalog: new book_Collection({}),
+    student: new Student({id : '333'}),
+    book_Collection_View_Student: new book_Collection_View,
+    book_Collection_View_Catalog: new book_Collection_View,
+    login_Manager: new login_Manager(),
+    events:{
+    	'body onload': 'load',      
+      'click .book_Catalog_Description_CloseButton': 'clickBookDescriptionCloseButton',
+      'click .index_Login_Link': 'clickLinkIndexLogin',
+      'click .index_Login_Container': 'clickIndexLoginContainer',
+      'click .index_Login': 'clickIndexLogin',
+      'click .index_Login_Button_Enter': 'clickButtonLogin',
+      'click .confirmation_Box_Container':'clickConfirmationBoxContainer'
+    },
+  	initialize:function(load){
+      
+      if(load){
+        $('footer').append(footer);
+    		var that=this;
+    		search_Box.initialize({parent : that});
+        this.student.set({id:'1090420'});
+        this.student.load(
+
+            function(student){
+              console.log('succes in myspace:  ');
+              console.log(student.get('my_books'));
+              that.student=student;
+              that.$el.find('.field_User_Data').html(that.student.get('name')+' '+that.student.get('last_name'));
+                that.book_Collection_View_Student.initialize(
+                  {
+                    elSelector:'#myBooksCollection',
+                    title: 'Mis Libros',
+                    parent: that ,
+                    book_Collection:that.student.get("my_books"), 
+                    rows: 1, 
+                    columns: 5, 
+                    height: '150px',
+                    type: 'student',
+                    methodClick: 'showCatalogDescription'
+                  }
+                  );
+
+
+            },
+            function(){alert('error');}
+
+        );
+    
+    		this.book_Collection_Catalog.search({student: null, category: null, years: null},
+    			function(){
+
+	            	that.book_Collection_View_Catalog.initialize(
+	            		{
+			        		elSelector:'#catalogCollection',
+			        		title:'Librería',
+			        		parent: that ,
+			        		book_Collection:that.book_Collection_Catalog, 
+			        		rows: 2, 
+			        		columns: 5, 
+			        		height: '300px',
+                  type: 'catalog',
+                  methodClick: 'showCatalogDescription'
+
+			        	}
+	            		);
+		        },function(){
+		          alert('ocurrio un error al intentar realizar la consulta de libros catalogo');
+		    	}
+		    	);
+	      /**
+	        	**/
+      }
+  	},
+    render: function(){                                 
+   
+    },
+    search: function(data){
+    	book_Collection.search(data,function(answ){book_Collection_View.render()});    		
+    	
+    },
+    filter: function(data){
+      if(data==null)
+        return true;
+      if(Object.keys(data).length == 0)
+        return true;
+
+      this.student.get('my_books').filter(data);
+      this.book_Collection_Catalog.filter(data);
+      this.book_Collection_View_Student.render();
+      this.book_Collection_View_Catalog.render();
+      this.flagFilter=true;
+    },
+    clean: function(){
+      if(this.flagFilter){
+    	  this.student.get('my_books').clean();
+        this.book_Collection_Catalog.clean();
+        this.book_Collection_View_Student.render();
+        this.book_Collection_View_Catalog.render();
+        this.flagFilter=false;
+      }
+    },
+    load:function(){
+    	alert('load');
+    },
+    showCatalogDescription:function(indexBook,g,c,book_Collection,type){
+      if(!type){
+        type='catalog'
+      }
+      this.closeCatalogDescription();
+      var data={
+        book: book_Collection.at(indexBook),
+        classIngresarButtom: 'index_Login_Link',
+        enableReaderLink: true,
+        type:type,
+        _:_
+      };
+      this.$el.append(_.template(book_Catalog_Description_View,data));
+      this.book_Collection_View_Student.hide();
+      this.book_Collection_View_Catalog.hide();
+    },
+    clickBookDescriptionCloseButton:function(){
+      this.closeCatalogDescription();
+    },
+    closeCatalogDescription: function(){
+      this.book_Collection_View_Student.show();
+      this.book_Collection_View_Catalog.show();
+      $('.book_Catalog_Book_Container').remove(); 
+    },
+    clickLinkIndexLogin:function(event){
+      this.closeCatalogDescription();
+      this.showBoxLogin();
+    },
+    showBoxLogin:function(){
+      
+      this.$el.append(_.template(index_Login_View));
+      var top=parseInt(this.$el.css('height'))/2-(parseInt(this.$el.find('.index_Login').css('height'))/2);
+      var left=parseInt(this.$el.css('width'))/2-(parseInt(this.$el.find('.index_Login').css('width'))/2);
+      this.$el.find('.index_Login').css({top:top+'px',left:left+'px'});
+
+    },
+    closeBoxLogin: function(){
+      this.$el.find('.index_Login_Container').remove();
+    },
+    clickIndexLoginContainer: function(event){
+      event.stopPropagation();
+      this.closeBoxLogin();
+    },
+    clickIndexLogin: function(event){
+      event.stopPropagation();
+    },
+    clickButtonLogin: function(event){
+      event.stopPropagation();
+      this.login();
+    },
+    login: function(){
+      var user=this.$el.find('.index_Login_Field_User').val();
+      var pass=this.$el.find('.index_Login_Field_Pass').val();
+      this.login_Manager.set({id:user, pass: pass});
+      this.login_Manager.login('.index_Login_Form');
+      
+    },
+    saveOauthObject: function(oauthObject){
+      this.login_Manager.saveOauthObject(oauthObject);
+    },
+    getOauthObject: function(){
+      return this.login_Manager.get("oauthObject");
+    },
+    studentContainBook: function(idBook){
+        var exist=false;
+        for(var i in this.student.get('my_books').models){
+          if(this.student.get('my_books').at(i).get('isbn')==idBook){
+            exist=true;
+            break;
+          }
+        }
+        return exist;
+    },
+    showStudentDontHaveBook: function(){
+      this.closeCatalogDescription();
+      var data={text:'No tiene ese libro asignado'};
+      this.$el.append(_.template(message_Box,data));
+      var top=((parseInt(this.$el.css('height'))/2)+50)-(parseInt(this.$el.find('.confirmation_Box_Box').css('height'))/2);
+      var left=((parseInt(this.$el.css('width'))/2))-(parseInt(this.$el.find('.confirmation_Box_Box').css('width'))/2);
+      this.$el.find('.confirmation_Box_Box').css({top:top+'px',left:left+'px'});
+
+    },
+    clickConfirmationBoxContainer:function(event){
+        this.$el.find('.confirmation_Box_Container').remove();
+    }
+  });
+  return new indexView;
+});

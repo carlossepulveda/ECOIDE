@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
+    <user>
+        <email>cas@</email>
+        <password>asdf</password>
+        <type>programmer</type>
+        <session/>
+    </user>
+    <user>
+        <email>prueba@</email>
+        <password>xxxx</password>
+        <type>programmer</type>
+        <session>3D3FC7AD185C7F7E6A90128D2253B62E</session>
+    </user>
+    <user>
+        <email>wil@</email>
+        <password>xxxx</password>
+        <type>programmer</type>
+        <session>39A5783FC377D4429DEF99874A652349</session>
+    </user>
+    <user>
+        <email>admin</email>
+        <password>xxxx</password>
+        <type>administrator</type>
+        <session/>
+    </user></users>

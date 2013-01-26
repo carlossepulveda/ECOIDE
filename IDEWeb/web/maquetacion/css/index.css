@@ -1,0 +1,106 @@
+body{
+font-family: verdana, arial;
+background-color: white;
+}
+#general{
+
+margin-top:20px;
+background-color: #FFF;
+border-radius:10px;
+padding: 5px;
+width:95%;
+margin-left:2%;
+height: 90%
+}
+.main_container{
+	height:90%;
+	width: 90%;
+	position: absolute;
+	background-color: white;
+}
+.main_title{
+	width:90%;
+}
+.login_box{
+	margin:0 auto;
+	position: relative;
+	height: 250px;
+	border-radius: 5px;
+	background-color: #f3f3f3;
+	box-shadow: 10px 10px 5px #888888;
+
+}
+h2{
+	color:blue;
+}
+input[type="text"],input[type="password"]{
+	margin-left:50px;
+	width: 90px;
+	height: 24px;
+}
+.leftMenu{
+	border: solid 1px;
+	border-radius: 10px;
+	width: 17%;
+	float: left;
+	margin-right: 2%;
+	background-color: #f3f3f3;
+}
+.viewPort{
+	border: solid 1px;
+	width: 100%;
+	height:100%;
+	overflow: auto;
+	border-radius: 10px;
+}
+.column{
+	height: 100%;
+}
+.itemMenu{
+
+	width: 70%;
+	cursor: pointer;
+	border-radius: 10px;
+}
+.itemMenu:hover{
+	color: white;
+	background-color: #0088cc;
+}
+.titleMenu{
+	margin: 5px;
+	background-color: #F2F2F2;
+	width: 93%
+}
+.titleItem{
+	background-color: rgba(0,0,0,0.2)
+}
+ul{
+	list-style: none;
+}
+.viewPortContainer{
+	float:left;
+	background-color: #f3f3f3;
+	width: 79%;
+}
+.containerDisplay{
+	width: 100%;
+	height: 100%;
+}
+header{
+	background-color: black;
+	color:white;
+	height: 30px;
+}
+.headerTitle{
+	float:left;
+	padding: 3px;
+	font-size: 16px;
+	font-family: bold;
+}
+.headerCloseSession{
+	float:right;
+	margin-right: 10px;
+}
+footer{
+	height: 5%;
+}

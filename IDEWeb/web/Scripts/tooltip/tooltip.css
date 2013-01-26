@@ -1,0 +1,12 @@
+.templateToolTip{
+    position: absolute;
+    width:100px; 
+    height: 100px;
+    background-image:url('shadow2.png');
+    background-size: 100% 100%;
+    z-index: 10000;
+    display: block;
+}
+.templateToolTip .ttc{
+    
+}

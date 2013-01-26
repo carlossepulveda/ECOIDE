@@ -1,0 +1,63 @@
+define([
+  'backbone'
+], function(Backbone) {
+  
+  var DB = Backbone.Model.extend({
+ 
+    
+    initialize: function(){
+      
+    },
+  	getOauthObject: function(id){
+
+         var item=sessionStorage.getItem(id);  
+         return JSON.parse(item);		
+  	},
+    getLocalOauthObject: function(id){
+
+         var item=localStorage.getItem(id);  
+         return item;   
+    },
+  	saveOauthObject: function(id,oauthObject,success){
+  		  sessionStorage.setItem(id,JSON.stringify(oauthObject));
+        
+  	},
+    saveLocalOauthObject: function(id,oauthObject){
+      localStorage.setItem(id,JSON.stringify(oauthObject));
+    },
+    getLoginLogObject: function(id,success){
+       
+        var item=sessionStorage.getItem('waitObject');
+        return item;
+
+    },
+    getLocalWaitObject: function(){
+      var item=localStorage.getItem('waitObject');
+      return item;
+    },
+    saveWaitObject: function(){
+
+      sessionStorage.setItem('waitObject', true);
+    },
+    saveLocalWaitObject: function(){
+      localStorage.setItem('waitObject', true);
+    },
+    removeLoginLogObject: function(){
+      
+      sessionStorage.removeItem('waitObject');  
+    
+    },
+    removeLocalWaitObject: function(){
+      localStorage.removeItem('waitObject');
+    },
+    removeLocalOauthObject: function(id){
+      
+      localStorage.removeItem(id);  
+    
+    }
+    
+  });
+  
+  return DB;
+
+});

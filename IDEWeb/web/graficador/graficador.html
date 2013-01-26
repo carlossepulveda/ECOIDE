@@ -1,0 +1,61 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            #myCanvas {
+                border: 1px solid #9C9898;
+            }
+        </style>
+        <style>
+	#draggable { width: 100px; height: 50px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; background-color: greenyellow;}
+	#droppable { width: 1200px; height: 700px; padding: 0.5em; float: left; margin: 10px; background-color: green;}
+	</style>
+      
+       <script  src="../Scripts/jquery/jquery.min.js"></script>
+        <script  src="../Scripts/jquery/jquery-ui.min.js"></script>
+    </head>
+    <body onmousedown="return false;">
+    
+        
+        
+	<script>
+	
+        $(document).ready(function (){
+                 
+            $('#draggable').draggable(); 
+                 
+              
+          });
+        
+        
+        
+        
+        
+        
+        
+	</script>
+
+
+            <div id="draggable" >
+                Drag me to my target
+            </div>  
+           
+        
+
+     
+        
+        
+        
+        
+        
+    </body>
+</html>

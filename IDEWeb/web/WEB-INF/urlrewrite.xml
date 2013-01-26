@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 3.1//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite3.1.dtd">
+
+    <urlrewrite>
+
+    <!--    <rule>
+           <from>^/some/olddir/(.*)$</from>
+           <to type="redirect">../../a.jsp?nombre=$1</to>
+        </rule>
+
+     <rule>
+        <from>^/products/([\w@;#]+)/([\w@;#]+)$</from>
+        <to>/a.jsp?nombre=$1</to>
+    </rule>
+    -->
+     <rule>
+        <from>^/run/project/([\w@;]+)/([\w@;]+)/([\w@.]+)/([\w@;]+)/([\w@;]+)$</from>
+        <!--<to>/a.jsp?name=$1&amp;owner=$2&amp;r=$3&amp;c=$4&amp;j=$5</to>-->
+        <to>/Users/$2/projects/$1/execute/index.jsp?jar=$3&amp;clase=$4&amp;ran=$5</to>
+    </rule>
+     
+     <rule>
+        <from>^/photo/([\w@;.*]+)/([\w@;.*]+)$</from>
+        <!--<to>/a.jsp?name=$1&amp;owner=$2&amp;r=$3&amp;c=$4&amp;j=$5</to>-->
+        <to>/Users/$1/$2</to>
+    </rule>
+    
+    <rule>
+        <from>^/getImageProject/([\w@;]+)/([\w@;]+)/([\w@;.*]+)/([\w@;.]+)$</from>
+        <!--<to>/a.jsp?name=$1&amp;owner=$2&amp;r=$3&amp;c=$4&amp;j=$5</to>-->
+        <to>/IDE/verImagenProyecto.jsp?nameP=$1&amp;owner=$2&amp;pack=$3&amp;nameF=$4</to>
+    </rule>
+    <rule>     
+        <from>^/downloadProject/([\w@;.*]+)/([\w@;.*]+)/([\w@;.*]+)$</from>
+        <!--<to>/a.jsp?name=$1&amp;owner=$2&amp;r=$3&amp;c=$4&amp;j=$5</to>
+        <to>/Users/$1/temporal/$2-$3/$2.zip</to>-->
+        <to>/IDE/index.html</to>
+    </rule>
+    </urlrewrite>

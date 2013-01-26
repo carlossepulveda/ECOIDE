@@ -1,0 +1,65 @@
+/* 
+    Document   : abrirProyecto
+    Created on : 5/12/2011, 08:51:38 AM
+    Author     : cas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+   .fieldsetForm{
+        background: none repeat scroll 0 0 gray;
+        border: 2px solid #B7DDF2;
+        border-radius: 7px 7px 7px 7px;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+        margin: 5px;
+        padding: 0px 10px 15px 10px;
+    }
+    .inputForm{
+        border: 1px solid #7997B1;
+        border-radius: 4px 4px 4px 4px;
+        font-size: 14px;
+        margin: 15px 0 0px 6px;
+        padding: 4px 2px;
+        width: 200px;
+
+    }
+    .botonForm{
+        background: none repeat scroll 0 0 #B6CBDD;
+        border-radius: 5px 5px 5px 5px;
+        color: #000000;
+        font-size: 14px;
+        height: 31px;
+        line-height: 31px;
+        text-align: center;                
+        width: 110px ;
+        margin-top: 15px;
+    }
+
+    .labelForm{
+        color: #000000;
+        font-size: 13px; 
+        font-weight: bold;
+        text-align: left !important;               
+    }        
+
+    .divError{
+        color: red;
+        font-size: 11px; 
+        font-weight: bold;   
+    }
+
+    .error{
+        border: 1px solid red !important;
+    }
+    
+    #formulario{
+        text-align: justify;
+        
+    }
+    
+ 

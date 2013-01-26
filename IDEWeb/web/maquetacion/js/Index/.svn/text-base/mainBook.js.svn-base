@@ -1,0 +1,68 @@
+require.config({
+	
+	paths : {
+		jquery : /**'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min',**/'../libs/jquery/jquery-min',
+		jqueryUI : '../libs/jquery/jquery.ui',
+		jqueryPreload : '../libs/jquery/jqueryPreloadCSSImagesV5',
+		underscore : '../libs/underscore/underscore-min',
+		backbone : '../libs/backbone/backbone',
+		text : '../libs/require/text',
+		templates: '../../templates',
+		mousewheel: '../libs/jquery/jquery.mousewheel.min',
+		mCustomScrollbar:'../libs/jquery/jquery.mCustomScrollbar.min'
+	},
+
+	shim : {
+		'backbone' : {
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			deps : ['underscore', 'jquery'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			exports : 'Backbone'
+		},
+		'jqueryUI' :{
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			deps : ['jquery'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			exports : 'jqueryUI'
+		},
+		'jqueryPreload':{
+			deps:['jquery'],
+			exports: 'jqueryPreload'
+		},
+		'mousewheel' :{
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			deps : ['jquery'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			exports : 'mousewheel'
+		},
+		'mCustomScrollbar' :{
+			//These script dependencies should be loaded before loading
+			//backbone.js
+			deps : ['jquery','mousewheel'],
+			//Once loaded, use the global 'Backbone' as the
+			//module value.
+			exports : 'mCustomScrollbar'
+		}
+	}
+
+});
+require([
+
+  // Load our app module and pass it to our definition function
+  'appBook',
+
+  // Some plugins have to be loaded in order due to their non AMD compliance
+  // Because these scripts are not "modules" they do not pass any values to the definition function below
+], function(App){
+	
+	console.log('mainBook.js inicializar.....');
+  // The "app" dependency is passed in as "App"
+  // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
+  App.initialize();
+});

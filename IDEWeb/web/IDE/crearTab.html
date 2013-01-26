@@ -1,0 +1,64 @@
+<script>
+    var myForm,
+    formData;
+    formData = [{
+            type: "settings",
+            position: "label-left",
+            labelWidth: 130,
+            inputWidth: 120
+        }, {
+            type: "fieldset",
+            label: "Crear Pestaña",
+            inputWidth: "auto",
+            list: [{
+                    type: "input",
+                    label: "Id de la Pestaña",
+                    name: "id",
+                    validate: "NotEmpty",
+                    value: ""
+                }, {
+                    type: "input",
+                    label: "Nombre de la Pestaña",
+                    name: "name",
+                    validate: "NotEmpty",
+                    value: ""
+                }, {
+                    type: "select",
+                    label: "Seleccione un icono",
+                    name: "icon",
+                    options:[
+                        {text:"pdf", value:"/iconos/pdf.png"},
+                        {text:"java", value:"/iconos/java.png"},
+                        {text:"audio", value:"/iconos/audio.png"},
+                        {text:"video", value:"/iconos/video.png"},
+                        {text:"excel", value:"/iconos/excel.png"},
+                        {text:"desconocido", value:"/iconos/desconocido.png"},
+                        {text:"flash", value:"/iconos/flash.png"},
+                        {text:"imagen", value:"/iconos/imagen.png"}]
+                }, {
+                    type: "button",
+                    value: "crear",
+                    name: "ok",
+                    command: "crear"
+                }]
+        }];
+    myForm = new dhtmlXForm("formCrearTab", formData);
+    myForm.attachEvent("onButtonClick", function(name, command) {
+        window[command]();
+    });
+    
+    
+    function crear(){
+        if(myForm.validate()){
+            control_tab.abrirClase(myForm.getItemValue("id"), 1, "public class "+myForm.getItemValue("name")+"{\n\npublic static void main(String arg[]){\n\tSystem.out.println(\"Hola Mundo\");\n}\n\n}");         
+           cerrarBox();
+        }
+    }
+    function cancelar(){
+        cerrarBox();
+    }
+                
+       
+</script>
+<div id="formCrearTab" style="width: 300px; height: 300px;" ></div>
+

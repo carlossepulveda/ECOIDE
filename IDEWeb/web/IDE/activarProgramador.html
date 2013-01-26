@@ -1,0 +1,103 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <meta http-equiv="cache-control" content="no-store"/>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="../Scripts/jquery/jquery.min.js"></script> 
+        <script  src="../Scripts/jquery/jquery-ui.min.js"></script>
+        <script  src="../Scripts/jquery/jquery.corner.js"></script>
+        <script type="text/javascript" src="../Scripts/json/json_sans_eval.js"></script>
+        <script>
+            
+          $(document).ready(function (){
+                 
+                 $('.formulario').corner("round 8px").parent().css('padding', '8px').corner("round 14px")
+                
+              
+            });
+           window.history.go(1); 
+            function getIDE(){
+               // document.getElementById('loadG').style.display='block';
+                $.get("../IDE/login.jsp?user="+document.getElementById('nombre').value+"&password="+document.getElementById('pass').value, function(data) {
+                     if(jsonParse(data).answ=='wrong'){
+                        alert('Clave o usuario incorrecto');
+                        document.getElementById('loadG').style.display='none';
+                    }
+                    else{
+                       var r=Math.random()*92919394959;
+                        window.location.href='../IDE/index.jsp?ran='+r;
+                    }
+                       
+                });
+            }
+            
+            function registrarP(){
+                
+               // document.getElementById('loadG').style.display='block';
+                $.get("../IDE/registrarProgramador.jsp?name="+document.getElementById('nombreP').value+"&password="+document.getElementById('passP').value+"&mail="+document.getElementById('mailP').value+"&profile="+document.getElementById('profileP').value+"&photo="+document.getElementById('photoP').value, function(data) {
+                                                    
+                     if(jsonParse(data).answ=='wrong'){
+                        alert('Error al intentar registrar');
+                        document.getElementById('loadG').style.display='none';
+                    }
+                    else{
+                      document.getElementById('loadG').style.display='none';
+                      alert('Registro exitoso');
+                        
+                    }
+                       
+                });
+                
+            }
+            
+            
+             function activarP(){
+                
+               // document.getElementById('loadG').style.display='block';
+                $.get("../IDE/crearProgramador.jsp?email="+document.getElementById('mailA').value, function(data) {
+                                                    
+                     if(jsonParse(data).answ=='wrong'){
+                        alert('Error al intentar activar programador');
+                        document.getElementById('loadG').style.display='none';
+                    }
+                    else{
+                      document.getElementById('loadG').style.display='none';
+                      alert('Programador activado exitosamente');
+                        
+                    }
+                       
+                });
+                
+            }
+            
+            function viewFormRegistro(){
+                $('#imgRegistro').css('display','none');
+                $('#formRegistro').css('display','block');
+            }
+            
+        </script>
+    </head>
+    <body onload="">
+        
+    <div id="cformularios" style="height: 300px;width:500px;background-color: #dfeff9;float:right;">
+       <div id="fRegistro" class="formulario" style="background-color: #f0f6fa;float:left;margin-left: 10px;">
+            
+               <div style="background-color: blue;float: left;">
+            
+            <pre>email a activar </pre><input type="text" name="email" value="" id="mailA"/><br/>
+            <button onclick="activarP()">Activar</button>
+            
+        </div>
+           
+        </div>
+       
+   </div> 
+        <br></br><br></br>
+        
+    </body>
+</html>

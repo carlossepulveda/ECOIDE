@@ -1,0 +1,51 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone,wordsCollection) {
+  
+  var book_student_style = Backbone.Model.extend({
+  
+    url: '/style',
+    defaults:{
+    	idStudent: '',
+    	idBook: '',
+    	theme: '',
+    	color_font: '',
+      size_font:'',
+      type_font:''
+    },
+    initialize: function(idStudent,idBook){
+    	this.url='/student/'+idStudent+'/book/'+idBook+'/style';	
+    },
+    put: function(theme,color_font,size_font,type_font,successHandler, errorHandler){
+    	var that=this;
+    	var objectPut={
+    					idStudent: this.get("idStudent"), 
+    					idBook: this.get("idBook"), 
+    					theme: theme, 
+    					color_font: color_font,
+              size_font: size_font,
+              type_font: type_font
+    				};
+	     $.ajax({
+
+		        contentType : 'application/json',
+		        url: this.url,
+		        type:"PUT",
+		        data:JSON.stringify(objectPut)
+
+	      }).done(function() { 
+	          successHandler();
+
+	      }).error(function(){	          
+	          errorHandler();
+
+	      });
+    }
+
+    
+  });
+
+  return book_student_style;
+
+});

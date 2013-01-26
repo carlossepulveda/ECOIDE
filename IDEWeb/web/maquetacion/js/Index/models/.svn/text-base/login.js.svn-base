@@ -1,0 +1,90 @@
+define([
+  'backbone',
+  'models/DB'
+], function(Backbone,DB) {
+  
+  var login = Backbone.Model.extend({
+  defaults:{
+      oa: null,
+      oauth_token: null,
+      oauth_token_secret: null,
+      oauth_verifier: null,
+      logged: false,
+      
+      
+  },
+  url: '/login',
+  DB: new DB(),
+  
+
+    
+    initialize: function(){
+    	
+
+    },
+
+    login: function(selectorForm){
+      //if(!this.get('logged')){
+    var that=this;
+    console.log(this.DB);
+        $.ajax(
+
+          {
+
+            contentType : 'application/json',
+            url: this.url+'/'+this.get('id'),
+            type:"POST",
+            data: JSON.stringify({pass: 'carlos'})
+
+          }
+
+        ).success(function(data){
+
+          if(data.answ){
+          
+            //Almacena en la DB es estado de login
+            that.DB.saveLocalWaitObject();
+            $(selectorForm).submit();
+
+          }else{
+            alert('el usuario no esta registrado');
+          }
+  
+        }).error(function(){
+
+          alert('Ocurrio un error al consultar usuario');
+
+        });
+       
+      //}
+
+    /**  this.fetch({
+        success: function(model,res,x){
+          successHandler();
+        },
+        error: function(model,res,x){
+          errorHandler();
+        }
+
+      });**/
+    },
+
+    saveOauthObject: function(oauthObject){
+      this.set({oauthObject: oauthObject});
+    },
+  
+    parse:function(response){
+
+      return {
+              oa: response.oa, 
+              oauth_token: response.oauth_token, 
+              oauth_token_secret: response.oauth_token_secret, 
+              oauth_verifier: response.oauth_verifier
+            };
+    
+    }
+ 
+  });
+  return login;
+
+});

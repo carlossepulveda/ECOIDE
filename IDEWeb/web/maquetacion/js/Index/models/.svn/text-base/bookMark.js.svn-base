@@ -1,0 +1,43 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone,wordsCollection) {
+  
+  var bookMark = Backbone.Model.extend({
+  
+    url: '/bookMark',
+    defaults:{
+    	idStudent: '',
+    	idBook: '',
+    	word: '',
+    	color: ''
+    },
+    initialize: function(idStudent,idBook){
+    	this.url='/student/'+this.get("idStudent")+'/book/'+this.get("idBook")+'/bookMark';	
+    },
+    delete: function(successHandler,errorHandler){
+    	
+	     $.ajax({
+
+		        contentType : 'application/json',
+		        url: this.url,
+		        type:"DELETE",
+		        data:JSON.stringify(this)
+
+	      }).done(function() { 
+	        successHandler();
+
+
+	      }).error(function(){	          
+	          if(errorHandler)
+	          	errorHandler();
+
+	      });
+    }
+
+    
+  });
+
+  return bookMark;
+
+});

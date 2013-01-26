@@ -1,0 +1,1 @@
+(function(a){a.fn.ellipsis=function(){return this.each(function(){var b=a(this);var c=b.html();var d=a(this.cloneNode(true)).width(b.width()).height("auto");b.after(d);while(c.length>0&&d.height()>b.height()){c=c.substr(0,c.length-1);d.html(c+"...")}b.html(d.html());d.remove()})}})(jQuery)

@@ -1,0 +1,105 @@
+define([
+  'underscore',
+  'backbone',
+  '../collections/words'
+], function(_, Backbone,wordsCollection) {
+  
+  var book = Backbone.Model.extend({
+  defaults:{
+      author:null,
+      category:null,
+      chapters:null,
+      frontImage: null,//images/books/ppp.jpg',
+      index:null,
+      isbn:null,
+      name: null,
+      shortImage:null,
+      totalWords: 0,
+      totalPages: 0,
+      visible:true,
+      currentLastWord: -1,
+      currentStartWord: -1,
+      illustrations: null,
+      //propiedad utilizada para saber si se encuentra en edicion o finalizadao. En caso de hacer referencia a un libro de un curso
+      state: null,
+      editable: false,//propiedad que se cargara para anunciar que el libro hace parte de un proceso de creacion de grupos en el cual se encuentra editable
+      editState:'none'
+  },
+    
+    urlRoot: '/book',
+    id: '', 
+    words: wordsCollection,
+    loaded: false,//atributo temporal para evitar que vaya al servidor, en vez de esto deberia evaluar la cantidad
+    //de palabras que tiene, y calcular si puede satisfacer la peticion sin necesidad de ir al servidor nuevamente
+    
+    initialize: function(){
+      this.on('change:id',function(){
+        this.words.initialize({idBook: this.id});
+      });
+      
+    },
+    getChapters: function(){
+
+      for(var i in this.get('chapters')){
+          if(i==this.get('chapters').length-1){
+            return this.get('chapters')[i];
+          }
+          if(this.get('currentWord') >= this.get('chapters')[i].word  &&  this.get('currentWord') < this.get('chapters')[parseInt(i)+1].word){
+            return this.get('chapters')[i];
+          }
+      }
+    },
+    getCurrentPage: function(){
+      var porcentaje= this.get("currentLastWord")/this.get("totalWords");
+      return parseInt( porcentaje *this.get("totalPages") );
+    },
+    requirePageRange: function(range){
+       
+        if(this.words.models.length==0 ){
+            return range;
+        } 
+        if(this.words.models[0].get('i')<=range.from && this.words.models[0].get('i')>=range.to){
+          return null;
+       } 
+        //es necesario validar de una mejor manera, de tal forma que solo se traiga el segmento q hace falta y todo
+         
+    },
+
+     load:function(successHandler,errorHandler){
+      var that=this;
+        this.fetch({
+
+            success: function(model,res,x){
+              that.set({loaded: true});
+              successHandler();
+            },
+            error: function(model, res, x){
+              errorHandler();
+            }
+
+
+        });
+     },
+
+     parse: function(response){
+     return {author:response.author,
+            category:response.category,
+            years: response.years,
+            chapters:response.chapters,
+            frontImage: response.frontImage,//images/books/ppp.jpg',
+            index:response.index,
+            isbn:response.isbn,
+            name: response.name,
+            shortImage:response.shortImage,
+            totalWords: response.totalWords,
+            totalPages: response.totalPages,
+            illustrations: response.illustrations
+    };
+
+    }
+    
+  });
+  
+  return book;
+
+});

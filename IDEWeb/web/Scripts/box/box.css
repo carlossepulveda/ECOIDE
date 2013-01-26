@@ -1,0 +1,98 @@
+/* 
+    Document   : box
+    Created on : 06-dic-2011, 15:36:46
+    Author     : HUESPED PORTATIL
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#fondoBox{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index:1001;
+    -moz-opacity: 0.05;
+    background-color: black;
+    opacity:0.05;
+    filter: alpha(opacity=5);
+}
+
+#contentBox{
+    position: absolute;
+    /**top: 25%;
+    left: 25%;*/
+    padding: 1px 6px 6px 6px;
+    border-top: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    background-color: #e3e3e3;
+    border: 1px solid #a4bed4;
+    z-index:1002;
+}
+
+#barraBox{
+    background-color: #e3e3e3;
+    height: 26px;
+    position: relative;
+    cursor: move;
+    
+}
+#titleBox, #iconBox, #closeBox{
+    position: absolute;
+    top: 5px;
+    bottom: 5px;    
+    float:left;
+}
+#titleBox{
+   font-family: Tahoma;
+   color: black;
+   font-weight: bold;
+   font-size: 11px;
+   top: 7px;
+   left: 22px;
+}
+
+#titleBox:hover{
+    color: black;
+}
+#iconBox{
+    background: url(../box/img/icon.png) no-repeat;
+    height: 16px;
+    width: 16px;
+}
+#closeBox{
+    background: url(../box/img/close1.png) no-repeat;   
+    height: 16px;
+    width: 29px;
+    cursor: pointer;    
+    right: 5px;    
+}
+
+#closeBox:hover{
+    background: url(../box/img/close2.png) no-repeat;
+}
+.bordesRedondeados{    
+    -moz-border-radius-topleft:7px;
+    -moz-border-radius-topright:7px;
+
+    -webkit-border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+
+    border-radius: 7px 7px 0px 0px;   
+}
+
+#contentBoxInter{
+    overflow: auto;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #a4bed4;
+}

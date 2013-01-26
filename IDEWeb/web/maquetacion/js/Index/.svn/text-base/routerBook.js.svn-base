@@ -1,0 +1,34 @@
+// Filename: router.js
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'mousewheel',
+  'mCustomScrollbar',
+  'views/book_reader/book_Reader'
+], function($, _, Backbone,mousewheel, mCustomScrollbar,mainHomeView){
+  
+  var AppRouter = Backbone.Router.extend({
+    
+
+            routes: {
+              'home': 'goHome',
+              'book/:id': 'loadBook'
+            },
+            goHome:function(){
+              window.location.href="../baap/miespacio.html";
+            },
+            loadBook:function(id){
+              mainHomeView.initialize({id:id});
+            }
+
+  });
+
+  var initialize = function(){
+    var app_router = new AppRouter;
+    Backbone.history.start();
+  };
+  return { 
+    initialize: initialize
+  };
+});

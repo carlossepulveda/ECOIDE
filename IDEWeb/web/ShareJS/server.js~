@@ -1,0 +1,155 @@
+var server = require("socket.io").listen(8081);
+var fs=require("fs");
+var matchFile=__dirname+"/../MatchFolder/sessionActives.txt";
+
+function isValidUser(id,session){console.log('Llegoa console.log id: '+id+'  session: '+session);
+	var file=fs.readFileSync(matchFile,"utf8");
+        var users=file.split(';');
+        for(var i in users){
+		var ses=users[i].split(':');
+                if(ses[0]==id){
+			if(ses[1]==session && ses[1]!='*.*')
+				return true;
+			else 
+				return false;
+		}
+
+  	}
+       return false;
+}
+
+server.sockets.on("connection", function(message)
+{
+
+  message.rooms = new Array();
+  message.on("suscribirse", function(channel)
+    {
+     if(isValidUser(channel.u,channel.s)){
+	console.log('Lllego a suscribirse al canal:  '+channel);
+ 		for(var i in message.rooms){
+
+			if(message.rooms[i]==channel.c)return;
+
+		}
+		message.rooms.push(channel.c);
+		var msj='<xml><u>s</u><op>cuser</op><data><m>iu</m><id>'+channel.u+'</id><p>'+channel.c+'</p></data></xml>';                             
+                               
+		server.sockets.in(channel.c).emit('recibirMsg', msj);
+		message.join(channel.c);
+
+}else{console.log('Usuario no valido intento suscribirse');}
+
+    });
+
+message.on("conexionSession", function(channel)
+    {
+	
+	if(isValidUser(channel.c,channel.s)){
+		console.log('El usuario es valido, coexionSession  '+channel.c);
+		var msj='<xml><op>no</op><data><m>cs</m><id>'+channel.c+'</id></data></xml>';                             
+		server.sockets.in(channel.c).emit('closeSession', msj);
+		message.join(channel.c);
+	}else{
+            console.log('Usuario no valido intento conectarse');	
+	}
+
+
+    });
+message.on("deleteUser", function(channel)
+    {
+	if(isValidUser(channel.c,channel.s)){                           
+        server.sockets.in(channel.u).emit('deletedUser','');
+	}else{
+		console.log('Usuario no valido intento eliminar usuario');
+}
+
+
+
+    });
+
+
+message.on("shareProject", function(channel)
+    {
+   if(isValidUser(channel.u,channel.s)){
+        console.log('sharedProject  :  '+ channel.p  +'  ---  '+  channel.u );                            
+        server.sockets.in(channel.c).emit('takeProject', { p:channel.p  ,  u:channel.u  });
+    }else{
+            console.log('Usuario no valido intento compartir proyeceto');	
+	}
+
+    });
+
+message.on("deleteProject", function(channel)
+    {                           
+       if(isValidUser(channel.c,channel.s)){
+	 server.sockets.in(channel.c).emit('deletedProject', { p:channel.p  ,  u:channel.u  });
+	}else{
+	console.log('Usuario no valido intento eliminar proyecto');
+        }
+	
+
+    });
+
+message.on("renameProject", function(channel)
+    {    
+	if(isValidUser(channel.c,channel.s)){                      
+        server.sockets.in(channel.c).emit('renamedProject', { p:channel.p  ,  u:channel.u , nn: channel.nn });
+	}else{
+	  console.log('Usuario no valido intento renombrar proyecto');
+	}
+
+    });
+
+message.on("changeUserPrivilege", function(channel)
+    {    
+	if(isValidUser(channel.u,channel.s)){                       
+        server.sockets.in(channel.c).emit('changedUserPrivilege', { p:channel.p  ,  u:channel.u , t: channel.t });
+}else{
+	console.log('Usuario no valido intento cambiarPrivilegios a un proyecto');
+}
+
+    });
+
+  message.on("nuevoMsg", function(data)
+    {console.log('nuevoMsggggg   :  '+data+'\n'+message.rooms+'\n'+data.c+'\n'+data.msj);
+
+	for(var i in message.rooms){
+			if(message.rooms[i]==data.c){
+				if(isValidUser(data.u,data.s)){
+				server.sockets.in(data.c).emit('recibirMsg', data.msj);
+				console.log('Envio mensaje al canal:  '+message.rooms[i]);
+				}else{console.log('Usuario no valido intento enviar un mensaje');break;}
+			}
+		}
+
+
+
+    });
+
+  message.on("updatedJava", function(data)
+    {console.log('updatedJava  :  '+data+'\n'+message.rooms+'\n'+data.c+'\n'+data.msj);
+	for(var i in message.rooms){
+			if(message.rooms[i]==data.c){
+				
+				server.sockets.in(data.c).emit('refreshdJava', data);
+				
+			}
+		}
+
+    });
+
+
+	message.on('disconnect', function(){
+		// remove the username from global usernames list
+		
+		//delete usernames[socket.username];
+		// update list of users in chat, client-side
+		//io.sockets.emit('updateusers', usernames);
+		// echo globally that this client has left
+		//socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+		message.leave(message.room);
+	});
+
+});
+process.title = 'notificationServer';
+

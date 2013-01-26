@@ -1,0 +1,101 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            function solicitarContrasenaCorreo(){
+             $.get('../IDE/solicitarContrasenaCorreo.jsp?email='+$('#correo').val(),function(){});
+              cerrarBox();
+        }
+           
+        </script>
+           <style>
+            fieldset{
+                background: none repeat scroll 0 0 #EBF4FB;
+                border: none;
+                border-radius: 7px 7px 7px 7px;
+                font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+                margin: 5px;
+            }
+            .inputForm{
+                border: 1px solid #7997B1;
+                border-radius: 4px 4px 4px 4px;
+                font-size: 14px;
+                margin: 15px 0 0px 6px;
+                padding: 4px 2px;
+                width: 200px;
+
+            }
+            
+            .botonForm{
+                background: none repeat scroll 0 0 #B6CBDD;
+                border-radius: 5px 5px 5px 5px;
+                color: #000000;
+                font-size: 14px;
+                height: 31px;
+                line-height: 31px;
+                text-align: center;                
+                width: 110px ;
+                margin-top: 15px;
+            }
+
+            .labelForm{
+                color: #000000;
+                font-size: 13px; 
+                font-weight: bold;
+                text-align: left !important;               
+            }        
+
+            .divError{
+                color: red;
+                font-size: 11px; 
+                font-weight: bold;   
+            }
+
+            .error{
+                border: 1px solid red !important;
+            }
+
+            #formulario{
+                text-align: justify;
+
+            }
+
+            ul{
+                list-style: circle !important;
+                text-align: justify !important; 
+            }
+            li{
+                margin-left: 25px;
+                width: 345px;
+            }
+        </style>
+
+    </head>
+    <body>
+         <div id="fRegistro" class="formulario" style="background-color: #f0f6fa;">
+           
+           <fieldset>
+                <div id='formulario'>
+                
+                        <div align="right" style="margin-right:20px;">
+                            <label class='labelForm'>Digite su correo electronico </label>
+                            <input id="correo" class='inputForm' type="text" name="correo"/>                    
+                        </div>
+                        <div align="right" >
+                            <table>
+                                <tr><td align="left"><input id="botonCancelarCorreo" type="button" class="botonForm" value="Cancelar" onclick="cerrarBox()" /></td><td align="right"><input id="botonAceptar" type="button" class="botonForm" value="Enviar" onclick="solicitarContrasenaCorreo()" /></td></tr>
+                            </table>
+                            
+                        </div>
+
+                </div>
+              </fieldset>
+        </div>
+    </body>
+</html>

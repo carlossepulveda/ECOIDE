@@ -1,0 +1,113 @@
+.chatbox {
+	position: fixed;
+	position:expression("absolute");
+	width: 225px;
+	display:none;
+        z-index: 7000;
+}
+
+.chatboxhead {
+	background-color: #98b8d5; /**#f99d39;**/
+	padding:7px;
+	color: #ffffff;
+
+	border-right:1px solid #98b8d5;/**#f99d39;**/
+	border-left:1px solid #98b8d5;/**#f99d39;**/
+        z-index: 7000;
+}
+
+.chatboxheadslope {
+	background-color: #f99d39;
+        border-right:1px solid #f99d39;
+	border-left:1px solid #f99d39;
+}
+
+.chatboxblink {
+	background-color: #176689;
+	border-right:1px solid #176689;
+	border-left:1px solid #176689;
+        z-index: 7000;
+}
+
+.chatboxcontent {
+	font-family: arial,sans-serif;
+	font-size: 13px;
+	color: #333333;
+	height:200px;
+	width:209px;
+	overflow-y:auto;
+	overflow-x:auto;
+	padding:7px;
+	border-left:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #eeeeee;
+	background-color: #ffffff;
+	line-height: 1.3em;
+        z-index: 7000;
+}
+
+.chatboxinput {
+	padding: 5px;
+	background-color: #ffffff;
+	border-left:1px solid #cccccc;
+	border-right:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+        z-index: 7000;
+}
+
+.chatboxtextarea {
+	width: 206px;
+	height:44px;
+	padding:3px 0pt 3px 3px;
+	border: 1px solid #eeeeee;
+	margin: 1px;
+	overflow:hidden;
+        z-index: 7000;
+}
+
+.chatboxtextareaselected {
+	border: 2px solid #f99d39;
+	margin:0;
+        z-index: 7000;
+}
+
+.chatboxmessage {
+	margin-left:1em;
+        text-align: left;
+        z-index: 7000;
+}
+
+.chatboxinfo {
+	margin-left:-1em;
+	color:#666666;
+        z-index: 7000;
+
+}
+
+.chatboxmessagefrom {
+	margin-left:-1em;
+	font-weight: bold;
+        z-index: 7000;
+}
+
+.chatboxmessagecontent {
+    z-index: 7000;
+}
+
+.chatboxoptions {
+	float: right;
+        z-index: 7000;
+}
+
+.chatboxoptions a {
+	text-decoration: none;
+	color: white;
+	font-weight:bold;
+	font-family:Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+        z-index: 7000;
+}
+
+.chatboxtitle {
+	float: left;
+        z-index: 7000;
+}

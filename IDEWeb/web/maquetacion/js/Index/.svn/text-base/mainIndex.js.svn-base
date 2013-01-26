@@ -1,0 +1,46 @@
+// Author: Thomas Davis <thomasalwyndavis@gmail.com>
+// Filename: main.js
+
+// Require.js allows us to configure shortcut alias
+// Their usage will become more apparent futher along in the tutorial.
+require.config({
+  paths: {
+    jquery : '../libs/jquery/jquery-min',
+    jqueryUI : '../libs/jquery/jquery.ui',
+    flip: '../libs/jquery/flipbook',
+    underscore : '../libs/underscore/underscore-min',
+    backbone : '../libs/backbone/backbone',
+    text : '../libs/require/text',
+    templates: '../../templates'
+  },
+
+  shim : {
+    'backbone' : {
+      //These script dependencies should be loaded before loading
+      //backbone.js
+      deps : ['underscore', 'jquery'],
+      //Once loaded, use the global 'Backbone' as the
+      //module value.
+      exports : 'Backbone'
+    },
+    'flip':{
+      deps: ['jquery'],
+      exports: 'flip'
+    }
+  }
+
+});
+
+require([
+
+  // Load our app module and pass it to our definition function
+  'appIndex',
+
+  // Some plugins have to be loaded in order due to their non AMD compliance
+  // Because these scripts are not "modules" they do not pass any values to the definition function below
+], function(App){
+	console.log('main.js inicializar.....');
+  // The "app" dependency is passed in as "App"
+  // Again, the other dependencies passed in are not "AMD" therefore don't pass a parameter to this function
+  App.initialize();
+});

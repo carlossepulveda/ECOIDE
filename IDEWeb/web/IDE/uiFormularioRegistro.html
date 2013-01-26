@@ -1,0 +1,158 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+    .fieldsetForm{
+        background: none repeat scroll 0 0 #EBF4FB;
+        border: 2px solid #B7DDF2;
+        border-radius: 7px 7px 7px 7px;
+        font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+        margin: 5px;
+        padding: 0px 10px 15px 10px;
+    }
+    .inputForm{
+        border: 1px solid #7997B1;
+        border-radius: 4px 4px 4px 4px;
+        font-size: 14px;
+        margin: 15px 0 0px 6px;
+        padding: 4px 2px;
+        width: 200px;
+
+    }
+    .botonForm{
+        background: none repeat scroll 0 0 #B6CBDD;
+        border-radius: 5px 5px 5px 5px;
+        color: #000000;
+        font-size: 14px;
+        height: 31px;
+        line-height: 31px;
+        text-align: center;                
+        width: 110px ;
+        margin-top: 15px;
+    }
+
+    .labelForm{
+        color: #000000;
+        font-size: 13px; 
+        font-weight: bold;
+        text-align: left !important;               
+    }        
+
+    .divError{
+        color: red;
+        font-size: 11px; 
+        font-weight: bold;   
+    }
+
+    .error{
+        border: 1px solid red !important;
+    }
+    
+    #formulario{
+        text-align: justify;
+        
+    }
+    
+    ul{
+        list-style: circle !important;
+        text-align: justify !important; 
+    }
+    li{
+        margin-left: 25px;
+        width: 345px;
+    }
+</style>
+        <script>
+        
+            
+            function registrarP_(){
+                if(validoName()){
+                    if(validoMail()){
+                        registrarP($('#idNameP').val(),$('#idMail').val(),$('#idPass').val());
+                        cerrarBox();
+                    }
+                    
+                }
+            }
+            function validoName(){
+                if($('#idNameP').val()==""){
+                    $('#idErrorName').css("display","block");
+                    $('#idNameP').addClass("error");
+                    return false;
+                }else{
+                        $('#idErrorName').css("display","none");
+                        $('#idNameP').removeClass("error");
+                    
+                    return true;
+                }
+            }
+            function validoMail(){
+                if($('#idMail').val()==""){
+                    $('#idEmptyMail').css("display","block");
+                    $('#idMail').addClass("error");
+                    return false;
+                }
+                if(!esCorreoValido($('#idMail').val())){
+                    $('#idErrorMail').css("display","block");
+                    $('#idMail').addClass("error");
+                    return false;
+                }
+                
+                $('#idEmptyMail').css("display","none");
+                $('#idErrorMail').css("display","none");
+                $('#idMail').removeClass("error");
+                    
+               return true;
+            }
+            function esCorreoValido(){
+                return true;
+            }
+            function cancelar(){
+                
+                cerrarBox();
+            }
+            
+        </script>
+    </head>
+    <body>
+    
+        <div id='formulario'>
+    <fieldset class="fieldsetForm">
+        <div align="right">
+            <label class='labelForm'>Nombre</label>
+            <input id="idNameP" class='inputForm' type="text" name="nameP"/>                    
+        </div>
+        <div id="idErrorName" class='divError' style="display:none;" align="right">Campo obligatorio</div>
+        <div align="right">
+            <label class='labelForm'>Correo</label>
+            <input id="idMail" class='inputForm' type="text" name="mail"/>                    
+        </div>
+        
+        <div id="idEmptyMail" class='divError' style="display:none;" align="right">Campo obligatorio</div>
+        <div id="idErrorMail" class='divError' style="display:none;" align="right">No es una direccion de correo valido</div>
+        <div align="right">
+            <label class='labelForm'>Conse&ntilde;a</label>
+            <input id="idPass" class='inputForm' type="text" name="idPass"/>                    
+        </div>
+        <div id="idEmptyPass" class='divError' style="display:none;" align="right">Campo obligatorio</div>
+        <div align="right">
+            <label class='labelForm'>Reingrese contrase&ntilde;a</label>
+            <input id="idPass2" class='inputForm' type="text" name="pass2"/>                    
+        </div>
+        <div id="idEmptyPass2" class='divError' style="display:none;" align="right">Campo obligatorio</div>
+        <div id="idErrorPass" class='divError' style="display:none;" align="right">Las contrase&ntilde;as no coinciden</div>
+        <div align="right">
+            <input id="botonAceptar" type="button" class="botonForm" value="Aceptar" onclick="registrarP_()" />
+            <input id="botnCancelar" type="button" class="botonForm" value="Cancelar" onclick="cancelar()" />
+        </div>
+
+    </fieldset>
+</div>
+    </body>
+</html>

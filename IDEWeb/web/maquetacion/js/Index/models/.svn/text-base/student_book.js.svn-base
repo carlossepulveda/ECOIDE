@@ -1,0 +1,317 @@
+define([
+  'underscore',
+  'backbone',
+  '../collections/notes',
+  '../collections/bookMarkers',
+  '../collections/bookHighlights',
+  '../models/book_student_style'
+
+], function(_, Backbone,Notes,BookMarkers,BookHighlights,Book_student_style) {
+  console.log(Notes);
+  var student = Backbone.Model.extend({
+  
+    url: '/student',
+    id: '',
+    idBook: '',
+    notes: new Notes({}),
+    notesLoaded: false,
+    bookMarkers: BookMarkers,
+    bookMarkersLoaded: false,
+    bookHighlights: new BookHighlights({}),
+    bookHighlightsLoaded: false,
+    book_student_style: new Book_student_style({}),
+    styleLoaded: false,
+    initialize: function(id , idBook){
+
+      this.set({id: id, idBook: idBook});
+      this.notes.initialize(this.get('id'), this.get('idBook'));
+      this.bookMarkers.initialize(this.get('id'), this.get('idBook'));
+      this.bookHighlights.initialize(this.get('id'), this.get('idBook'));
+      this.book_student_style.initialize(this.get('id'), this.get('idBook'));
+    },
+    getNotesBook: function(m){
+      var that=this;
+    	this.notes.fetch({
+            wait:true,
+				    success : function (model, res, options) {
+              that.notes.reset(res);
+              that.set({notesLoaded: true});
+              m();
+				     	
+				    },
+				    error : function (model, res, options) {
+				      alert("Error obtener las actividades de un estudiante en un libro");
+				    }
+				
+		  });
+
+    },
+    saveNote: function(range, text,successHandler,errorHandler){
+      var that=this;
+        this.notes.create(
+                  { idStudent: this.get("id"), idBook: this.get("idBook"), range: range , text: text},
+                  {   wait: true, 
+                      success: function(model, res){
+                          console.log(that.notes);
+                          successHandler(model, res);
+                      },
+                      error: function(model, res){
+                          errorHandler(model,res);                         
+                      }
+                  }
+          );
+
+
+    },
+    editNote: function(range, text,successHandler,errorHandler){
+    
+      var index=-1;
+      for(var i in this.notes.models){
+          var noteI=this.notes.at(i);
+          var rangeI=noteI.get("range");
+          if(parseInt(rangeI.start)==parseInt(range.start) && parseInt(rangeI.end)==parseInt(range.end)){
+            index=i;
+            if(noteI.get("text")==text){
+              successHandler();
+              break;
+            }
+
+            this.notes.at(i).put(text, successHandler, errorHandler );
+            break;
+          }
+      }
+
+      if(index==-1){
+        errorHandler();
+      } 
+      
+      
+    },
+/**
+El metodo save de la collection me esta generando un POST y no  un PUT
+    editNote: function(range, text,successHandler,errorHandler){
+      var id=this.get("id");
+      var idBook=this.get("idBook");
+      var url="/student/"+this.get("id")+"/book/"+this.get("idBook")+"/note"
+      var index=-1;
+      for(var i in this.notes.models){
+          var noteI=this.notes.at(i);
+          var rangeI=noteI.get("range");
+          if(parseInt(rangeI.start)==parseInt(range.start) && parseInt(rangeI.end)==parseInt(range.end)){
+            
+            if(this.notes.at(i).get("text")==text){
+               successHandler();
+               break;
+            }
+            this.notes.at(i).set({text:text});
+            this.notes.at(i).save(this.notes.at(i),{success: successHandler,error: errorHandler});
+            break;
+          }
+      }
+    
+      
+    },
+
+  **/
+    deleteNote: function(range, successHandler, errorHandler){
+   
+
+      var index=-1;
+      for(var i in this.notes.models){
+          var noteI=this.notes.at(i);
+          var rangeI=noteI.get("range");
+          if(parseInt(rangeI.start)==parseInt(range.start) && parseInt(rangeI.end)==parseInt(range.end)){
+            index=i;
+            this.notes.deleteModel(i,successHandler, errorHandler);
+            break;
+          }
+      }
+
+      if(index==-1){
+        errorHandler();
+      } 
+      
+      
+      
+    },
+    getBookMarks: function(m){
+      var that=this;
+
+      this.bookMarkers.fetch({
+            success : function (model, res, options) {
+              that.bookMarkers.reset(res);
+              that.set({bookMarkersLoaded: true});
+              m();
+              
+            },
+            error : function (model, res, options) {
+              alert("Error obtener los marcadores de un estudiante en un libro");
+            }
+        
+      });
+    },
+    saveBookMark: function(color, word){
+     
+        var x=this.bookMarkers.create({ idStudent: this.get("id"), idBook: this.get("idBook"), color: color , word: word},[{wait: true}]);
+      
+    },
+    deleteBookMarker: function(wordR,colorR, successHandler, errorHandler){
+      
+      var that=this;   
+
+ 
+      this.bookMarkers.each(function(bookMark){
+          var word=bookMark.get("word");
+          var color=bookMark.get("color");
+          if(parseInt(word)==parseInt(wordR) && colorR==colorR){
+            
+              bookMark.delete(successHandler,errorHandler);
+              that.bookMarkers.remove(bookMark);
+          }
+
+          
+      })
+
+     
+      
+      
+    },
+
+    getHighlightBook: function(m){
+      var that=this;
+      this.bookHighlights.fetch({
+            wait:true,
+            success : function (model, res, options) {
+              that.bookHighlights.reset(res);
+              that.set({bookHighlightsLoaded: true});
+              m();
+              
+            },
+            error : function (model, res, options) {
+              alert("Error obtener las actividades de un estudiante en un libro");
+            }
+        
+      });
+
+    },
+    saveHighlight: function(range, color,successHandler,errorHandler){
+      var that=this;
+      var start=parseInt(range.start);
+      var end=parseInt(range.end);
+      var highlightCollection=this.bookHighlights;
+      var saveModel=false;
+      var idModelsToRemove=[];
+      for(var i in highlightCollection.models){
+        var model=highlightCollection.at(i);
+        try{
+
+
+          if((model.get("range").start>=start && model.get("range").start<=end) || (model.get("range").end>=start && model.get("range").end<=end)) {            
+                  //la nueva seleccion cubre todo el rango de un modelo
+                  if(model.get("range").start>=range.start  && model.get("range").end<=range.end){
+                        idModelsToRemove[idModelsToRemove.length]=model.cid;
+                        continue;
+                  } 
+                  //En caso de que la interseccion se de con el inicio del rango del modelo
+                  if(model.get("range").start>=start && model.get("range").start<=end){
+                        //aumentar el inicio de rango del model
+                        var rangeModel=model.get("range");
+                        rangeModel.start=range.start+1;
+                        alert('model: '+JSON.stringify(model.get('range'))+'    range '+JSON.stringify(rangeModel));
+                        //es necesario hacerle put al modelo
+                        model.put(rangeModel,model.get("color"),console.log('resaltado modificado exitosamente'), console.log('error al intentar modificar resaltado'));
+
+                  }
+                  //En caso de que la interseccion se de con el fin del rango del modelo
+                  else{
+                        //disminir el fin del rango del model
+                        var rangeModel=model.get("range");
+                        rangeModel.end=range.start-1;
+                        model.put(
+                                  rangeModel,model.get("color"),
+                                  console.log('resaltado modificado exitosamente'), 
+                                  console.log('error al intentar modificar resaltado')
+                                );
+                        //es necesario hacerle put al modelo
+                  }
+
+          }//fin del if modelos afectados
+
+
+
+        }catch(e){}
+
+      }//fin del for
+
+      for(var i in idModelsToRemove){
+
+          this.bookHighlights.deleteModel(
+                                          idModelsToRemove[i],
+                                          function(){console.log('highlight eliminado satisfactoriamente')},
+                                          function(){console.log('error al intentar eliminar el highlight')}
+                                        );
+
+      }
+      //if hay color es necesito ir a guardar seleccion al servidor
+      if(color){
+        var that=this;
+        this.bookHighlights.create(
+                  {idStudent: this.get("id"),idBook: this.get("idBook"), range: range, color: color},
+                  {   wait: true, 
+                      success: function(model, res){
+                          successHandler(model, res);
+                      },
+                      error: function(model, res){
+                          errorHandler();                         
+                      }
+                  }
+          );
+      }
+
+
+
+    },//fin del metodo save highlight
+
+    getStyleBook: function(m){
+      var that=this;
+      this.book_student_style.fetch({
+            wait:true,
+            success : function (model, res, options) {
+              that.styleLoaded=true;
+              m();
+              
+            },
+            error : function (model, res, options) {
+              alert("Error obtener estilo de libro");
+            }
+        
+      });
+
+    },
+    editStyleBook: function(theme,color_font,size_font,type_font,successHandler,errorHandler){
+    
+      this.book_student_style.put(theme,color_font,size_font,type_font,successHandler, errorHandler);
+      
+    },
+    changeColorFont: function(color){
+      this.book_student_style.set({color_font: color});
+      this.book_student_style.put(this.book_student_style.get('theme'),color, this.book_student_style.get("size_font"),this.book_student_style.get("type_font"),function(){console.log('Cambio de estilo satisfactorio');},function(){console.log('Error al intentar modificar el estilo del libro');});
+    },
+    changeSizeFont: function(size_font){
+      this.book_student_style.set({size_font: size_font});
+      this.book_student_style.put(this.book_student_style.get('theme'),this.book_student_style.get('color_font'), size_font,this.book_student_style.get("type_font"),function(){console.log('Cambio de estilo satisfactorio');},function(){console.log('Error al intentar modificar el estilo del libro');});
+    },
+    changeTheme: function(theme){
+      this.book_student_style.set({theme: theme});
+      this.book_student_style.put(theme,this.book_student_style.get('color_font'), this.book_student_style.get('size_font'),this.book_student_style.get("type_font"),function(){console.log('Cambio de estilo satisfactorio');},function(){console.log('Error al intentar modificar el estilo del libro');});
+    },
+    changeTypeFont: function(type_font){
+      this.book_student_style.set({type_font: type_font});
+      this.book_student_style.put(this.book_student_style.get('theme'),this.book_student_style.get('color_font'), this.book_student_style.get('size_font'),type_font,function(){console.log('Cambio de estilo satisfactorio');},function(){console.log('Error al intentar modificar el estilo del libro');});
+    }
+    
+  });
+  
+  return student;
+
+});

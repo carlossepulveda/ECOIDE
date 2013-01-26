@@ -1,0 +1,152 @@
+@CHARSET "UTF-8";
+/*
+Author: Adrian Mato
+Author URI: http://www.yensdesign.com & http://web.ontuts.com
+*/
+
+/******* GENERAL RESET *******/
+div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+ tfoot, thead, tr, th, td {
+border:0pt none;
+font-family:inherit;
+font-size:100%;
+font-style:inherit;
+font-weight:inherit;
+margin:0pt;
+padding:0pt;
+vertical-align:baseline;
+
+}
+
+table{
+	border-collapse: separate;
+	border-spacing: 0pt;
+}
+strong{
+	font-weight: 700;
+}
+caption, th, td{
+	font-weight:normal;
+	text-align:left;
+}
+blockquote:before, blockquote:after, q:before, q:after{
+	content:"";
+}
+blockquote, q{
+	quotes:"" "";
+}
+pre{
+	font-family: Arial, Helvetica, sans-serif;
+}
+input{
+	border: 0;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.itemmenu{
+    
+    text-align: left;
+}
+ul{
+	list-style: none;
+}
+a{
+	cursor: pointer;
+	color: #296ba5;
+	text-decoration: none;
+	outline: none !Important;
+}
+
+.clear{
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	display: block;
+	line-height: 0;
+}
+.clearfix{
+	overflow: hidden;
+}
+.fleft{
+	float: left;
+}
+.fright{
+	float: right;
+}
+.italic{
+	font-style: italic;
+}
+/******* /GENERAL RESET *******/
+
+
+
+/******* MENU *******/
+#menu{
+
+	display: none;
+	width: 180px;
+        z-index: 99999;
+	border: solid 1px #CCC;
+        background-color: #EEEEEE;
+	padding: 0px;
+	margin: 0px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	position: absolute;
+}
+#menu ul{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	color: #6d6d6d;
+	background-color: #EEEEEE;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+#menu ul li{
+	line-height: 1.5em;
+	padding-left: 5px;
+        padding-top: 5px;
+	font-size: 11px;
+	
+	
+}
+
+#menu ul li:hover{
+	background-color: #3399FF; /** #fff8cc;*/
+	/**border-bottom: 1px solid #ffe222;**/
+       	color: #000;
+	cursor: pointer;
+}
+
+/**.contentMenuItem:hover{
+    padding-left: 10px;
+    -moz-transform:scale(1.1); 
+                -webkit-transform:scale(1.1);
+                -o-transform:scale(1.1);
+    
+    
+}**/
+#menu ul li a{
+	color: #6d6d6d;
+	display: block;
+}
+#menu ul li.disabled, #menu ul li.disabled a{
+	color: #bbbbbb;
+	cursor: default;
+}
+#menu ul li.disabled:hover{
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+#menu ul li{
+	background-repeat: no-repeat;
+}
+
+#ULmenu{
+    z-index: 1000;
+}
+/******* /MENU *******/

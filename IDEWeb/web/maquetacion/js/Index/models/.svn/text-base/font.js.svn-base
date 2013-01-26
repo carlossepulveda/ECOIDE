@@ -1,0 +1,80 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone) {
+  
+  var font = Backbone.Model.extend({
+  values: [
+
+  {fontType: 'monospace', fontSizes: [  { size: '12px', fontWidth: 7, fontHeight: 14},
+                                        { size: '14px', fontWidth: 8, fontHeight: 16},
+                                        { size: '16px', fontWidth: 10, fontHeight: 19}, 
+                                        { size: '18px', fontWidth: 11, fontHeight: 20}
+                                    ]  
+  },
+  {fontType: 'Anonymous', fontSizes: [  { size: '12px', fontWidth: 7, fontHeight: 13},
+                                        { size: '14px', fontWidth: 8, fontHeight: 15},
+                                        { size: '16px', fontWidth: 9, fontHeight: 17}, 
+                                        { size: '18px', fontWidth: 10, fontHeight: 19},
+                                    ]  
+  },
+  {fontType: 'EnvyCode', fontSizes: [   { size: '12px', fontWidth: 6, fontHeight: 15},
+                                        { size: '14px', fontWidth: 8, fontHeight: 17},
+                                        { size: '16px', fontWidth: 9, fontHeight: 20}, 
+                                        { size: '18px', fontWidth: 10, fontHeight: 22}
+                                    ]  
+  },
+  {fontType: 'SaxoMono', fontSizes: [   { size: '12px', fontWidth: 7, fontHeight: 17},
+                                        { size: '14px', fontWidth: 8, fontHeight: 19},
+                                        { size: '16px', fontWidth: 9, fontHeight: 22},
+                                        { size: '18px', fontWidth: 10, fontHeight: 23},
+                                    ]  
+  },
+  {fontType: 'UbuntuMono-R', fontSizes: [  { size: '12px', fontWidth: 6, fontHeight: 15},
+                                        { size: '14px', fontWidth: 7, fontHeight: 17},
+                                        { size: '16px', fontWidth: 8, fontHeight: 18}, 
+                                        { size: '18px', fontWidth: 9, fontHeight: 19}
+                                    ]  
+  },
+  {fontType: 'UbuntuMono-RI', fontSizes: [  { size: '12px', fontWidth: 6, fontHeight: 15},
+                                        { size: '14px', fontWidth: 7, fontHeight: 17},
+                                        { size: '16px', fontWidth: 8, fontHeight: 18}, 
+                                        { size: '18px', fontWidth: 9, fontHeight: 19}
+                                    ]  
+  },
+  {fontType: 'OxygenMonoRegular', fontSizes: [  { size: '12px', fontWidth: 7, fontHeight: 16},
+                                        { size: '14px', fontWidth: 8, fontHeight: 20},
+                                        { size: '16px', fontWidth: 10, fontHeight: 23},
+                                        { size: '18px', fontWidth: 11, fontHeight: 24}
+                                    ]  
+  }
+
+  ],
+
+    initialize: function(){
+        this.set(this.values[0]);
+    },
+    getFontSize: function(value){
+      var fontSizes=this.get("fontSizes");
+      var font;
+        for(var i in fontSizes){
+            if(fontSizes[i].size==value){
+              font={width: fontSizes[i].fontWidth , height: fontSizes[i].fontHeight};
+            }
+        }
+        return font;
+    },
+    changeFont: function(font){
+        for(var i in this.values){
+            if(this.values[i].fontType==font){
+              this.set(this.values[i]);
+            }
+        }
+    }
+
+    
+  });
+  
+  return font;
+
+});

@@ -1,0 +1,16 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone) {
+	
+  var word = Backbone.Model.extend({
+
+    initialize: function(){
+    
+    }
+    
+  });
+  
+  return word;
+
+});

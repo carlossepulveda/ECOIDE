@@ -1,0 +1,49 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone,wordsCollection) {
+  
+  var note = Backbone.Model.extend({
+  
+    url: '/bookHighlight',
+    defaults:{
+    	idStudent: '',
+    	idBook: '',
+    	range: ''
+    },
+    initialize: function(idStudent,idBook){
+    	this.url='/student/'+this.get("idStudent")+'/book/'+this.get("idBook")+'/bookHighlight';	
+    },
+    put: function(range,color,successHandler, errorHandler){
+    	var that=this;
+    	var objectPut={
+    					idStudent: this.get("idStudent"), 
+    					idBook: this.get("idBook"), 
+    					color: color, 
+    					range: range
+    				};
+	     $.ajax({
+
+		        contentType : 'application/json',
+		        url: this.url,
+		        type:"PUT",
+		        data:JSON.stringify(objectPut)
+
+	      }).done(function() { 
+	        
+	          that.set({range:range, color: color});
+	          if(successHandler)
+	          	successHandler();
+
+	      }).error(function(){	          
+	          errorHandler();
+
+	      });
+    }
+
+    
+  });
+
+  return note;
+
+});

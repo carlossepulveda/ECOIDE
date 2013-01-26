@@ -1,0 +1,18 @@
+<html>
+<script src="jquery-min.js"></script>
+<script src="jquery.quickflip.min.js"></script>
+<div class="w" style="width:100px;height:100px;">
+<div style="height:100px;width:100px;background-color:red;position:absolute;top:0px;"></div>
+<div style="height:100px;width:100px;background-color:yellow;position:absolute;top:0px;"></div>
+</div>
+<script>
+$(document).ready(function(){
+  $('.w').hover(function(ev) {
+        var $target = $(ev.target);
+        if ( !$target.hasClass('w') ) $target = $target.parent();
+        
+        $target.quickFlipper();
+    }, function() {});
+});
+</script>
+</html>

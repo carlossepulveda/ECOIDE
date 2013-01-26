@@ -1,0 +1,63 @@
+// Filename: router.js
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'views/home/index',
+  'models/DB'
+], function($, _, Backbone, mainHomeView,DB){
+  var AppRouter = Backbone.Router.extend({
+    routes: {
+      // Define some URL routes
+     // '/projects': 'showProjects',
+      'book/:id': 'goBook',
+      'logged/:oauthObject': 'saveLogin',
+      '*actions':'defaultAction'
+      //al momento de enrutar, en necesario que guarde en DB la objeto oauth, para que puede ser leido por la sigiente pagina
+      //que se cargue
+      
+    },
+    DB: new DB(),
+    //es necesario alamcenar el oauth object en memoria y no en disco
+    defaultAction: function(actions){
+      mainHomeView.initialize(true); 
+    },
+    goBook: function(id){
+      window.location.href="../baap/libroPrueba.html#/book/"+id;
+    },
+    saveLogin: function(a1){
+      var replace=a1.replace(/\%22/g,'"');
+      var oauthObject=JSON.parse(replace);
+      var stateObj = { foo: "bar" };
+      history.replaceState(stateObj, "page 2", "index.html");
+      var that=this;
+      var wait=this.DB.getLocalWaitObject();
+          if(wait){
+            this.DB.removeLocalWaitObject();
+            this.DB.removeLoginLogObject();
+            this.DB.saveOauthObject('Usuario', oauthObject);
+            that.goMyHome();
+           }
+           else{
+            console.log('no hay espera de logueo');
+           }
+
+    },
+    goMyHome: function(){
+      this.DB.saveLocalOauthObject('Usuario',this.DB.getOauthObject('Usuario'));
+      this.DB.saveLocalWaitObject();
+      window.location.href="../baap/miespacio.html"
+    }
+
+  });
+
+  var initialize = function(){
+    
+    var app_router = new AppRouter;
+    Backbone.history.start();
+
+  };
+  return { 
+    initialize: initialize
+  };
+});

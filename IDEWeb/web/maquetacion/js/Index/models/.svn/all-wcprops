@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/baap/!svn/ver/1058/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models
+END
+DB.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/DB.js
+END
+bookMark.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/bookMark.js
+END
+note.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/baap/!svn/ver/1058/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/note.js
+END
+font.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/font.js
+END
+student.js
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/baap/!svn/ver/980/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/student.js
+END
+highlight.js
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/highlight.js
+END
+login.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/login.js
+END
+projects.js
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/projects.js
+END
+book.js
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/baap/!svn/ver/1042/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/book.js
+END
+word.js
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/word.js
+END
+book_student_style.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/book_student_style.js
+END
+student_book.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/student_book.js
+END
+oauthLogged.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/baap/!svn/ver/855/Diseno%20Tecnico/testBaap/client/js/Index_Book_Module/models/oauthLogged.js
+END

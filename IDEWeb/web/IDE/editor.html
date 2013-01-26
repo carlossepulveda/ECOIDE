@@ -1,0 +1,125 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+
+        <script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>
+        <!--framework de javascript para la GUI de la IDE-->
+        <link rel="STYLESHEET" type="text/css" href="../Scripts/dhtmlxSuite/dhtmlxTabbar/codebase/dhtmlxtabbar.css">
+        <script  src="../Scripts/dhtmlxSuite/dhtmlxTabbar/codebase/dhtmlxcommon.js"></script>
+        <script  src="../Scripts/dhtmlxSuite/dhtmlxTabbar/codebase/dhtmlxtabbar.js"></script>
+
+        <!--javascript para los box-->
+        <script src="../Scripts/colorbox/js/jquery-1.7.1.min.js"></script>
+        <script src="../Scripts/colorbox/js/jquery.colorbox.js"></script>
+        <link rel="STYLESHEET" type="text/css" href="../Scripts/colorbox/skins/skin5/colorbox.css"/>
+
+        <!--JAVASCRIPT PARA LOS FORMULARIOS-->
+        <link rel="stylesheet" type="text/css" href="../Scripts/dhtmlxSuite/dhtmlxForm/codebase/skins/dhtmlxform_dhx_skyblue.css">
+        <script src="../Scripts/dhtmlxSuite/dhtmlxForm/codebase/dhtmlxcommon.js"></script>
+        <script src="../Scripts/dhtmlxSuite/dhtmlxForm/codebase/dhtmlxform.js"></script>
+
+        <!--framework de javascript para el editor con resaltador de codigo-->
+        <script src="../Scripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../Scripts/ace/theme-textmate.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../Scripts/ace/mode-java.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            $(document).ready(function(){
+                //Examples of how to assign the ColorBox event to elements			
+                $(".inline").colorbox({inline:true, width:"50%"});
+                $(".ajax").colorbox();
+            });
+        </script>
+
+    </head>
+    <body onload="createTab('inicio','Inicio','/iconos/ufps.ico')">
+
+        <script>
+            var valor=14;
+            function editorAce(id) {
+                var editor = ace.edit(id);
+                editor.setTheme("ace/theme/textmate");    
+                var JavaMode = require("ace/mode/java").Mode;
+                editor.getSession().setMode(new JavaMode());
+            };          
+            function zoomText(Accion,Element){
+                //inicializacion de variables y parámetros 
+                var obj=document.getElementById(Element);                
+                var max = 40 //tamaño máximo del fontSize
+                var min = 12 //tamaño mínimo del fontSize
+                
+                if (obj.style.fontSize==""){
+                    obj.style.fontSize="12px";
+                }
+                actual=parseInt(obj.style.fontSize); //valor actual del tamaño del texto 
+                //incremento=10;// el valor del incremento o decremento en el tamaño 
+                //accion sobre el texto 
+                if( Accion=="reestablecer" ){
+                    obj.style.fontSize="12px"
+                }
+                if( Accion=="aumentar" && ((actual+1) <= max )){
+                    valor=actual+1;
+                    obj.style.fontSize=valor+"px"
+                }
+                if( Accion=="disminuir" && ((actual+1) >= min )){
+                    valor=actual-1;
+                    obj.style.fontSize=valor+"px"
+                }
+            }
+         
+            
+        </script>
+
+        <div id="editor" style="width:900px; height:500px;"></div>
+        <div id="botones">
+            <input type="button" onclick="zoomText('aumentar',tabEvento)" value="+" name="up"/>
+            <input type="button" onclick="zoomText('disminuir',tabEvento)" value="-" name="down" />
+            <input type="button" class="ajax" href="../IDE/crearTab.html"  value="Crear Pestaña" name="crear" /> 
+            <button onclick="createTab('hgghjkg','mmmm','/iconos/pdf.png')">pestannaaaa</button>
+            <button class="inline" href="#pruea">peruebaaaa</button>
+        </div>
+        <div id="pruea" style="display: none;">hjgjhgjh</div>
+        <script>
+            tabbar=new dhtmlXTabBar("editor");
+            tabbar.setSkin('modern');
+            tabbar.setImagePath("../Scripts/dhtmlxSuite/dhtmlxTabbar/codebase/imgs/");
+            tabbar.enableTabCloseButton(true);//para que se pueda navegar entre las tabs     
+            
+ 
+            
+            //esta variable permite guardar cual es la tab seleccionada o que captura un evento
+            var tabEvento;
+            function createTab(id,name,urlImage){
+                               
+                //primer parametro el id
+                //segundo el nombre de la tab
+                //tercer parametro "*" para que el ancho sea automatico
+                //cuarto es el icono de la pestaña esto es agragado                
+                tabbar.addTabIcon(id,name,"*",urlImage);
+                var html="<pre id='"+id+"' style='background-color: #FFFFFF; margin:0; position: absolute; top: 0; bottom: 0; left: 0; right: 0;  width: 900px; height: 500px;'>public class "+name+"{\n\n\n\n}</pre><script>editorAce('"+id+"')<\/script>";
+                tabbar.setContentHTML(id,html);  
+                tabbar.enableAutoReSize(true);                
+                tabbar.setTabActive(id);              
+            }
+            tabbar.attachEvent("onSelect", function(id) {
+                tabEvento=id;
+                //ahora es necesario que todas las pestñas tenga el mismo tamaño de letra..
+                //var pre=document.getElementById(id);
+                //pre.style.fontSize=valor+"px";
+                return true;
+            });            
+        </script>
+        <input type="file" name="" value="" />
+
+        
+    </body>
+</html>

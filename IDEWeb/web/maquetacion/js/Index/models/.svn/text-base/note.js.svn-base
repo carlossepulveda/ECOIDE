@@ -1,0 +1,69 @@
+define([
+  'underscore',
+  'backbone'
+], function(_, Backbone,wordsCollection) {
+  
+  var note = Backbone.Model.extend({
+  
+    url: '/note',
+    defaults:{
+    	idStudent: '',
+    	idBook: '',
+    	range: '',
+    	text: ''
+    },
+    initialize: function(idStudent,idBook){
+    	this.url='/student/'+this.get("idStudent")+'/book/'+this.get("idBook")+'/note';	
+    },
+    put: function(text,successHandler, errorHandler){
+    	var that=this;console.log(successHandler);
+    	var objectPut={
+    					idStudent: this.get("idStudent"), 
+    					idBook: this.get("idBook"), 
+    					range: this.get("range"), 
+    					text: text
+    				};
+	     $.ajax({
+
+		        contentType : 'application/json',
+		        url: this.url,
+		        type:"PUT",
+		        data:JSON.stringify(objectPut)
+
+	      }).done(function() { 
+	        
+	          that.set({text:text});
+	          successHandler();
+
+	      }).error(function(){	          
+	          errorHandler();
+
+	      });
+    },
+    delete: function(successHandler,errorHandler){
+
+        $.ajax({
+
+            contentType : 'application/json',
+            url: this.url,
+            type:"DELETE",
+            data:JSON.stringify(this)
+
+        }).done(function() { 
+          successHandler();
+
+
+        }).error(function(){            
+              errorHandler();
+
+        });
+
+
+    }
+
+    
+  });
+
+  return note;
+
+});

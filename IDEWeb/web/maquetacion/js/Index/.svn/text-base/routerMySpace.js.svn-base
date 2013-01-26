@@ -1,0 +1,62 @@
+// Filename: router.js
+define([
+  'jquery',
+  'underscore',
+  'backbone',
+  'views/home/mySpace',
+  'models/DB'
+], function($, _, Backbone, mainMySpaceView,DB){
+  var AppRouter = Backbone.Router.extend({
+    routes: {
+ 
+      'book/:id': 'goBook',
+      '*actions':'defaultAction'
+
+      
+    },
+    DB: new DB(),
+    //es necesario alamcenar el oauth object en memoria y no en disco
+    defaultAction: function(actions){
+
+      if(this.DB.getLocalWaitObject()){
+        var item=this.DB.getLocalOauthObject('Usuario');//Lee session localStorage
+        this.DB.saveOauthObject('Usuario',item);//guarda session sessionStorage
+        this.DB.removeLocalOauthObject('Usuario');//remueve session en localStorage
+        this.DB.removeLocalWaitObject();//remueve bandera de espera en localStorage
+      }
+      else{
+        var item=this.DB.getOauthObject('Usuario');
+        if(!item){
+         
+          window.location.href="../baap/index.html"
+
+        }
+      }
+      
+      this.mainMySpaceView=mainMySpaceView;
+      this.mainMySpaceView.initialize(true); 
+    },
+    goBook: function(id){
+      try{
+          if(this.mainMySpaceView.studentContainBook(id)){
+            window.location.href="../baap/libroPrueba.html#/book/"+id;
+          }else{
+            this.mainMySpaceView.showStudentDontHaveBook();
+
+      
+          }
+        }catch(e){
+            this.defaultAction();
+        }
+    }
+
+  });
+
+  var initialize = function(){
+    var app_router = new AppRouter;
+    Backbone.history.start();
+  };
+  return { 
+    initialize: initialize
+  };
+});

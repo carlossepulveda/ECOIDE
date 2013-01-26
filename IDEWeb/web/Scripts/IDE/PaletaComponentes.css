@@ -1,0 +1,39 @@
+.contentBarraDesplegable{
+    float: left;
+    height: 100%;
+}
+.toggler{
+    width:20px;
+    height: 190px;
+    border-left: 1px solid #7997b1;
+    border-top:  1px solid #7997b1;
+    border-bottom:  1px solid #7997b1;
+    background: rgba(190,190,190, 0.7) url("../../Images/Palette/close.png") no-repeat left center;
+    float: right;
+}
+.toggler:hover{
+    background: #c2cff1 url("../../Images/Palette/close.png") no-repeat -21px center;
+    cursor: pointer;
+}
+.toggler.off{
+    background: #b6cbdd url("../../Images/Palette/open.png") no-repeat left center;
+    margin-left: 0;
+}
+
+.toggler.off:hover{
+    background: #c2cff1 url("../../Images/Palette/open.png") no-repeat -21px center;
+    margin-left: 0;
+}
+
+.barraLateral{
+    width: 130px;
+    height: 190px;
+    float: right;
+    background-color:/**#d8e9ff;**/rgba(240, 240, 240,0.7);
+    border-top: 1px solid #7997b1;
+    border-bottom: 1px solid #7997b1;
+}
+
+
+
+

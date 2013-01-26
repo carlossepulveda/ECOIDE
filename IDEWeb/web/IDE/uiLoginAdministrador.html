@@ -1,0 +1,116 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            fieldset{
+                background: none repeat scroll 0 0 #EBF4FB;
+                border: none;
+                border-radius: 7px 7px 7px 7px;
+                font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif;
+                margin: 5px;
+            }
+            .inputForm{
+                border: 1px solid #7997B1;
+                border-radius: 4px 4px 4px 4px;
+                font-size: 14px;
+                margin: 15px 0 0px 6px;
+                padding: 4px 2px;
+                width: 200px;
+
+            }
+            
+            .botonForm{
+                background: none repeat scroll 0 0 #B6CBDD;
+                border-radius: 5px 5px 5px 5px;
+                color: #000000;
+                font-size: 14px;
+                height: 31px;
+                line-height: 31px;
+                text-align: center;                
+                width: 110px ;
+                margin-top: 15px;
+            }
+
+            .labelForm{
+                color: #000000;
+                font-size: 13px; 
+                font-weight: bold;
+                text-align: left !important;               
+            }        
+
+            .divError{
+                color: red;
+                font-size: 11px; 
+                font-weight: bold;   
+            }
+
+            .error{
+                border: 1px solid red !important;
+            }
+
+            #formulario{
+                text-align: justify;
+
+            }
+
+            ul{
+                list-style: circle !important;
+                text-align: justify !important; 
+            }
+            li{
+                margin-left: 25px;
+                width: 345px;
+            }
+        </style>
+        <script>
+            function getIDEA(){
+                $.get("../IDE/login.jsp?user="+document.getElementById('nombreA').value+"&password="+document.getElementById('passA').value+"&type=2", function(data) {
+                     if(jsonParse(data).answ=='wrong'){
+                        alert('Clave o usuario incorrecto');
+                    }
+                    else{
+                       var r=Math.random()*92919394959;
+                        window.location.href='../IDE/index.jsp?type=2&ran='+r;
+                    }
+                       
+                });
+            }
+        </script>
+    </head>
+    <body>
+         <div id="fRegistro" class="formulario" style="background-color: #f0f6fa;">
+           
+           <fieldset>
+                <div id='formulario'>
+                   
+                        <div align="center">
+                            <div id="fotoUser">
+                            <img src="../Images/SupportWindow/admin.png" alt="administrador"/>
+                            </div>
+                        </div>
+                        <div align="right" style="margin-right:20px;">
+                            <label class='labelForm'>Correo</label>
+                            <input id="nombreA" class='inputForm' type="text" name="nombre"/>                    
+                        </div>
+                        <div align="right" style="margin-right:20px;">
+                            <label class='labelForm'>Contrase&ntilde;a</label>
+                            <input id="passA" class='inputForm' type="password" name="pass"/>                    
+                        </div>
+                        <div align="right" >
+                            <table>
+                                <tr><td align="left"><input id="botonAceptar" type="button" class="botonForm" value="Cancelar" onclick="cerrarBox()" /></td><td align="right"><input id="botonCancelar" type="button" class="botonForm" value="Iniciar" onclick="getIDEA()" /></td></tr>
+                            </table>
+                            
+                        </div>
+
+                </div>
+              </fieldset>
+        </div>
+    </body>
+</html>

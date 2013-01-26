@@ -1,0 +1,55 @@
+define([
+  'underscore',
+  'backbone',
+  '../collections/books',
+  '../models/book'
+], function(_, Backbone,BookCollection,bookModel) {
+  var student = Backbone.Model.extend({
+  
+    urlRoot: '/student',
+    defaults:{
+      name: null,
+      last_name: null,
+      email: null,
+      my_books: null
+    },
+    initialize: function(){
+    
+    },
+    load: function(successHandler, errorHandler){
+
+      var that=this;
+      this.fetch({
+                   success : function (model, res, options) { 
+                    console.log('succes in student');
+                    console.log(res);
+                        var bookCollection=new BookCollection(res.my_books);
+                        console.log(bookCollection);
+                        bookCollection.reset();
+                        bookCollection.add(res.my_books);
+                        bookCollection.models=new Array();
+                        for(var i in res.my_books){
+                          var book=new bookModel(res.my_books[i]);
+                          bookCollection.models.push(book);
+                          bookCollection.length++;
+                        }
+                        that.set({'my_books':bookCollection});
+                    console.log(bookCollection);
+                        successHandler(that);
+
+                        },
+                   error : function (model, res, options) {
+                            errorHandler();
+                        }
+                   
+               });
+
+    }
+  
+
+    
+  });
+  
+  return student;
+
+});

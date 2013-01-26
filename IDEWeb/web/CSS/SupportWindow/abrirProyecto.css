@@ -1,0 +1,50 @@
+/* 
+    Document   : abrirProyecto
+    Created on : 5/12/2011, 08:51:38 AM
+    Author     : cas
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.fondo{
+
+    background-color: #cdcdcd;
+}
+
+.np{
+    text-align: center;
+    
+}
+
+
+
+.divP:hover
+{
+    background-color:#F5F6CE;
+    cursor: pointer;
+}
+
+.textNameP{
+    background-color:#F5F6CE;
+    cursor: pointer;
+}
+
+.divPS
+{
+    background-color:#F5F6CE;
+    cursor: pointer;
+}
+
+#divD{
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-khtml-border-radius: 5px;
+}
+
+
