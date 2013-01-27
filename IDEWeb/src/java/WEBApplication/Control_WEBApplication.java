@@ -747,14 +747,14 @@ public class Control_WEBApplication {
     public boolean deleteViewProject(String name, String owner,String user){
         if(!user.equals(this.user))return false;
         String pathOwner=this.getPathProjectsUserFolder(owner);
-        
+        Document d=this.getUsersProject_(name, owner);
         if(this.myControlIDE.deleteViewProject(name,owner,user,this.pathApp+Separator.getSystemSeparator()+this.pathUsers+Separator.getSystemSeparator()+pathOwner)){
            
              if(this.myControlWebSite.deleteUserProject(name, owner,user)){
-                Document d=this.getUsersProject_(name, owner);
-                if(d==null){
-                    this.myControlWebSite.changeProjectToNoShared(name,owner);
-                   
+                if(d!=null){//El documento no puede ser tener 0 usuario porque al menos debe estar el que solicita la eliminacion
+                    if(d.getElementsByTagName("user").getLength()==1){
+                         this.myControlWebSite.changeProjectToNoShared(name,owner);
+                    }
                  }
                 return true;
             }
