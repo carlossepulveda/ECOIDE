@@ -48,7 +48,7 @@ public class Person {
         myPersonDAO=new PersonDAO_XML(pathApp);
         myPersonOnHoldDAO=new PersonOnHoldDAO_XML(pathApp);
         this.pathApp=pathApp;
-        myControlEncrypter=new Facade_Encrypter(pathApp);
+        myControlEncrypter=null;//new Facade_Encrypter(pathApp);
         ResourceBundle properties = ResourceBundle.getBundle("Properties.UsersProperties");
         pathUsers=properties.getString("path");
         
@@ -758,6 +758,12 @@ public String getPass(String user){
         PersonDTO p=myPersonDAO.getPersonDTO(user);
         if(p==null)return null;
         return p.getPassword();
+}
+
+public boolean existUser(String email) {
+    PersonDTO p=myPersonDAO.getPersonDTO(email);
+    if(p==null)return false;
+    return true;
 }
   
 

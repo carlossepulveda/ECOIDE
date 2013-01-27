@@ -4,7 +4,7 @@
  */
 
              
-            var canalNotificaciones=io.connect("http://192.168.1.2:8085");
+            var canalNotificaciones=io.connect("http://"+window.configPorts.notificationServer+":"+window.configPorts.notificationPort);
             var vistaActual='';//
             var notificaciones=0;
             var misNotificaciones=new Array();
@@ -234,13 +234,13 @@ function verPerfil(){
          
         $("#fieldsetPerfil").append('<div align="center" id="divFotoPerfil" style="margin-top:10px;">\n\
                                         <div style="float:right;">\n\
-                                            <div class="menuFotoPerfil" style="z-index:9999999999;width:20px;height:20px;display:none;"  onclick="editPhotoProfile()">\n\
+                                            <div class="menuFotoPerfil" style="z-index:9999999999;width:20px;height:20px;display:none;">\n\
                                                 <img src="../Images/SupportWindow/edit.png" title="Eliminar" alt="editar"/></div></div><div id="fotoUser"><img src="../photo/'+user+'/'+programmer.photo+'"  class="imgR" imgResizable="true" mw="102" mh="102"/>\n\
                                             </div>\n\
                                         </div>');
     resizeImages();
          
-         $("#divFotoPerfil").hover(
+        /** $("#divFotoPerfil").hover(
                   function () {
                     $('.menuFotoPerfil').show();
                     $('.menuFotoPerfil').css('cursor','pointer');
@@ -248,7 +248,7 @@ function verPerfil(){
                   function () {
                      $('.menuFotoPerfil').hide();
                   }
-                );
+                );**/
                 
                 $(".divP").click(function(){
                     $(this).addClass("divPS");

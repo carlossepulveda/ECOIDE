@@ -79,7 +79,7 @@ function createChatBox(chatboxtitle,minimizeChatBox,id,ida) {
 
 	$(" <div />" ).attr("id","chatbox_"+id)
 	.addClass("chatbox")
-	.html('<div class="chatboxhead" id="chatboxhead_'+id+'"><div class="chatboxtitle">'+chatboxtitle+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+id+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+id+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+id+'\');"></textarea></div>')
+	.html('<div class="chatboxhead" id="chatboxhead_'+id+'" onclick="javascript:toggleChatBoxGrowth(\''+id+'\')"><div class="chatboxtitle">'+chatboxtitle+'</div><div class="chatboxoptions"><a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth(\''+id+'\')">-</a> <a href="javascript:void(0)" onclick="javascript:closeChatBox(\''+id+'\')">X</a></div><br clear="all"/></div><div class="chatboxcontent"></div><div class="chatboxinput"><textarea class="chatboxtextarea" onkeydown="javascript:return checkChatBoxInputKey(event,this,\''+id+'\');"></textarea></div>')
 	.appendTo($( "body" ));
 			   
 	$("#chatbox_"+id).css('bottom', '0px');
@@ -286,13 +286,18 @@ function showMessage(us,msg,ct,id){
       $('#chatboxhead_'+ct).addClass('chatboxheadslope');
  
     var  usr=us;
-    if(us==user)
+    if(us==user){
         usr='Yo';
+    }else{
+        $("#audioChat")[0].play();
+    }
+        
 
     
 
     $("#chatbox_"+ct+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+usr+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+msg+'</span></div>');
     $("#chatbox_"+ct+" .chatboxcontent").scrollTop($("#chatbox_"+ct+" .chatboxcontent")[0].scrollHeight);
+    
 		
 }
 

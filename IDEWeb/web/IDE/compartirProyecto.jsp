@@ -54,14 +54,24 @@
                 switch(typeC){
 
                        case 1:{
-                              if(!fwa.shareProject(name,user,correos[i],type))
-                                fallidos.add(correos[i]);  
+                              if(!fwa.existUser(correos[i])){
+                                  fallidos.add(correos[i]);
+                                  break;
+                              }
+                              if(!fwa.shareProject(name,user,correos[i],type)){
+                                fallidos.add(correos[i]);
+                               }
                                break;
 
                             }
                        case 2:{
-                              if(!fwa.shareProject_(name,user,correos[i],type))
-                                fallidos.add(correos[i]);  
+                              if(!fwa.existUser(correos[i])){
+                                  fallidos.add(correos[i]);
+                                  break;
+                              }
+                              if(!fwa.shareProject_(name,user,correos[i],type)){
+                                  fallidos.add(correos[i]);
+                              }
                                break;
 
                        }

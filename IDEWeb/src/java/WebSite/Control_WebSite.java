@@ -276,5 +276,9 @@ public class Control_WebSite {
         return false;
     }
 
+    public boolean existUser(String email) {
+        return this.myPerson.existUser(email);
+    }
+
   
 }

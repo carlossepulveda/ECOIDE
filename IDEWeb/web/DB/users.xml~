@@ -3,17 +3,18 @@
         <email>cas@</email>
         <password>xxxx</password>
         <type>programmer</type>
-        <session/>
+        <session>92CD9048D2F70BC96F3F7CE69DC5927A</session>
     </user>
     <user>
         <email>wil@</email>
         <password>xxxx</password>
         <type>programmer</type>
-        <session/>
+        <session>7328749A47B347F7281D03B19C21CB96</session>
     </user>
     <user>
         <email>admin</email>
         <password>xxxx</password>
         <type>administrator</type>
         <session/>
-    </user></users>
+    </user>
+<user></users>

@@ -52,6 +52,7 @@
         <meta name="featured" content="yes"/><meta name="title" content="Samples" />
         <meta name="keywords" content="" />
         <meta name="description" content="" />
+        <script src="../Scripts/config.js"></script>
 
 
 
@@ -244,7 +245,10 @@
           style="background-attachment: scroll;
           background-repeat: no-repeat;
           text-align: center">
-        
+        <audio id="audioChat" preload>
+            <source src="../chat.mp3" type="audio/mp3">
+            <source src="../chat.ogg" type="audio/ogg">
+        </audio>
         <!--!onunload="ManejadorCierre()"-->
         <div class="content">
 
@@ -355,8 +359,6 @@
             return Tamanyo;
         }
         $(document).ready(function (){
-                
-                
                 
             canalNotificaciones=io.connect("http://"+sN+":"+pN);
             $(document).keypress(function(e){eventoTeclado(e);});

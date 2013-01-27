@@ -13,7 +13,8 @@
 
 	border-right:1px solid #98b8d5;/**#f99d39;**/
 	border-left:1px solid #98b8d5;/**#f99d39;**/
-        z-index: 7000;
+                  z-index: 7000;
+                  cursor: pointer;
 }
 
 .chatboxheadslope {

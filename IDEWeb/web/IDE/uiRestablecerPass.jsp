@@ -198,18 +198,18 @@
     <fieldset class="fieldsetForm">
         <div align="right">
             <label class='labelForm'>Contrase&ntilde;a</label>
-            <input id="idPass" class='inputForm' type="text" name="nameVariable" value="" />                    
+            <input id="idPass" class='inputForm' type="password" name="nameVariable" value="" />
         </div>
         <div id="idErrorPass" class='divError' style="display:none;" align="right">La contrase&ntilde;a no coincide</div>
         <div id="idNotPass" class='divError' style="display:none;" align="right">Campo obligatorio</div>
         <div align="right">
             <label class='labelForm'>Nueva Contrase&ntilde;a</label>
-            <input id="idValueNP" class='inputForm' type="text" name="valueNP" value="" />
+            <input id="idValueNP" class='inputForm' type="password" name="valueNP" value="" />
         </div>
         <div id="idNotNP" class='divError' style="display:none;" align="right">Campo obligatorio</div>
         <div align="right">
             <label class='labelForm'>Nueva Contrase&ntilde;a</label>
-            <input id="idValueNP2" class='inputForm' type="text" name="valueNP2" value="" />
+            <input id="idValueNP2" class='inputForm' type="password" name="valueNP2" value="" />
         </div>
         <div id="idNotNP2" class='divError' style="display:none;" align="right">Campo obligatorio</div>
         <div id="idErrorPassNP2" class='divError' style="display:none;" align="right">La contrase&ntilde;as no coinciden</div>

@@ -171,6 +171,10 @@ public class Facade_WebSite {
         return this.myControlWebSite.getPassToEmail(user);
     }
 
+    public boolean existUser(String email) {
+        return this.myControlWebSite.existUser(email);
+    }
+
    
     
 }

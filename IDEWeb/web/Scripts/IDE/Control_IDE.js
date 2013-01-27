@@ -12,10 +12,10 @@ window.guest=true;
                     var control_tree;
                     var control_tab;
                     
-       var sN='192.168.1.2';//'10.0.1.151';//servidor de notificaciones Socket.io
-       var pN='8085';//puerto de notificaciones Socket.io
-       var sT='192.168.1.2';//'10.0.1.151';//direccion servidor de texto (OT)
-       var pT='8086';
+       var sN=window.configPorts.notificationServer;
+       var pN=window.configPorts.notificationPort;
+       var sT=window.configPorts.otServer;
+       var pT=window.configPorts.otPort;
        
                     
      function cargarIDE(projectosA,w,h){
@@ -1011,7 +1011,9 @@ window.guest=true;
                                    idParentNodo=id;
                                     tree.insertNewChild(id, 'ClassNode;'+s[1]+';'+s[2]+';'+name+':'+njava ,njava ,null ,'java.png','java.png','java.png');
                                }
-                               getItemTreeMemory(idParentNodo).ficheros.push({tipo:'ClassNode',nombre: njava, imagen:'java.png'});
+                               if(name=='*.*'){
+                                   getItemTreeMemory(idParentNodo).ficheros.push({tipo:'ClassNode',nombre: njava, imagen:'java.png'});
+                               }
                                manejadorTableroNotificaciones('agregoclase',usuario);
                               
                               

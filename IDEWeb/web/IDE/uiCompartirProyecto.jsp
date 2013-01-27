@@ -76,8 +76,8 @@ if(owner.equals(fwa.getUser()))
                         if(s[i]!='' && s[i]!=undefined && s[i]!=null){
                           
                            if($.inArray(s[i], correos)){
-                               $('#ulCorreoShare').append('<li  id="li'+s[i]+'" onclick="seleccionar($(this))" type="R" class="listCorreos" style="width:90%;"><div style="float:right;list-style: none;margin-left:0px;" ><div class="botonNoSelect" type="W" id="'+ncon+'strW" nid="'+ncon+'" onclick="clickS(this)" style="float:right">Escritura</div><div class="botonDegradado" type="R" id="'+ncon+'strR" onclick="clickS(this)" style="float:left" nid="'+ncon+'">Lectura</div></div><div>'+s[i]+'</div></li>');
-                               correos['li'+s[i]]=s[i];
+                               $('#ulCorreoShare').append('<li  id="li'+s[i].toLowerCase()+'" onclick="seleccionar($(this))" type="R" class="listCorreos" style="width:90%;"><div style="float:right;list-style: none;margin-left:0px;" ><div class="botonNoSelect" type="W" id="'+ncon+'strW" nid="'+ncon+'" onclick="clickS(this)" style="float:right">Escritura</div><div class="botonDegradado" type="R" id="'+ncon+'strR" onclick="clickS(this)" style="float:left" nid="'+ncon+'">Lectura</div></div><div>'+s[i].toLowerCase()+'</div></li>');
+                               correos['li'+s[i].toLowerCase()]=s[i].toLowerCase();
                               ncon++;
                             
                            }
@@ -142,7 +142,7 @@ if(owner.equals(fwa.getUser()))
                                 refrescarVista();
                                
                             }
-                            alert('Ocurrio un error al intentar compartir el proyecto con los siguientes usuarios: \n\n'+msj);
+                            alert('Ocurrio un error al intentar compartir el proyecto con los siguientes usuarios: \n\n'+msj+'\n\nVerifique que los emails son correctos, y que\neste proyecto no se encuentre compartido ya con estos usuarios');
                         }
                         
                     }).error(function() {alert("Ocurrio un error");})

@@ -41,6 +41,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="cache-control" content="no-Store"/>
         <meta http-equiv="Pragma" content="no-cache"></meta>
+         <script src="../Scripts/config.js"></script>
         <script type="text/javascript" src="../Scripts/json/json_sans_eval.js"></script>
         <script type="text/javascript" src="../Scripts/jquery/jquery.min.js"></script> 
         <script  src="../Scripts/jquery/jquery-ui.min.js"></script>

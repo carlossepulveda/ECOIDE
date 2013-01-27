@@ -13,7 +13,6 @@
 <%
 
 Facade_WEBApplication fwa=(Facade_WEBApplication)request.getSession().getAttribute("fwa");
-
 if(fwa==null){
     
 %>
@@ -26,11 +25,11 @@ if(fwa==null){
 if(!fwa.isValidSession()){
     
       
-    %>
+%>
     
     <jsp:forward page="../IDE/index.html"></jsp:forward>
     
-    <%
+<%
 }
   
     String user=fwa.getUser();
@@ -134,7 +133,7 @@ if(owner.equals(user)){
            break;
        }
 
-}
+}System.out.println("pidio users  "+us);
     NodeList nl=us.getDocumentElement().getChildNodes();
     if(nl.getLength()>0){
        menuUsuarios="<div style=\"overflow:auto;width: 100%;height: 80px;\" >"

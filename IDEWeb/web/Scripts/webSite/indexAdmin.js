@@ -4,7 +4,7 @@
  */
 
              
-            var canalNotificaciones=io.connect("http://localhost:8085");
+            var canalNotificaciones=io.connect("http://"+window.configPorts.notificationServer+":"+window.configPorts.notificationPort);
             var vistaActual='';//
        $(document).ready(function (){
          

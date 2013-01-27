@@ -426,5 +426,9 @@ public class Facade_WEBApplication {
     public boolean getPassToEmail(String email){
         return this.myControlWEBApplication.getPassToEmail(email);
     }
+
+    public boolean existUser(String email){
+        return this.myControlWEBApplication.existUser(email);
+    }
     
 }

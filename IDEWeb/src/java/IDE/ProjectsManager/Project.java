@@ -1405,10 +1405,10 @@ public class Project {
     }
 
     public Document getUsers(String ruta) {
-     
+     javax.swing.JOptionPane.showConfirmDialog(null,"consultar usuarios");
         this.controlFileManagerXML.limpiar();
         controlFileManagerXML.leerXMLexistente(ruta+Separator.getSystemSeparator()+nameP+Separator.getSystemSeparator()+Project.confFolder+Separator.getSystemSeparator()+Project.configXMLfile);
-        controlFileManagerXML.getDocumentoXML();
+        Document d=controlFileManagerXML.getDocumentoXML();
         if(controlFileManagerXML.getDocumentoXML().getElementsByTagName("users").getLength()==0)return null;
         Facade_FileManagerXML fm=new Facade_FileManagerXML();
         fm.crearXMLinMemory("users");
