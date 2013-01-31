@@ -1405,7 +1405,6 @@ public class Project {
     }
 
     public Document getUsers(String ruta) {
-     javax.swing.JOptionPane.showConfirmDialog(null,"consultar usuarios");
         this.controlFileManagerXML.limpiar();
         controlFileManagerXML.leerXMLexistente(ruta+Separator.getSystemSeparator()+nameP+Separator.getSystemSeparator()+Project.confFolder+Separator.getSystemSeparator()+Project.configXMLfile);
         Document d=controlFileManagerXML.getDocumentoXML();

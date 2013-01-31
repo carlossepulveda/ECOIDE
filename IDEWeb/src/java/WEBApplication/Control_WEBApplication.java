@@ -764,10 +764,9 @@ public class Control_WEBApplication {
     }
     
     public boolean deleteViewProject_(String name, String owner,String user){
-        javax.swing.JOptionPane.showConfirmDialog(null,"Delete view Project_");
         if(!user.equals(this.user))return false;
         String pathOwner=this.getPathProjectsUserFolder(owner);
-        Document d=this.getUsersProject_(name, owner);javax.swing.JOptionPane.showConfirmDialog(null,d.getElementsByTagName("users").getLength());
+        Document d=this.getUsersProject_(name, owner);
         if(this.myControlIDE.deleteViewProject_(name,owner,user,this.pathApp+Separator.getSystemSeparator()+this.pathUsers+Separator.getSystemSeparator()+pathOwner)){
 
              if(this.myControlWebSite.deleteUserProject(name, owner,user)){

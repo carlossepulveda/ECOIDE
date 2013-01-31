@@ -300,7 +300,7 @@
 
                     <ul class="bubblewrap" id="mide" idm="mide" style="width:100%">
 
-                        <li id="i0" idm="0" class="menuLiP" statico="false" msj="Iniciar IDE"><a href="#" onclick="getIDE()"><img src="../Images/MenuBar/runIDE.png" class="imge"/></a></li>
+                        <li id="i0" idm="0" class="menuLiP" statico="false" msj="Iniciar IDE"><a href="#" onclick="getIDE()"><img src="../Images/logoMini.png" class="imge"/></a></li>
                         <li id="i1" idm="1" class="menuLiP" statico="false" msj="Crear Proyecto"><a href="#" onclick="uiCrearProyecto()"><img src="../Images/MenuBar/pack.png" class="imge"/></a></li>
                         <li id="i2" idm="2" class="menuLiP" statico="false" msj="Ver Notificaciones">
                             
