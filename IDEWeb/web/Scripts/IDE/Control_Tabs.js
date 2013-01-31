@@ -201,8 +201,9 @@ function Control_Tabs(elemento){
                     codigoFuente='cargando...';//this.getBasicTemplateClass(id);
                      
             
-            html="<div id='divleft'><img src='../Images/Tabbar/esquina.png' /></div>\n\
-                  <div id='divBarraTools"+idNormalizada+"' class='BarraTools' style='display: block;'>\n\
+            //html="<div id='divleft'><img src='../Images/Tabbar/esquina.png' /></div>\n\
+			
+            html="      <div id='divBarraTools"+idNormalizada+"' class='BarraTools' style='display: block;'>\n\
                         <img class='botonBarra' src='../Images/Tabbar/undo.png' title='Deshacer' onclick='control_tab.undo(\""+idNormalizada+"\")'/>\n\
                         <img class='botonBarra' src='../Images/Tabbar/redo.png' title='Rehacer' onclick='control_tab.redo(\""+idNormalizada+"\")'/>\n\
                         <img class='botonBarra' src='../Images/Tabbar/selectAll.png' title='Seleccionar Todo' onclick='control_tab.seleccionarTodo(\""+idNormalizada+"\")'/>\n\
@@ -307,8 +308,9 @@ function Control_Tabs(elemento){
            
             control_BarDesplegable.addBarra(idNormalizada);
 
-            html="<div id='divleft'><img src='../Images/Tabbar/esquina.png' /></div>\n\
-                  <div id='divBarraTools"+idNormalizada+"' class='BarraTools'>\n\
+           // html="<div id='divleft'><img src='../Images/Tabbar/esquina.png' /></div>\n\
+		   
+			html="<div id='divBarraTools"+idNormalizada+"' class='BarraTools'>\n\
                         <img class='botonBarra' src='../Images/Tabbar/undo.png' title='Deshacer' onclick='control_tab.undo(\""+idNormalizada+"\")'/>\n\
                         <img class='botonBarra' src='../Images/Tabbar/redo.png' title='Rehacer' onclick='control_tab.redo(\""+idNormalizada+"\")'/>\n\
                         <img class='botonBarra' src='../Images/Tabbar/selectAll.png' title='Seleccionar Todo' onclick='control_tab.seleccionarTodo(\""+idNormalizada+"\")'/>\n\
