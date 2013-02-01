@@ -48,6 +48,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
         <title>LittleIDE</title>
+        <link rel="icon" type="image/png" href="../Images/SupportWindow/favicon.png" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="featured" content="yes"/><meta name="title" content="Samples" />
         <meta name="keywords" content="" />

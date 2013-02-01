@@ -1,7 +1,8 @@
 //Objeto json que contiene datos de configuracion
 window.configPorts={
-                                    notificationServer:"192.168.1.2",
+                                    notificationServer:"localhost",
                                     notificationPort: "8085",
-                                    otServer:"192.168.1.2",
+                                    otServer:"localhost",
                                     otPort:"8086"
                                 };
+

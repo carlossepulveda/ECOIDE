@@ -16,7 +16,6 @@ window.guest=true;
        var pN=window.configPorts.notificationPort;
        var sT=window.configPorts.otServer;
        var pT=window.configPorts.otPort;
-       
                     
      function cargarIDE(projectosA,w,h){
        
@@ -1037,8 +1036,6 @@ window.guest=true;
                                name='*.*';
                            
                        }
-                     
-                     
                      
                      $.get("../IDE/agregarClaseGUI.jsp?name="+s[1]+"&owner="+s[2]+"&nameC="+njava+"&nameP="+name+"&ran="+Math.random()*99999999999, function(data) {
                         

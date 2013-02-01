@@ -25,6 +25,12 @@ String id=request.getParameter("id");
                
                var njava=document.getElementById('name').value;
                 if(njava==null)return false;
+                var splitName=njava.split('.');
+                if(splitName.length!=2 && splitName[1]!="java"){
+                    $('#idNotError').css("display","block");
+                    $('#name').addClass("error");
+                    return false;
+                }
                var njava2=njava.replace('.java','');
                 if(validoName(njava2)){
                     agregarClaseGUI(njava);
@@ -43,7 +49,7 @@ String id=request.getParameter("id");
                 $('#name').removeClass("error");
                 if(name==""){
      
-                    $('#idErrorName').css("display","block");
+                    $('#idNotError').css("display","block");
                     $('#name').addClass("error");
                     return false;
                 }else{
@@ -80,9 +86,10 @@ String id=request.getParameter("id");
                 <div id="idNotError" class='divError' style="display:none;margin-top: 10px;"> 
                     Dato Inválido, considere lo siguiente:</br>
                     <ul style="margin-top: 10px;">
-                        <li>Que inicie con letra mayúscula/minúscula o el carácter '_' o el carácter '$'</li>
-                        <li>No debe contener carácteres diferentes a la anterior consideración</li>
-                        <li>La cadena no debe corresponder a una palabra reservada de Java</li>
+                        <li>1 ) El nombre debe mantener la siguiente estructura : nombre,java</li>
+                        <li>2 ) Que inicie con letra mayúscula/minúscula o el carácter '_' o el carácter '$'</li>
+                        <li>3 ) No debe contener carácteres diferentes a la anterior consideración</li>
+                        <li>4 ) La cadena no debe corresponder a una palabra reservada de Java</li>
                     </ul>
                 </div>
                 <div>
