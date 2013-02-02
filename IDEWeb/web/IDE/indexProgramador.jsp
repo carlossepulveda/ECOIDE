@@ -419,30 +419,7 @@
                         $(this).parent().css('-o-transform','scale(1)' );
                     });
                 
-                
-                
-                
-            
-            /******
-             *caso especial de la foto del estudiante
-                    $('#mide .menuLiPS').tooltip({
-                        track: true,
-                        delay: 0, 
-                        showURL: false, 
-                        opacity: 1, 
-                        fixPNG: true, 
-                        showBody: " - ", 
-                        extraClass: "pretty fancy", 
-                        top: -15, 
-                        left: 5 ,
-                        bodyHandler: function() {
-                            return $('<div><div style="float:left;margin-top: 3px;margin-right: 3px;margin-bottom: 3px;width:80px;" id="fotoInicioPresentacion">\n\
-                                                <img src="../photo/<%=email%>/<%=photo%>"  imgResizable="true" mw="40" mh="40"/>\n\
-                                            </div>\n\
-                                            <div style="height:100%"><span><%=name%></span><br/><span><%=email%></span><br/><div style="bottom:-25px;right:-25px;position:relative;"><input id="botonAceptar" type="button" class="botonForm" value="Cerrar Session" onclick="logout()" /></div></div>\n\
-                                    </div>');
-                        }
-                    }).hover(function(){$('#tooltip').show();});*******/
+        
                     var t=resizeWindow();
                     var w=t[0];
                     var h=t[1]-70;

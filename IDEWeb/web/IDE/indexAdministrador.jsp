@@ -110,6 +110,8 @@
 
          <script src="../Scripts/webSite/indexAdmin.js"></script>
         <link rel="stylesheet" href="../CSS/SupportWindow/viewIndex.css" type="text/css" media="screen" />
+
+         <script src="../Scripts/jquery/tooltip.js" type="text/javascript"></script>
         <style type="text/css">
 
             html,body{
@@ -181,24 +183,36 @@
         <title>Index-IDE</title>
     </head>
     <body>
-        <div id="content" style="width: 1200px;height: 650px; background-color: #B5CDE4; border-: groove;border: gainsboro 5px solid;background-image: url('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif'); background-repeat: repeat-x;margin: 4px auto ;">
-            <div id="encabezado" style="background-color: #b5cde4; height: 50px">
+        <div id="content" style="background-color: rgb(186, 186, 186);
+background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+width: 1200px;height: 650px; border: groove;border: gainsboro 5px solid; background-repeat: repeat-x;margin: 4px auto ;">
+            <div id="encabezado" style="background-color: rgb(186, 186, 186);
+background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+height: 50px">
 
-                <div style="background-color: #b5cde4;width: 300px;height: 50px;float:right;">
+                <div style="background-color: rgb(186, 186, 186);
+background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+;width: 500px;height: 50px;float:right;">
        
-                    <div>Bienvenido ! <%=name%>&nbsp;<div id="fotoInicioPresentacion" style="float: right;top: 0px;right: 0px;"><img src="../Images/SupportWindow/admin.png"  imgResizable="true" mw="50" mh="50"/></div>
-                        <a href="#" onclick="logout()">Cerrar sesion</a>
+                    <div style="width:100%">
+                        <div id="fotoInicioPresentacion" style="float: right;top: 0px;right: 0px;width:50px"><img src="../Images/SupportWindow/admin.png"  style="width:100%;height:100%;float:left"/></div>
+                        <div style="float:right;width:300px;text-align: right;margin-right: 5px;margin-top: 5px">Bienvenido ! <%=name%>&nbsp;<a href="#" onclick="logout()" style="color:#871528!important;text-decoration: underline">Cerrar sesion</a></div>
+                        
                     </div>
               
                     
 
                 </div>
 
-                <div style="background-color: #b5cde4;width: 100px;height: 50px;float:left;">
+                <div style="background-color: rgb(186, 186, 186);
+background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+width: 100px;height: 50px;float:left;">
                     
                 </div>
 
-                <div style="background-color:#b5cde4;height: 50px;">
+                <div style="background-color: rgb(186, 186, 186);
+background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+height: 50px;">
 
                 </div>
 
@@ -303,20 +317,7 @@
                     return Tam;
 
                    }
-                       $('#mide li').tooltip({
-                    track: true, 
-                    delay: 0, 
-                    showURL: false, 
-                    opacity: 1, 
-                    fixPNG: true, 
-                    showBody: " - ", 
-                    extraClass: "pretty fancy", 
-                    top: -15, 
-                    left: 5 ,
-                    bodyHandler: function() {
-                            return $("<div>"+$(this).attr('msj')+"</div>");
-                    }
-            });
+      
             $('#mide li').hover(function(){
              
                 var index=parseInt($(this).attr('idm'));

@@ -97,7 +97,7 @@
         html += "<td align=\"center\" style=\"width: 60px; height:60px;\"  id=\"tR"+myP.getElementsByTagName("email").item(i).getTextContent()+"\">"
                 + "<div align=\"center\" id=\""+i+"\" class=\"divP\" \" style=\"width: 80px; height:80px;padding-top:5px\" onclick=\"viewInfo('"+myP.getElementsByTagName("email").item(i).getTextContent()+"')\">"
                 +"<div style=\"float:right;\"><div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oR"+i+"\" onclick=\"eliminarU('"+myP.getElementsByTagName("email").item(i).getTextContent()+"')\" ><img src=\"../Images/SupportWindow/close.png\" title=\"Eliminar\" alt=\"Eliminar\"/></div>"
-                +"<div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oE"+i+"\"  onclick=\"verPU('"+myP.getElementsByTagName("email").item(i).getTextContent()+"')\" ><img src=\"../Images/SupportWindow/myProjects.png\" title=\"Renombrar\" alt=\"Renombrar\"/></div></div>"
+                +"<div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oE"+i+"\"  onclick=\"verPU('"+myP.getElementsByTagName("email").item(i).getTextContent()+"')\" ><img src=\"../Images/SupportWindow/myProjects.png\" title=\"Ver Proyectos\" alt=\"Ver Proyectos\"/></div></div>"
                 + "<img align=\"center\" src=\"../Images/SupportWindow/" + iconoP + "\"/>"
                 + "<input class=\"np\" id=\"t"+i+"\" align=\"center\" readonly=\"readonly\" type=\"text\" name=\"nameP\" value=\"" + myP.getElementsByTagName("email").item(i).getTextContent() + "\" size=\"8\" style=\"width: 70px;\"/>"
                 + "</div>"

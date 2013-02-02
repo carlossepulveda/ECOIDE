@@ -67,7 +67,7 @@ public class Person {
         PersonDTO p=myPersonDAO.getPersonDTO(user);
         if(p==null)return false;
         System.out.println("login "+pass+"   "+p.getPassword()+"  type:  "+p.getType());
-        return /**myControlEncrypter.isAgreeEncryptString(**/p.getPassword().equals(pass)/**, pass) **/&& p.getType().equals("administrator");//falta validar la encriptacion
+        return myControlEncrypter.isAgreeEncryptString(p.getPassword(), pass) && p.getType().equals("administrator");//falta validar la encriptacion
           
     }
     
