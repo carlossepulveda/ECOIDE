@@ -17,7 +17,7 @@ public class Facade_Encrypter {
     }
     
     public String encrypt(String string){
-        return myControlEncrypter.encrypt("yyyy");
+        return myControlEncrypter.encrypt(string);
     }
     
     public String decrypt(String string){

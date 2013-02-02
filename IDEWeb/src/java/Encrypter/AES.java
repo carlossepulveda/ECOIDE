@@ -16,6 +16,7 @@ import javax.crypto.Cipher;
 import java.security.NoSuchAlgorithmException;
 import java.security.InvalidKeyException;
 import java.security.InvalidAlgorithmParameterException;
+import java.security.Key;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -40,109 +41,47 @@ import sun.misc.BASE64Encoder;
  */
 
 public class AES {
-     private Cipher aesCipher;
-    private SecretKey secretKey;
     
-    public AES(String pathFile){
-        try{
-           
-           secretKey = generateKey(pathFile);
-           aesCipher = Cipher.getInstance("AES");
-           aesCipher.init(Cipher.ENCRYPT_MODE,secretKey);
-        
-        }catch(Exception e){
-            
-        }
-    }
-
-    public static void main(String[] args){
-        AES a=new AES("/media/8804D4CA04D4BBFE/IDEWeb/web/KeyCripter/AES.hty");
-        System.out.println(a.encrypt("xxxx"));
-        System.out.println(a.encrypt("xxxx"));
-        System.out.println(a.encrypt("xxxx"));
-        System.out.println(a.encrypt("xxxx"));
-        //System.out.println("7T+/UZH6AuWicx+m+3n7Qw=="+"   es igual "+a.decrypt("7T+/UZH6AuWicx+m+3n7Qw=="));
-    }
-        
-        public boolean isAgreeEncryptString(String encryptString, String string) {
-            String res = decrypt(encryptString);
-            if(res==null)return false;
-            return res.equals(string);
+    private static final String EncrypInstance = "AES";
+    private final byte[] keyValue;
+    
+        public AES(byte[] keyValue){
+            this.keyValue=keyValue;
         }
     
         public String encrypt(String strDataToEncrypt){
+             //codifica y encripta
             try{
-                /**
-		 *  Step 4. Encrypt the Data
-		 *  		1. Declare / Initialize the Data. Here the data is of type String
-		 *  		2. Convert the Input Text to Bytes
-		 *  		3. Encrypt the bytes using doFinal method 
-		 */
-	
-                strDataToEncrypt = encode(strDataToEncrypt);  
-		byte[] byteDataToEncrypt = strDataToEncrypt.getBytes();
-		byte[] byteCipherText = aesCipher.doFinal(byteDataToEncrypt); 
-               
-                String strCipherText = new BASE64Encoder().encode(byteCipherText);
-    
-		return strCipherText;
-            }catch(Exception e){
-                System.out.println("Clase : AES  -  Metodo : encrypt(String strDataToEncript) -  Error : "+e.getMessage());
+                Key key = generateKey();
+                Cipher c = Cipher.getInstance(EncrypInstance);
+                c.init(Cipher.ENCRYPT_MODE, key);
+                strDataToEncrypt = encode(strDataToEncrypt);
+                byte[] encVal = c.doFinal(strDataToEncrypt.getBytes());
+                String encryptedValue = new BASE64Encoder().encode(encVal);
+                return encryptedValue;
+            }catch( Exception e){
+                System.out.println("Error al intentar encriptar - Clase : AES.java - Metodo encrypt - Error : "+e.getMessage());
                 return null;
             }
+            
         }
         
         public String decrypt(String strCipherText){
+            //desencripta y decodifica
             try{
-                /**
-		 *  Step 5. Decrypt the Data
-		 *  		1. Initialize the Cipher for Decryption 
-		 *  		2. Decrypt the cipher bytes using doFinal method 
-		 */
-		aesCipher.init(Cipher.DECRYPT_MODE,secretKey,aesCipher.getParameters());
-		 //desCipher.init(Cipher.DECRYPT_MODE,secretKey);
-		///byte[] byteDecryptedText = desCipher.doFinal(strCipherText.getBytes("ISO-8859-1"));
-                byte[] byteDecryptedText = aesCipher.doFinal(new BASE64Decoder().decodeBuffer(strCipherText));
-		String strDecryptedText = new String(byteDecryptedText);
-                return decode(strDecryptedText);
-            }catch(Exception e){
-                System.out.println("Clase : AES  -  Metodo : decrypt(String strCipherText) -  Error : "+e.getMessage());
+                Key key = generateKey();
+                Cipher c = Cipher.getInstance(EncrypInstance);
+                c.init(Cipher.DECRYPT_MODE, key);
+                byte[] decordedValue = new BASE64Decoder().decodeBuffer(strCipherText);
+                byte[] decValue = c.doFinal(decordedValue);
+                String decryptedValue = new String(decValue);
+                return decode(decryptedValue);
+            }catch( Exception e){
+                System.out.println("Error al intentar desencriptar - Clase : AES.java - Metodo decrypt - Error : "+e.getMessage());
                 return null;
             }
         }
         
-        private SecretKey generateKey(String pathFile) {
-        try{
-        File file = new File(pathFile);
-        FileInputStream is = new FileInputStream(file);
-
-        long length = file.length();
-        byte[] bytes = new byte[(int) length];
-
-        // Read in the bytes
-        int offset = 0;
-        int numRead = 0;
-        while (offset < bytes.length
-                && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
-            offset += numRead;
-        }
-
-        return new SecretKeySpec(bytes, "AES");
-        }catch(Exception e){
-            KeyGenerator keyGen=null;
-            try {
-                keyGen = KeyGenerator.getInstance("AES");
-            } catch (NoSuchAlgorithmException ex) {
-               System.out.println("Clase : AES  -  Metodo : generateKey() -  Error : No fue posible generar secretKey aleatorio - "+e.getMessage());
-               return null;
-            }
-	    SecretKey sKey = keyGen.generateKey();
-            System.out.println("Clase : AES  -  Metodo : generateKey() -  Mensaje : No fue posible leer secretKey de la ruta especificada - "+pathFile);
-            return sKey;
-        }
-     
-    }
-
         private static String encode(String cad){
             String cadCod="";
             String keyCarlos=Random.getRandom(cad.length());
@@ -159,5 +98,26 @@ public class AES {
                     cadCod=cadCod+cad.charAt(i);
             }
             return cadCod;
+        }
+
+        private Key generateKey() throws Exception {
+            Key key = new SecretKeySpec(keyValue, EncrypInstance);
+            return key;
+        }
+
+        public static void main(String [] args){
+            byte[] keyValue = new byte[] { 'T', 'h', 'e', 'B', 'e', 's', 't',
+'S', 'e', 'c', 'r','e', 't', 'K', 'e', 'y' };
+            AES aes= new AES(keyValue);
+          String ae="PERRO";
+          String en= aes.encrypt(ae);
+
+          System.out.println("a encriptar :  "+ae);
+          System.out.println("encriptado :  "+en);
+        }
+
+        public boolean isAgreeEncryptString(String encryptString, String string) {
+            String de=this.decrypt(encryptString);
+            return de.equals(string);
         }
 }

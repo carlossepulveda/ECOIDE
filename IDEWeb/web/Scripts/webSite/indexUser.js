@@ -235,7 +235,7 @@ function verPerfil(){
         $("#fieldsetPerfil").append('<div align="center" id="divFotoPerfil" style="margin-top:10px;">\n\
                                         <div style="float:right;">\n\
                                             <div class="menuFotoPerfil" style="z-index:9999999999;width:20px;height:20px;display:none;">\n\
-                                                <img src="../Images/SupportWindow/edit.png" title="Eliminar" alt="editar"/></div></div><div id="fotoUser"><img src="../photo/'+user+'/'+programmer.photo+'"  class="imgR" imgResizable="true" mw="102" mh="102"/>\n\
+                                                <img src="../Images/SupportWindow/edit.png" title="Eliminar" alt="editar"/></div></div><div id="fotoUser"><img src="../Images/SupportWindow/userProgrammer.png"  class="imgR" imgResizable="true" mw="102" mh="102"/>\n\
                                             </div>\n\
                                         </div>');
     resizeImages();
@@ -260,17 +260,17 @@ function verPerfil(){
         
         $("#fieldsetPerfil").append('<div align="center" style="margin-bottom: 10px;margin-top:10px;">\n\
                                         <label class="labelForm">Email</label>\n\
-                                        <input id="idEmailPerfil" class="inputForm2" type="text" name="emailVariable" value="'+user+'" style="width:170px;"/>   \n\
+                                        <input id="idEmailPerfil" readonly class="inputForm2" type="text" name="emailVariable" value="'+user+'" style="width:240px;"/>   \n\
                                     </div>');
     
         $("#fieldsetPerfil").append('<div align="center" style="margin-bottom: 10px;">\n\
                                         <label class="labelForm">Nombre</label>\n\
-                                        <input id="idNamePerfil" class="inputForm2" type="text" name="nameVariable" value="'+programmer.name+'" style="width:170px;"/>   \n\
+                                        <input id="idNamePerfil" readonly class="inputForm2" type="text" name="nameVariable" value="'+programmer.name+'" style="width:230px;"/>   \n\
                                     </div>');
     
         $("#fieldsetPerfil").append('<div align="center" style="">\n\
                                         <label class="labelForm">Suscripcion</label>\n\
-                                        <input id="idSuscripcionPerfil" class="inputForm2" type="text" name="dateMemberVariable" value="'+programmer.dateMembership+'" style="width:170px;"/>   \n\
+                                        <input id="idSuscripcionPerfil" readonly class="inputForm2" type="text" name="dateMemberVariable" value="'+programmer.dateMembership+'" style="width:170px;"/>   \n\
                                     </div>');
     
     /**

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
     <user>
         <email>cas@</email>
-        <password>xxxx</password>
+        <password>ilQn8/IiWvR2jEXWIuuNQQ==</password>
         <type>programmer</type>
-        <session>92CD9048D2F70BC96F3F7CE69DC5927A</session>
+        <session/>
     </user>
     <user>
         <email>wil@</email>
-        <password>xxxx</password>
+        <password>xq82Mmz6qRXxv6wUAWPoCg==</password>
         <type>programmer</type>
-        <session>7328749A47B347F7281D03B19C21CB96</session>
+        <session>965E51943B5447687260C6990ABC7AA9</session>
     </user>
     <user>
         <email>admin</email>
-        <password>xxxx</password>
+        <password>b6sKfqq9HdXCmGCZtAvRcA==</password>
         <type>administrator</type>
         <session/>
-    </user>
-<user></users>
+    </user><user><email>charlesandrew621@gmail.com</email><password>8qmxdudbz2y6x05VmJXrXw==</password><type>programmer</type><session/></user><user><email>carlos.sepulveda@elibom.com</email><password>TsWF9NG3v7dDHzmTIhkfKQ==</password><type>programmer</type><session/></user></users>

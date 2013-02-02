@@ -48,7 +48,7 @@ public class Person {
         myPersonDAO=new PersonDAO_XML(pathApp);
         myPersonOnHoldDAO=new PersonOnHoldDAO_XML(pathApp);
         this.pathApp=pathApp;
-        myControlEncrypter=null;//new Facade_Encrypter(pathApp);
+        myControlEncrypter = new Facade_Encrypter(pathApp);
         ResourceBundle properties = ResourceBundle.getBundle("Properties.UsersProperties");
         pathUsers=properties.getString("path");
         
@@ -58,7 +58,7 @@ public class Person {
     public boolean isValidPerson(String user,String pass){
         PersonDTO p=myPersonDAO.getPersonDTO(user);
         if(p==null)return false;
-        return /**myControlEncrypter.isAgreeEncryptString(**/p.getPassword().equals(pass)/**pass)**/;//falta validar la encriptacion
+        return myControlEncrypter.isAgreeEncryptString( p.getPassword(),pass );
           
     }
     
@@ -412,18 +412,19 @@ public class Person {
     }
     
     public boolean registerProgrammer(String id,String name,String profile,String password,String idU){
-        PersonOnHoldDTO person=new PersonOnHoldDTO(name,profile,id,/**myControlEncrypter.encrypt(**/password/**)**/);
+        System.out.println("a registrar programador :   "+password);
+        PersonOnHoldDTO person=new PersonOnHoldDTO(name,profile,id,myControlEncrypter.encrypt(password));
         person.setType("programmer");
        return myPersonOnHoldDAO.registerProgrammer(person,idU);
     }
 
     public boolean restorePassUser(String id,String np){
         PersonDTO person=this.myPersonDAO.getPersonDTO(id);
-        np=/**myControlEncrypter.encrypt(**/np/**)**/;
+        np=myControlEncrypter.encrypt(np);
         if(np==null){
             return false;
         }
-        person.setPassword(/**myControlEncrypter.encrypt(**/np/**)**/);
+        person.setPassword(np);
         return this.myPersonDAO.updatePerson(person);
     }
     
@@ -757,7 +758,7 @@ public String getPass(String user){
       
         PersonDTO p=myPersonDAO.getPersonDTO(user);
         if(p==null)return null;
-        return p.getPassword();
+        return myControlEncrypter.decrypt(p.getPassword());
 }
 
 public boolean existUser(String email) {
