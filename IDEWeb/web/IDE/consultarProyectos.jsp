@@ -304,8 +304,8 @@
 
 
             <div style="height: 100%; width: 99%;position: relative;background-color: white;overflow: auto;margin: 0px 5px;">
-                <div style="width: 100%;height: 40px;background-color: rgba(240,240,240,0.5);">
-                    <div style="padding:10px 10px">
+                <div style="width: 100%;height: 40px;background-color: rgba(240,240,240,0.5); border-radius: 5px">
+                    <div style="padding:10px 10px;">
                         <label class='labelForm'>Filtrar por Nombre : </label>
                         <input class="inputForm" id="campoBusquedaCorreo" type="text" size="25" value="" style="width:200px;"/>
                     </div>

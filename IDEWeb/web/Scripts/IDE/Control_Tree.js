@@ -9,7 +9,7 @@
         var dhxTree2;
         var layout1;
         var menu;var ev=window.event;
-	function cargarArbol(t) {
+	function cargarArbol(t,projectosA) {
       
                 tree=t;
           
@@ -25,9 +25,7 @@
 			tree.setOnDblClickHandler(tondblclick);
 			tree.setDragHandler(tondrag);
    
-                tree.loadXMLString('<tree id="0"><item text="Proyectos Activos" id="MainNode" open="1" im0="gg2.png" im1="gg2.png" im2="gg2.png" call="1" select="1"/></tree> ');
-                
-              
+                tree.loadXMLString('<tree id="0"><item text="No tiene proyectos activos" id="MainNode" open="1" im0="gg2.png" im1="gg2.png" im2="gg2.png" call="1" select="1"/></tree> ');
     
                         function tonclick(id){
 			
