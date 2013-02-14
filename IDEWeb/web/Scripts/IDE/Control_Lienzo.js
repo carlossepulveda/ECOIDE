@@ -764,7 +764,7 @@ function Control_Lienzo(jsp){
         console.log(idP+'\n'+nameComponent+'\n'+newValue+'\n'+idComponent+'\n'+usuario);
         var lienzo=getLienzo(idP);        
         if(lienzo.updateValue(nameComponent, newValue,usuario)){
-            $('#'+idComponent).attr("valor",newValue); 
+            $('#'+idComponent).attr("valor",newValue); $('#'+idComponent).resizable();
             $('#'+idComponent).html(newValue);
         }else{
             if(usuario==user)

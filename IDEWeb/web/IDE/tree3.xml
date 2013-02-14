@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='iso-8859-1'?>
 <tree id="0">    
-    <item text="Proyectos Activos" id="MainNode" open="1" im0="gg2.png" im1="gg2.png" im2="gg2.png" call="1" select="1"/>
+    <item text="No tiene proyectos Activos" id="MainNode" open="1" im0="gg2.png" im1="gg2.png" im2="gg2.png" call="1" select="1"/>
 </tree> 
 
 

@@ -60,6 +60,7 @@ window.guest=true;
              
            canalNotificaciones.on('connect', function (data) {
                     canalNotificaciones.emit('conexionSession', {c:user,s:idS} );
+                    setIconConexionState(true);
                 });
                 
            canalNotificaciones.on("recibirMsg", function(data){
@@ -91,26 +92,26 @@ window.guest=true;
               var s=data.p.split(';');
               $.get("../IDE/renombrarProyecto.jsp?name="+s[0]+"&owner="+s[1]+'&newname='+data.nn+'&type=3', function(data2) {
                   renombrarProyectoRUI('ProjectNode;'+data.p,data.nn);
-                  manejadorTableroNotificaciones('Se renombro el proyecto: '+data.p+'-'+data.u,data.u);
+                  manejadorTableroNotificaciones('Renombrar Proyecto: '+data.p+'-'+data.u,data.u);
               });
             
            });
            
            canalNotificaciones.on('changedUserPrivilege', function (data) {
              changeUserPrivilege(data.p,data.u,data.t); 
-             manejadorTableroNotificaciones('Cambio provilegio   de proyecto :  '+data.p+'-'+data.u+'  tipo:  '+data.t,data.u);
+             manejadorTableroNotificaciones('Cambiar privilegio : '+data.p+'-'+data.u+'  tipo:  '+data.t,data.u);
             
            });
            
            canalNotificaciones.on('takeProject', function (data) {
-              manejadorTableroNotificaciones('Te compartio el proyecto: '+data.p+'-'+data.u,data.u);
+              manejadorTableroNotificaciones('Compartir Proyecto: '+data.p+'-'+data.u,data.u);
            });
            
            canalNotificaciones.on('refreshdJava',function(data){
                control_tab.updatedJava(data);
            });
            canalNotificaciones.on('disconnect', function () {
-               alert('Se perdido la conexion con el servidor\nno es posible garantizar la veracidad de los datos\nintente refrescar la pagina');
+               lostConexion();
            });
            cerrarBox();
      }
@@ -313,7 +314,7 @@ window.guest=true;
                                 var r = jsonParse(data).answ;
                                 var diag=jsonParse(data).diagnostic;alert(diag);
                                 var msj=construirMensajeCompilacion(diag,s[1],s[2]);
-                                $("#objIdOutput").html("<div align='center' style='margin-top:5px'>Resultado compilacion del proyecto: ' "+s[1]+"-"+s[2]+" :  "+r+"</div><br/>"+msj);
+                                $("#objIdOutput").html("<div class='compilationTitle' align='center' style='margin-top:5px'>Resultado compilacion del proyecto:  "+s[1]+"-"+s[2]+" :  "+r+"</div><br/>"+msj);
                             
                                if(r=="true"){
                                     alert('El proceso de compilacion del proyecto "'+s[1]+'-'+s[2]+'" fue exitoso');
@@ -369,7 +370,7 @@ window.guest=true;
                      var msj='';
                      console.log('impresion de d: '+JSON.stringify(d));
                      for(var i in d){
-                         msj+="<div class='itemErrorCompilacion' style='background-color: #eace91;border-style:solid;' onclick=\"irErrorCompilacion('"+d[i].source+"','"+d[i].line+"','"+name+"','"+owner+"','"+d[i].kind+"')\"><div>Tipo : "+d[i].kind+"</div><div>Fuente : "+d[i].source+"</div><div>Linea : "+d[i].line+"</div><div>Mensaje : "+d[i].message+"</div></div><div style='height:5px;width:100%;background-color: #dcdad5'/>"; 
+                         msj+="<div class='itemErrorCompilacion' onclick=\"irErrorCompilacion('"+d[i].source+"','"+d[i].line+"','"+name+"','"+owner+"','"+d[i].kind+"')\"><div>Tipo : "+d[i].kind+"</div><div>Fuente : "+d[i].source+"</div><div>Linea : "+d[i].line+"</div><div>Mensaje : "+d[i].message+"</div></div><div style='height:5px;width:100%;background-color:whitesmoke'/>";
                       }
                       return msj;
                  }
@@ -540,7 +541,7 @@ window.guest=true;
                                    tree.setItemImage("MainNode","gg2.png","gg2.png");
                                     }   
                                     
-                       manejadorTableroNotificaciones('Se ha eliminardo el proyecto: '+s[1]+'-'+s[2]);
+                       manejadorTableroNotificaciones('Eliminar proyecto '+s[1]+'-'+s[2]);
                         //aca es necesario enviar el mensaje a la consola de notificaciones
                         
                     }
@@ -555,7 +556,7 @@ window.guest=true;
                                   tree.setItemImage("MainNode","gg2.png","gg2.png");
                              }
                              
-                            manejadorTableroNotificaciones('el propietario dejo de compartir',owner);
+                            manejadorTableroNotificaciones('Dejar de compartir proyecto '+name+"-"+owner,owner);
                              
                             $.get("../IDE/cerrarProyecto.jsp?name="+name+"&owner="+owner);
                     
@@ -644,7 +645,7 @@ window.guest=true;
                                  if(namePack=='*.*')namePack='Default Package';
                                  tree.changeItemId(id,s[0]+';'+s[1]+';'+s[2]+';'+namePack+':'+nname);
                     
-                      manejadorTableroNotificaciones('renombro clase',usuario);
+                      manejadorTableroNotificaciones('Renombrar Clase '+id+" como "+nname,usuario);
                        
                    }
                    
@@ -688,7 +689,7 @@ window.guest=true;
                                  if(namePack=='*.*')namePack='Default Package';
                                  tree.changeItemId(id,s[0]+';'+s[1]+';'+s[2]+';'+namePack+':'+nname);
                
-                      manejadorTableroNotificaciones('renombrarGUI',usuario);
+                      manejadorTableroNotificaciones('Renombrar GUI '+id+" como "+nname,usuario);
                    }
                    
                    function uiRenombrarFichero(id){
@@ -732,7 +733,7 @@ window.guest=true;
                                  tree.changeItemId(id,s[0]+';'+s[1]+';'+s[2]+';'+namePack+':'+nname);
                       
                    
-                      manejadorTableroNotificaciones('renombroFichero',usuario);
+                      manejadorTableroNotificaciones('Renombrar Fichero '+id+" como "+nname,usuario);
                    }
                    function uiRenombrarLibreria(id){
                        var s=id.split(';');
@@ -767,9 +768,9 @@ window.guest=true;
                       
                       var s=id.split(';');
                       tree.setItemText(id,nname);
-                                 tree.changeItemId(id,s[0]+';'+s[1]+';'+s[2]+';LIBSNode:'+nname);
+                      tree.changeItemId(id,s[0]+';'+s[1]+';'+s[2]+';LIBSNode:'+nname);
               
-                       manejadorTableroNotificaciones('renombrolibreria',usuario);
+                       manejadorTableroNotificaciones('Renombrar Libreria '+id+" como "+nname,usuario);
                                  
                    }
                    
@@ -830,10 +831,9 @@ window.guest=true;
                                 for(var i in libs)
                                     loadNode("LIBSNode;"+nombre+";"+propietario,  nombre+";"+propietario , libs[i]);
                                 
-                             tree.setItemImage("MainNode","gg3.png","gg3.png");
-                             
-           
-                                    canalNotificaciones.emit('suscribirse',{u:user,c: nombre+';'+propietario, s:idS} );
+                                tree.setItemImage("MainNode","gg3.png","gg3.png");
+                                tree.setItemText("MainNode","Proyectos Activos");
+                                canalNotificaciones.emit('suscribirse',{u:user,c: nombre+';'+propietario, s:idS} );
                        
                               
                             });
@@ -1013,7 +1013,7 @@ window.guest=true;
                                if(name=='*.*'){
                                    getItemTreeMemory(idParentNodo).ficheros.push({tipo:'ClassNode',nombre: njava, imagen:'java.png'});
                                }
-                               manejadorTableroNotificaciones('agregoclase',usuario);
+                               manejadorTableroNotificaciones('Agregar Clase '+njava,usuario);
                               
                               
                    }
@@ -1081,7 +1081,7 @@ window.guest=true;
                                }
                           
                               getItemTreeMemory(idParentNodo).ficheros.push({tipo:'GUINode',nombre: njava, imagen:'form.png'});
-                              manejadorTableroNotificaciones('agrego GUI',usuario);
+                              manejadorTableroNotificaciones('Agregar GUI '+njava,usuario);
                        
                    }
                    function uiAgregarFichero(id){
@@ -1151,7 +1151,7 @@ window.guest=true;
                            
                                
                                getItemTreeMemory(idParentNodo).ficheros.push({tipo:'FileNode',nombre: njava, imagen:imagen,tipoFichero:tif}); 
-                               manejadorTableroNotificaciones('agrego fichero',usuario);
+                               manejadorTableroNotificaciones('Agregar Fichero '+njava,usuario);
                        
                    }
                    function uiAgregarPaquete(id){
@@ -1234,7 +1234,7 @@ window.guest=true;
                                
                        
                                getProject(s[1],s[2]).src.push({ficheros:[],imagen:'package.png',nombre:pa,tipo:'PackageNode'});
-                               manejadorTableroNotificaciones('agrego paquete',usuario);
+                               manejadorTableroNotificaciones('Agregar Paquete '+pa,usuario);
                        
                        
                    }
@@ -1313,7 +1313,7 @@ window.guest=true;
                                      
                     if(usuario==user)
                         alert('Operacion exitosa!!!  (Paquetes afectados: '+afectados+')');
-                    manejadorTableroNotificaciones('renombroPaquete',usuario);
+                    manejadorTableroNotificaciones('Renombrar Paquete '+backName+' como '+nName,usuario);
                        
                    }
                    
@@ -1360,7 +1360,7 @@ window.guest=true;
                       
                       control_tab.removeTab(id);
                       removerItemTreeMemory(id);
-                       manejadorTableroNotificaciones('elimino ',usuario);
+                       manejadorTableroNotificaciones('Eliminar Clase '+id,usuario);
                        
                    }
                    
@@ -1404,7 +1404,7 @@ window.guest=true;
                          
                         control_tab.removeTab(id);
                         removerItemTreeMemory(id);
-                       manejadorTableroNotificaciones('elimino GUI',usuario);
+                       manejadorTableroNotificaciones('Eliminar GUI '+id,usuario);
                        
                    }
                    
@@ -1450,7 +1450,7 @@ window.guest=true;
                        evaluarEliminacionDefaultPackage(id);
                        control_tab.removeTab(id);
                        removerItemTreeMemory(id);
-                       manejadorTableroNotificaciones('elimino fichero',usuario);
+                       manejadorTableroNotificaciones('Eliminar Fichero '+id,usuario);
                    }
                    
                    function evaluarEliminacionDefaultPackage(id){
@@ -1522,7 +1522,7 @@ window.guest=true;
                       if(usuario==user)
                            alert('Operacion exitosa!!!\nPaquetes afectados: '+afectados);
                        removerItemTreeMemory(id);
-                       manejadorTableroNotificaciones('elimino paquete',usuario);
+                       manejadorTableroNotificaciones('Eliminar Paquete '+s[3].split(':')[1],usuario);
                    }
                    
                    function uiCargarClase(id){
@@ -1569,7 +1569,7 @@ window.guest=true;
                                
                                
                    
-                    manejadorTableroNotificaciones('cargo clase',usuario);
+                    manejadorTableroNotificaciones('Cargar Clase '+name,usuario);
                               
                    }
                    
@@ -1618,7 +1618,7 @@ window.guest=true;
                                }
                    
                    getItemTreeMemory(idParentNodo).ficheros.push({tipo:'FileNode',nombre: name, imagen:imagen,tipoFichero:tif}); 
-                   manejadorTableroNotificaciones('cargar fichero ',usuario);
+                   manejadorTableroNotificaciones('Cargar Fichero '+name,usuario);
                    }
                    
                    function uiCargarLibreria(id){
@@ -1647,7 +1647,7 @@ window.guest=true;
                        var s=id.split(';');
                        tree.insertNewChild(id, 'LibrarieNode;'+s[1]+';'+s[2]+';LIBSNode:'+name ,name ,null ,'lib.png','lib.png','lib.png');
                       getProject(s[1],s[2]).libs.push({imagen:'package.png',nombre:name,tipo:'LibrarieNode'});
-                       manejadorTableroNotificaciones('cargar Libreria',usuario);
+                       manejadorTableroNotificaciones('Cargar Libreria '+name,usuario);
                    }
                    function eliminarLibreria(id){
                        
@@ -1679,7 +1679,7 @@ window.guest=true;
                        if(usuario==user)
                            alert('Operacion Exitosa!!');
                        removerItemTreeMemory(id);
-                       manejadorTableroNotificaciones('elimino notificaciones',usuario);
+                       manejadorTableroNotificaciones('Eliminar Libreria',usuario);
                        
                    }
                    function cortar_copiar__pegar_Clase(idIni,idFin,cut){
@@ -1788,7 +1788,7 @@ window.guest=true;
                                 tree.deleteItem(idIni,true); 
                                  evaluarEliminacionDefaultPackage(idIni);
                            }
-                        manejadorTableroNotificaciones('corto pegoclase',usuario);            
+                        manejadorTableroNotificaciones('Cortar-Pegar Clase',usuario);
                                return false;
                       
                   }
@@ -1830,7 +1830,7 @@ window.guest=true;
                                         tree.insertNewChild(idFin ,'ClassNode;'+pFin+';'+oFin+';'+packF+':'+classe,classe ,null ,'java.png','java.png','java.png');
                                     
                                   
-                      manejadorTableroNotificaciones('copio pegoclase',usuario);              
+                      manejadorTableroNotificaciones('Copiar-Pegar Clase',usuario);
                                return false;
                       
                   }
@@ -1933,7 +1933,7 @@ window.guest=true;
                                         tree.insertNewChild(idFin ,'GUINode;'+pFin+';'+oFin+';'+packF+':'+classe,classe ,null ,'form.png','form.png','form.png');
                                     
                                   
-                    manejadorTableroNotificaciones('corto pegoGUI',usuario);                
+                    manejadorTableroNotificaciones('Cortar-Pegar GUI',usuario);
                                return false;  
                       
                   }
@@ -1982,7 +1982,7 @@ window.guest=true;
                                  evaluarEliminacionDefaultPackage(idIni);
                                }
                                
-                          manejadorTableroNotificaciones('corto pegoGUI',usuario);
+                          manejadorTableroNotificaciones('Cortar-Pegar GUI',usuario);
                                return false; 
                       
                   }
@@ -2086,7 +2086,7 @@ window.guest=true;
                                 tree.deleteItem(idIni,true); 
                                  evaluarEliminacionDefaultPackage(idIni);
                              }
-                   manejadorTableroNotificaciones('corto pegofichero',usuario);                 
+                   manejadorTableroNotificaciones('Cortar-Pegar Fichero',usuario);
                                return false;
                        
                        
@@ -2130,7 +2130,7 @@ window.guest=true;
                                   else
                                         tree.insertNewChild(idFin ,'FileNode;'+pFin+';'+oFin+';'+packF+':'+classe,classe ,null ,'file.png','file.png','file.png');
                                     
-                       manejadorTableroNotificaciones('copio pegocfichero',usuario);           
+                       manejadorTableroNotificaciones('Copiar-Pegar Fichero',usuario);
                                     
                                return false;
                        
@@ -2204,7 +2204,7 @@ window.guest=true;
                         if(haveProject(sIni[1],sIni[2])){ 
                             tree.deleteItem(idIni,true); 
                         }
-                        manejadorTableroNotificaciones('corto pegolibreria',usuario);
+                        manejadorTableroNotificaciones('Cortar-Pegar Libreria',usuario);
                                  return false;   
                        
                    }
@@ -2222,7 +2222,7 @@ window.guest=true;
                         
                         var lib=sIni[3].split(':')[1];
                         tree.insertNewChild(idFin ,'LibNode;'+pFin+';'+oFin+';*.*:'+lib,lib ,null ,'lib.png','lib.png','lib.png');
-                        manejadorTableroNotificaciones('copio pegolibreria',usuario);
+                        manejadorTableroNotificaciones('Copiar-Pegar Libreria',usuario);
                           return false;   
                        
                    }
@@ -2239,9 +2239,10 @@ window.guest=true;
                          
                                tree.deleteItem(id,true);
                                popProject(s[1],s[2]);
-                               if(projectsMemory.length==0){
+                               if(projectsMemory == null || projectsMemory.length==0 || projectsMemory[0]==null){
                                    tree.setItemImage("MainNode","gg2.png","gg2.png");
-                                    }                         
+                                   tree.setItemText("MainNode", "No tiene proyectos activos");
+                               }                         
                           
                           
                       });
@@ -2538,7 +2539,7 @@ window.guest=true;
                         }
                         case 'mcp':{
                                
-                                $('#objIdNotificador').append('<div>El usuario "'+usuario+'" ha cambiado la clase principal del proyecto "'+data.find('p').text()+'. Clase anterior: '+data.find('idI').text()+', clase actual: '+data.find('idF').text()+'</div>');
+                                $('#objIdNotificador').prepend('<div class="notItemBoard">El usuario "'+usuario+'" ha cambiado la clase principal del proyecto "'+data.find('p').text()+'. Clase anterior: '+data.find('idI').text()+', clase actual: '+data.find('idF').text()+'</div>');
                                 break;
                         }
                     }
@@ -2594,14 +2595,14 @@ window.guest=true;
                  }
                
                    function manejadorTableroNotificaciones(op,usuario){
-                     $('#objIdNotificador').append('<div>operacion:'+op+'&nbsp;usuario:'+usuario+'</div>')
+                     $('#objIdNotificador').prepend('<div class="notItemBoard"> Operacion : <b>'+op+'</b><br/>Usuario: <b>'+usuario+'</b></div>')
                     }
                    
                    function notificarConexionUsuario(xml){
                      var data=$(xml).find('data');
                      var user=data.find('id').text();
                      var p=data.find('p').text();
-                      $('#objIdNotificador').append('<div>El usuario "'+user+'" ha abierto el proyecto "'+p+'"</div>');
+                      $('#objIdNotificador').prepend('<div class="notItemBoard" > El usuario <b>"'+user+'"</b> ha abierto el proyecto <b>"'+p+'"</b></div>');
                    }
                  
                    function updatePropertiesComponent(idP, idNameVariable, idValueVariable, comp, idComp){
@@ -2842,6 +2843,43 @@ function getImagenFichero(tf){
         //for(var i in op){
           //  console.log(op[i].p);
         //}
+    }
+
+    function logout(){
+
+                $.get("../IDE/logout.jsp", function(data) {
+
+                    if(jsonParse(data).answ=='wrong'){
+                        alert('No ha sido posible cerrar sesion,intente de nuevo');
+
+                    }
+                    else
+                        location.href='../IDE/index.html';
+
+                });
+            }
+
+    function lostConexion(){
+        setIconConexionState(false);
+        $('body').append('<div class="lostConexionBall" style="color:rgb(70,70,70)">Conexion perdida</div>');
+        var right = parseInt( $('.divUserInfo').css('width') ) + parseInt( $('.divUserInfo').css('marginRight') );
+        $('.lostConexionBall').css('right',right);
+        $('.lostConexionBall').show(200);
+        setTimeout(function(){
+            $('.lostConexionBall').hide(200, function(){
+                $('.lostConexionBall').remove();
+            });
+            
+        },3000);
+    }
+
+    function setIconConexionState(state){
+        if (state) {
+            $('.lostConexionBall').remove();
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/greenBall.png');
+        } else {
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/redBall.png');
+        }
     }
 
      

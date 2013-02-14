@@ -25,20 +25,24 @@
 
 .divP:hover
 {
-    background-color:#F5F6CE;
+    background-color:rgba(240,240,240,0.5);
     cursor: pointer;
+    border-radius: 4px;
 }
 
-.textNameP{
-    background-color:#F5F6CE;
+.textNameP,  .divPS .np{
+    background-color:rgba(240,240,240,0);
     cursor: pointer;
 }
 
 .divPS
 {
-    background-color:#F5F6CE;
+    background-color:rgba(240,240,240,0.5);
     cursor: pointer;
+    border-radius: 4px;
+
 }
+
 
 #divD{
     border-radius: 5px;

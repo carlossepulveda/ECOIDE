@@ -193,15 +193,14 @@
                 -o-transition:-o-transform 0.1s ease-in; /*animate transform property in Opera */
             }
             #logoUFPS{
-                width:auto;
-                height: 46px;
+                height: 42px;
                 position:absolute;
                 left: 13px;
                 top:10px;
             }
             #logoING{
-                width:46px;
-                height: 46px;
+                height: 42px;
+                width : 42px;
                 position:absolute;
                 right: 13px;
                 top:10px;
@@ -221,19 +220,51 @@
             #objIdNotificador{
                 color:#505050!important;
             }
+
             .selectedTreeRow{
                 color:#505050!important;
             }
+            
             .standartTreeRow{
                color:#505050!important; 
             }
-            html,body{
+
+            html,   body{
                 width: 100%;
                 height:100%;
                 margin: 0px;
                 padding: 0px;
                 overflow: hidden;
                  font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif!important;
+            }
+
+            .notItemBoard{
+                background-color: rgba(240,240,240,0.7);
+                border-radius: 5px;
+                min-height: 30px;
+                height:auto;
+                margin: 3px;
+                padding: 5px;
+                overflow: none;
+            }
+            .lostConexionBall{
+                background-color: rgba(255,0,0,0.3);
+                z-index:99999;
+                top:10px;
+                position:absolute;
+                border-radius : 10px;
+                display: none;
+                padding: 15px 20px;
+            }
+            .compilationTitle{
+                font-size: 16px;
+            }
+            .itemErrorCompilacion{
+                 background-color: rgba(255,0,0,0.3);
+                 border-style:solid;
+            }
+            .objIdOutput{
+                background-color: whitesmoke;
             }
 
         </style> 
@@ -259,27 +290,28 @@
 
 
             <div id="content" style="width: 100%!important;height: 100%!important;margin: 0!important;background-image: url('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif'); background-repeat: repeat-x; border-: groove;border: gainsboro 5px solid;margin: 4px auto ;">
-                <a id="logoUFPS" href="http://www.ufps.edu.co"><img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/></a>
-                <a id="logoING" href="http://ingsistemas.ufps.edu.co"><img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ingsistemas2.png"/></a>
-            
-        
-               <!-- <div class="dock" id="dock" style="z-index:700;">
-                    <div class="dock-container">
-                        <a class="dock-item" href="#" onclick="uiCrearProyecto()"><img src="../Scripts/menuMAC/images/pack.png" alt="home" /><span>Home</span></a> 
-                        <a class="dock-item" href="#" onclick="uiAbrirProyecto()"><img src="../Scripts/menuMAC/images/open.png" alt="abrir" /><span>Abrir</span></a> 
-                        <a class="dock-item" href="#" onclick="compilarProyectos()"><img src="../Scripts/menuMAC/images/compile.png" alt="compilar" /><span>Compilar</span></a> 
-                        <a class="dock-item" href="#" onclick="generarEjecutableProyectos()"><img src="../Scripts/menuMAC/images/buildJar.png" alt="build" /><span>Build JAR</span></a> 
-                        <a class="dock-item" href="#" onclick="descargarEjecutableProyectos()"><img src="../Scripts/menuMAC/images/downloadJar.png" alt="download JAR" /><span>Download JAR</span></a> 
-                        <a class="dock-item" href="#" onclick="descargarProyectos()"><img src="../Scripts/menuMAC/images/downloadZip.png" alt="download ZIP" /><span>Download ZIP</span></a> 
-                        <a class="dock-item" href="#" onclick="ejecutarProyectos()"><img src="../Scripts/menuMAC/images/play.png" alt="ejecutar" /><span>Ejecutar</span></a> 
-                        <a class="dock-item" href="#" onclick="verChats()"><img src="../Scripts/menuMAC/images/chats.png" alt="chat" /><span>Chat</span></a> 
-                        <a class="dock-item" href="#" onclick="cerrarIDE()"><img src="../Scripts/menuMAC/images/close.png" alt="ejecutar" /><span>Ejecutar</span></a>
-                    </div> 
-                </div>-->
-                <div style="width:400px;height: 30px;margin: 10px auto;z-index:700;">
+                <a id="logoUFPS" href="http://www.ufps.edu.co">
+                    <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
+                </a>
+                <a id="logoING" href="http://ingsistemas.ufps.edu.co">
+                    <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
+                </a>
+                <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important">
+                    <div>
+                        <pre>Bienvenido !!</pre>
+                    </div>
+                    <div>
+                        <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right">
+                        <pre><%=user%></pre>
+                        
+                    </div>
+                </div>
+       
+                <div style="width:470px;height: 30px;margin: 10px auto;z-index:700;">
                                 
                                 <ul class="bubblewrap" id="mide" idm="mide" style="float: left">
 
+                                    <li id="i8" class="menuLiP" idm="8" msj="Ir a Inicio" ><a href="#" onclick="cerrarIDE()"><img src="../Images/MenuBar/home.png"/></a><span id="s8" style="display:none;z-index:10004;">Ejecutar</span></li>
                                     <li id="i0" class="menuLiP ttp" idm="0" msj="Crear Proyecto"><a href="#" onclick="uiCrearProyecto()"><img src="../Images/MenuBar/pack.png" /></a><span id="s0" style="display:none;z-index:10004;">Crear</span></li>
                                     <li id="i1" class="menuLiP ttp" idm="1" msj="Abrir Proyecto"><a href="#" onclick="abrirVentana('../IDE/abrirProyecto.jsp','Seleccione proyecto',false)"><img src="../Images/MenuBar/open.png"  /></a><span id="s1" style="display:none;z-index:10004;">Abrir</span></li>
                                     <li id="i2" class="menuLiP ttp" idm="2" msj="Compilar Proyecto"><a href="#" onclick="compilarProyectos()"><img src="../Images/MenuBar/compile.png"/></a><span id="s2" style="display:none;z-index:10004;">Compilar</span></li>
@@ -288,7 +320,7 @@
                                     <li id="i5" class="menuLiP" idm="5" msj="Descargar Proyecto"><a href="#" onclick="descargarProyectos()"><img src="../Images/MenuBar/downloadZip.png" /></a><span id="s5" style="display:none;z-index:10004;">Descargar</span></li>
                                     <li id="i6" class="menuLiP"  idm="6" msj="Ejecutar Proyecto"><a href="#" onclick="ejecutarProyectos()"><img src="../Images/MenuBar/play.png"/></a><span id="s6" style="display:none;z-index:10004;">Ejecutar</span></li>
                                     <li id="i7" class="menuLiP" idm="7" msj="Chat"><a href="#" onclick="verChats()"><img src="../Images/MenuBar/chats.png" /></a><span id="s7" style="display:none;z-index:10004;">Descargar</span></li>
-                                    <li id="i8" class="menuLiP" idm="8" msj="Cerrar IDE"><a href="#" onclick="cerrarIDE()"><img src="../Images/MenuBar/close.png"/></a><span id="s8" style="display:none;z-index:10004;">Ejecutar</span></li>
+                                    <li id="i3" class="menuLiP" msj="Cerrar Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
 
                                 </ul>
                 </div>
@@ -309,7 +341,7 @@
             </div>
 
             <div id="objIdOutput" style="width: 100%; height: 100%; overflow: auto; display: none; font-family: Tahoma; font-size: 11px;"></div>
-            <div id="objIdNotificador" style="width: 100%; height: 100%; overflow: auto; display: none; font-family: Tahoma; font-size: 11px;">noti</div>
+            <div id="objIdNotificador" style="width: 100%; height: 100%; overflow: auto; display: none; font-family: Tahoma; font-size: 11px;"></div>
 
 
         </div>

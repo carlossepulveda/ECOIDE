@@ -278,10 +278,8 @@ function verPerfil(){
                                         <label class="labelForm">Acerca de mi</label>\n\
                                         <textarea id="idAboutPerfil" rows="6" cols="20" name="aboutVariable">'+programmer.profile+'</textarea>   \n\
                                     </div>');**/
-    
         $("#fieldsetPerfil").append('<div align="center" style="margin-bottom: 10px;">\n\
-                                        <label class="labelForm">Constrase\ña</label>\n\
-                                        <label class="labelForm"><input id="botonAceptar" type="button" class="botonForm" value="Restablecer" onclick="restablecerPass()" /> \n\
+                                        <label class="labelForm" style="width:200px"><input id="botonAceptar" type="button" class="botonForm" value="Cambiar contraseña" onclick="restablecerPass()" style="width:300px" /> \n\
                                     </div>');
     
         
