@@ -3,11 +3,13 @@ var server = require("socket.io").listen(configPort.notificationServerPort);
 var fs=require("fs");
 var matchFile=__dirname+"/../MatchFolder/sessionActives.txt";
 
-function isValidUser(id,session){console.log('Llegoa console.log id: '+id+'  session: '+session);
+function isValidUser(id,session){
+	console.log('Llego console.log id: '+id+'  session: '+session);
 	var file=fs.readFileSync(matchFile,"utf8");
-        var users=file.split(';');
+        var users=file.split(';');console.log("users file:   "+users);
         for(var i in users){
 		var ses=users[i].split(':');
+console.log("usuario en bd: "+ses[0]+"  session en bd: "+ses[1]+"    llegaId: "+id+"    llega ses: "+session);
                 if(ses[0]==id){
 			if(ses[1]==session && ses[1]!='*.*')
 				return true;

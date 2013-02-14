@@ -188,15 +188,15 @@
             }
             #logoUFPS{
                 width:auto;
-                height: 44px;
+                height: 42px;
                 position:absolute;
                 left: 13px;
                 top:10px;
                 margin-bottom: 1px;
             }
             #logoING{
-                width:44px;
-                height: 44px;
+                width:42px;
+                height: 42px;
                 position:absolute;
                 right: 13px;
                 top:10px;
@@ -274,8 +274,20 @@
     <body>
         
         <div id="content" style="width: 100%!important;height: 100%!important;margin: 0!important; background-color: #bababa;background-image: url('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif'); background-repeat: repeat-x; border: groove;border: gainsboro 5px solid;margin: 4px auto ;">
-            <a id="logoUFPS" href="http://www.ufps.edu.co"><img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/></a>
-            <a id="logoING" href="http://ingsistemas.ufps.edu.co"><img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ingsistemas2.png"/></a>
+            <a id="logoUFPS" href="http://www.ufps.edu.co">
+                <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
+            </a>
+            <a id="logoING" href="http://ingsistemas.ufps.edu.co">
+                <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
+            </a>
+            <div style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
+                    <div>
+                        <pre>Bienvenido !!</pre>
+                    </div>
+                    <div>
+                        <pre><%=user%></pre>
+                    </div>
+            </div>
             
             <div id="encabezado" style="height: 35px;margin-bottom: 3px">
 
@@ -309,7 +321,7 @@
                             </a>
                            
                         </li>
-                        <li id="i3" idm="3" class="menuLiP" msj="Cerra Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
+                        <li id="i3" idm="3" class="menuLiP" msj="Cerrar Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
                     </ul>
                 </div>
 

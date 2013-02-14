@@ -26,7 +26,7 @@ String id=request.getParameter("id");
                var njava=document.getElementById('name').value;
                 if(njava==null)return false;
                 var splitName=njava.split('.');
-                if(splitName.length!=2 && splitName[1]!="java"){
+                if(splitName.length!=2 || splitName[1]!="java"){
                     $('#idNotError').css("display","block");
                     $('#name').addClass("error");
                     return false;
