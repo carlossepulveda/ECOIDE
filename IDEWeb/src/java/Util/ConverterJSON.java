@@ -255,10 +255,11 @@ public class ConverterJSON {
             if(i==0)
                 s="";
             
-            r+=s+"{  \"message\": \"'"+d.getElementsByTagName("message").item(i).getTextContent()
-                    +"'\" , \"line\": \""+d.getElementsByTagName("line").item(i).getTextContent()
-                    +"\" , \"kind\": \""+d.getElementsByTagName("kind").item(i).getTextContent()
-                    +"\" , \"source\": \""+d.getElementsByTagName("source").item(i).getTextContent()+"\" }";
+            r+=s+"{  \"message\": \""+d.getElementsByTagName("message").item(i).getTextContent().replace("'","") +"'\" ,"
+                    + " \"line\": \""+d.getElementsByTagName("line").item(i).getTextContent()+"\" , "
+                    + "\"kind\": \""+d.getElementsByTagName("kind").item(i).getTextContent()+"\" ,"
+                    + " \"source\": \""+d.getElementsByTagName("source").item(i).getTextContent()+"\" "
+                    + "}";
             
             if(i==d.getElementsByTagName("diagnostic").getLength()-1)
                 r+="]";

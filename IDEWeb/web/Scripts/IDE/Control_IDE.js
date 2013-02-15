@@ -19,13 +19,13 @@ window.guest=true;
                     
      function cargarIDE(projectosA,w,h){
        
-              
+                $('.disablingIcon').addClass('disabledIcon');
                 dhxLayout = new dhtmlXLayoutObject("parentId", "3L");
                 dhxLayout.setSkin('dhtmlx_custom');
                 //dhxLayout.setImagePath('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/');
                 dhxLayout.cells("b").setWidth(parseInt(w*0.8));
                 
-                dhxLayout.cells("c").setText("Output");
+                dhxLayout.cells("c").setText("Salida");
                 dhxLayout.cells("c").attachObject("objIdOutput");
                 dhxLayout.cells("c").setHeight(100);
                 dhxLayout.cells("c").setWidth(parseInt(w*0.8));
@@ -206,9 +206,11 @@ window.guest=true;
  
  
  
-                   function verChats(){
-                        
-                         if(projectsMemory.length==0){
+                   function verChats(element){
+                        if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
+                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos para abrir su respectivo chat');
                            return;
                        }
@@ -217,7 +219,9 @@ window.guest=true;
  
  
                    function generarEjecutableProyectos(){
-                       
+                       if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos para generar ejecutable (.jar)');
                            return;
@@ -243,7 +247,10 @@ window.guest=true;
                             
                    }
                    
-                   function descargarProyectos(){
+                   function descargarProyectos(element){
+                       if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos Descargar');
                            return;
@@ -268,7 +275,10 @@ window.guest=true;
                       
                    }
                    
-                   function descargarEjecutableProyectos(){
+                   function descargarEjecutableProyectos(element){
+                       if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos Descargar');
                            return;
@@ -298,7 +308,10 @@ window.guest=true;
                       
                    }
                    
-                   function compilarProyectos(){
+                   function compilarProyectos(element){
+                       if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos para compilar');
                            return;
@@ -310,20 +323,32 @@ window.guest=true;
                       var s=id.split(';');
                       
                           $.get("../IDE/compilarProyecto.jsp?name="+s[1]+"&owner="+s[2], function(data) {
-                                console.log('respuestade compilar: '+data);
-                                var r = jsonParse(data).answ;
-                                var diag=jsonParse(data).diagnostic;alert(diag);
+                              console.log(data);
+                                var xmlDoc = $.parseXML( data );
+                                var $xml = $( xmlDoc );
+                                var r = $xml.find('answ').text();
+                                var diag=$xml.find('diagnostics');console.log(diag.text());
                                 var msj=construirMensajeCompilacion(diag,s[1],s[2]);
-                                $("#objIdOutput").html("<div class='compilationTitle' align='center' style='margin-top:5px'>Resultado compilacion del proyecto:  "+s[1]+"-"+s[2]+" :  "+r+"</div><br/>"+msj);
+                                var msjs = [];
+                                msjs["true"] = "Exitoso !! ";
+                                msjs["false"] = "Fallido"
+                                $("#objIdOutput").html("<div class='compilationTitle' align='center' style='margin-top:5px'>Resultado compilacion del proyecto:  "+s[1]+"-"+s[2]+" :  "+msjs[r]+"</div><br/>"+msj);
                             
                                if(r=="true"){
+                                   $('.compilationTitle').addClass('successCompilationTitle');
                                     alert('El proceso de compilacion del proyecto "'+s[1]+'-'+s[2]+'" fue exitoso');
                                     return false;
                                 }
-                                if(diag.lenght!=0)
+                                if(diag.lenght!=0){
+                                    $('.compilationTitle').addClass('errorCompilationTitle');
                                     alert('El proceso de la compilacion del proyecto "'+s[1]+'-'+s[2]+'" arrojo errores o advertencias');
-                                else
+                                }
+                                    
+                                else{
+                                    $('.compilationTitle').addClass('successCompilation');
                                     alert('El proceso de compilacion del proyecto "'+s[1]+'-'+s[2]+'" fue exitoso');
+                                }
+                                    
                           }); 
                             
                             
@@ -350,7 +375,10 @@ window.guest=true;
                      });
                    }
                    
-                   function ejecutarProyectos(){
+                   function ejecutarProyectos(element){
+                       if($(element).hasClass("disabledIcon")){
+                          return;
+                       }
                        if(projectsMemory.length==0){
                            alert('No hay proyectos abiertos para ejecutar');
                            return;
@@ -359,6 +387,7 @@ window.guest=true;
                    }
                    
                    function construirMensajeCompilacion(d,name,owner){
+                      
                       var ae=new Array();
                         if(window.errorCA!=null && window.errorCA.lenght!=0){
                            for(var i in window.errorCA){
@@ -368,10 +397,17 @@ window.guest=true;
                         }
                      window.errorCA=new Array();
                      var msj='';
-                     console.log('impresion de d: '+JSON.stringify(d));
-                     for(var i in d){
-                         msj+="<div class='itemErrorCompilacion' onclick=\"irErrorCompilacion('"+d[i].source+"','"+d[i].line+"','"+name+"','"+owner+"','"+d[i].kind+"')\"><div>Tipo : "+d[i].kind+"</div><div>Fuente : "+d[i].source+"</div><div>Linea : "+d[i].line+"</div><div>Mensaje : "+d[i].message+"</div></div><div style='height:5px;width:100%;background-color:whitesmoke'/>";
-                      }
+                     $(d).find('diagnostic').each(function(a,b){
+                          var diagnostic = $(b);
+                          msj+="<div class='itemErrorCompilacion' \n\
+                                             onclick=\"irErrorCompilacion('"+diagnostic.find('source').text()+"','"+diagnostic.find('line').text()+"','"+name+"','"+owner+"','"+diagnostic.find('kind').text()+"')\">\n\
+                                            <div>Tipo : "+diagnostic.find('kind').text()+"</div>\n\
+                                            <div>Fuente : "+diagnostic.find('source').text()+"</div>\n\
+                                            <div>Linea : "+diagnostic.find('line').text()+"</div>\n\
+                                            <div>Mensaje : "+diagnostic.find('message').text()+"</div>\n\
+                                    </div>\n\
+                                    <div style='height:5px;width:100%;background-color:whitesmoke'/>";
+                      });
                       return msj;
                  }
                  function irErrorCompilacion(source,line,name,owner,type){
@@ -427,12 +463,12 @@ window.guest=true;
                                  var r=jsonParse(data);
                                 if(r.answ!='ok'){
                                 
-                                    alert('Error al intentar ejecutar el proyecto.\nVer output');
+                                    alert('Error al intentar ejecutar el proyecto.\nVer Salida');
                                     switch(r.answ){
                                         case 'noMain':{
-                                                $("#objIdOutput").html("<h5>Resultado construir para ejecucion : False</h5><br>\n\
-                                                                        <p>El proyecto "+s[1]+"-"+s[2]+" no tiene una clase main asignada o la clase 'Principal' no tiene un metodo main, ademas es necesario verificar que no tenga errores de compilacion</p>\n\
-                                                                        <p>Para ver la clase principal de dicho proyecto de click derecho en su respectivo icono, propiedades</p></br> ");
+                                                $("#objIdOutput").html("<div class='compilationTitle failExecute' align='center' style='margin-top:5px'>No fue posible ejecutar proyecto "+s[1]+"-"+s[2]+"</div><br>\n\
+                                                                        <div class='itemErrorCompilacion ' style='font-size:13px'>El proyecto "+s[1]+"-"+s[2]+", no tiene una clase main asignada o la clase que se definio como 'Principal', no tiene un metodo main, ademas es necesario verificar que esta clase no tenga errores de compilacion\n\
+                                                                        Para ver la clase principal del proyecto,por favor dar click derecho en la carpeta fuente, y luego click en propiedades</br></div> ");
                                                 break;
                                         }
                                         case 'noClass':{
@@ -833,6 +869,8 @@ window.guest=true;
                                 
                                 tree.setItemImage("MainNode","gg3.png","gg3.png");
                                 tree.setItemText("MainNode","Proyectos Activos");
+                                $('.disablingIcon').addClass('enabledIcon');
+                                $('.disablingIcon').removeClass('disabledIcon');
                                 canalNotificaciones.emit('suscribirse',{u:user,c: nombre+';'+propietario, s:idS} );
                        
                               
@@ -2241,6 +2279,8 @@ window.guest=true;
                                popProject(s[1],s[2]);
                                if(projectsMemory == null || projectsMemory.length==0 || projectsMemory[0]==null){
                                    tree.setItemImage("MainNode","gg2.png","gg2.png");
+                                   $('.disablingIcon').removeClass('enabledIcon');
+                                   $('.disablingIcon').addClass('disabledIcon');
                                    tree.setItemText("MainNode", "No tiene proyectos activos");
                                }                         
                           

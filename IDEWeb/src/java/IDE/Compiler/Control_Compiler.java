@@ -119,7 +119,9 @@ public class Control_Compiler {
             Element diagnostic = this.controlFileManagerXML.getDocumentoXML().createElement("diagnostic"); //creamos un nuevo elemento en el XMLLLL
 
             Element message = this.controlFileManagerXML.getDocumentoXML().createElement("message");
-            Text textE = this.controlFileManagerXML.getDocumentoXML().createTextNode(d.getMessage(null)); //Ingresamos la info en xmlllllllllll
+            String msj = d.getMessage(null).replaceAll("<", " ");
+            msj = msj.replaceAll(">"," ");System.out.println("mensaje : "+d.getMessage(Locale.FRENCH));
+            Text textE = this.controlFileManagerXML.getDocumentoXML().createTextNode(msj); //Ingresamos la info en xmlllllllllll
             message.appendChild(textE); //
             diagnostic.appendChild(message);
 
@@ -145,7 +147,7 @@ public class Control_Compiler {
             diagnostic.appendChild(sourcE);
 
             this.controlFileManagerXML.getDocumentoXML().getDocumentElement().appendChild(diagnostic);
-            System.out.println("Termino el proceso de compilacion satisfactoriamente");
+      
    
         }
        

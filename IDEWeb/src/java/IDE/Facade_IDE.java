@@ -150,9 +150,9 @@ public class Facade_IDE{
     }
 
     //
-    public boolean addClass(String name, String owner, String pathOwner, String nPackage, String nameC) {
+    public boolean addClass(String name, String owner, String pathOwner, String nPackage, String nameC,String user) {
      
-        return this.controlIDE.addClass(name, owner, pathOwner, nPackage, nameC);
+        return this.controlIDE.addClass(name, owner, pathOwner, nPackage, nameC,user);
     }
 
     //

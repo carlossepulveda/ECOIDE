@@ -485,8 +485,8 @@ public class Control_IDE {
     }
     
     //
-    public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC){
-        return this.myProjectManager.addClass(name,owner,pathOwner,nPackage,nameC);
+    public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC,String user){
+        return this.myProjectManager.addClass(name,owner,pathOwner,nPackage,nameC,user);
     }
     
     //

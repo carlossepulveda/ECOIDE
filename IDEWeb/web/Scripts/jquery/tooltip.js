@@ -14,9 +14,14 @@ $(document).ready(function(){
                     $('body').append(html);
                     activeToolTipTemplate=true;
                 }
-                var left=$(this).offset().left-20;
+                var text = $(this).attr('msj');
+                var left=$(this).offset().left;//-(2.2*(text.length/2));
                 var top=$(this).offset().top+25;
-                $('.viewPortTooltip').html( $(this).attr('msj') ).css({top:top,left:left}).fadeIn(100);
+                $('.viewPortTooltip').html( text ).css({top:top,left:left}).fadeIn(100);
+                var w = $(this).width();
+                var nw = $('.viewPortTooltip').width();
+                var lf = ( nw - w )/2;
+                $('.viewPortTooltip').css({top:top,left: left-lf})
 
         },function(){
              $('.viewPortTooltip').fadeOut(100);

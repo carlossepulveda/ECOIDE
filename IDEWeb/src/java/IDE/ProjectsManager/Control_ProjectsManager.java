@@ -238,10 +238,10 @@ public class Control_ProjectsManager{
         return this.myProjects.get(index).addPackage(pathOwner,nPackage);
     }
    
-   public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC){
+   public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC,String user){
        int index=this.getIndexProject(name, owner);
         if(index<0)return false;
-        return this.myProjects.get(index).addClass(pathOwner,nPackage, nameC);
+        return this.myProjects.get(index).addClass(pathOwner,nPackage, nameC, user);
        
        
    }

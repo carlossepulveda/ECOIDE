@@ -368,7 +368,7 @@ public class Control_WEBApplication {
     
     public boolean addClass(String name, String owner,String nPackage, String nameC) {
      String pathOwner=this.getPathProjectsUserFolder(owner);
-        return this.myControlIDE.addClass(name, owner, this.pathApp+Separator.getSystemSeparator()+this.pathUsers+Separator.getSystemSeparator()+pathOwner, nPackage, nameC);
+        return this.myControlIDE.addClass(name, owner, this.pathApp+Separator.getSystemSeparator()+this.pathUsers+Separator.getSystemSeparator()+pathOwner, nPackage, nameC,user);
     }
 
     

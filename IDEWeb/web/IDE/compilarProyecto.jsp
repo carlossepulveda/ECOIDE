@@ -36,11 +36,30 @@ String owner=request.getParameter("owner");
 String answ="wrong";
 Document r=fwa.compileProject(name, owner);
 if(r!=null){
-    answ=ConverterJSON.answsCompilerToJson(r);
+    //answ=ConverterJSON.answsCompilerToJson(r);
+     String rr="<answ>"+r.getElementsByTagName("result").item(0).getAttributes().getNamedItem("answer").getTextContent()+"</answ>";
+
+        for(int i=0;i<r.getElementsByTagName("diagnostic").getLength();i++){
+            if(i==0)rr+="<diagnostics>";
+            String s=",";
+            if(i==0)
+                s="";
+System.out.println("   "+r.getElementsByTagName("message").item(i).getTextContent());
+            rr+=s+"<diagnostic><message>"+r.getElementsByTagName("message").item(i).getTextContent()+"</message>"
+                    + " <line>"+r.getElementsByTagName("line").item(i).getTextContent()+"</line>"
+                    + "<kind>"+r.getElementsByTagName("kind").item(i).getTextContent()+"</kind>"
+                    + "<source>"+r.getElementsByTagName("source").item(i).getTextContent()+"</source></diagnostic>";
+
+            if(i==r.getElementsByTagName("diagnostic").getLength()-1)
+                rr+="</diagnostics>";
+
+        }
+     answ="<xml>"+rr+"</xml>";
        }
 else{
-    answ="{ \"answ\": \"wrong\" }";
+    answ="<answ>wrong</answ>";
 }
+
 
 
 %>

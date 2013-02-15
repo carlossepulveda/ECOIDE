@@ -90,8 +90,8 @@ public class Facade_ProjectsManager{
     
     }
     
-    public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC){
-        return this.controlProjects.addClass(name,owner,pathOwner,nPackage,nameC);
+    public boolean addClass(String name,String owner,String pathOwner,String nPackage,String nameC,String user){
+        return this.controlProjects.addClass(name,owner,pathOwner,nPackage,nameC,user);
     }
     
     public boolean addGUIClass(String name,String owner,String pathOwner,String nPackage,String nameC){

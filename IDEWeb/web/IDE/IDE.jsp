@@ -259,12 +259,32 @@
             .compilationTitle{
                 font-size: 16px;
             }
+            .errorCompilationTitle{
+                color:red
+            }
+            .successCompilationTitle{
+                color:green;
+            }
             .itemErrorCompilacion{
                  background-color: rgba(255,0,0,0.3);
                  border-style:solid;
+                 border-radius: 3px;
+                 padding: 6px;
+            }
+            .failExecute{
+                color : red;
             }
             .objIdOutput{
                 background-color: whitesmoke;
+            }
+            .disabledIcon {
+                filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+                filter: gray; /* IE6-9 */
+                -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+            }
+            .enabledIcon {
+                filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+                -webkit-filter: grayscale(0%);
             }
 
         </style> 
@@ -314,12 +334,11 @@
                                     <li id="i8" class="menuLiP" idm="8" msj="Ir a Inicio" ><a href="#" onclick="cerrarIDE()"><img src="../Images/MenuBar/home.png"/></a><span id="s8" style="display:none;z-index:10004;">Ejecutar</span></li>
                                     <li id="i0" class="menuLiP ttp" idm="0" msj="Crear Proyecto"><a href="#" onclick="uiCrearProyecto()"><img src="../Images/MenuBar/pack.png" /></a><span id="s0" style="display:none;z-index:10004;">Crear</span></li>
                                     <li id="i1" class="menuLiP ttp" idm="1" msj="Abrir Proyecto"><a href="#" onclick="abrirVentana('../IDE/abrirProyecto.jsp','Seleccione proyecto',false)"><img src="../Images/MenuBar/open.png"  /></a><span id="s1" style="display:none;z-index:10004;">Abrir</span></li>
-                                    <li id="i2" class="menuLiP ttp" idm="2" msj="Compilar Proyecto"><a href="#" onclick="compilarProyectos()"><img src="../Images/MenuBar/compile.png"/></a><span id="s2" style="display:none;z-index:10004;">Compilar</span></li>
-                                    <li id="i3" class="menuLiP ttp" idm="3" msj="Generar Ejecutable"><a href="#" onclick="generarEjecutableProyectos()"><img src="../Images/MenuBar/buildJar.png" /></a><span id="s3" style="display:none;z-index:10004;">Ejecutar</span></li>
-                                    <li id="i4" class="menuLiP" idm="4" msj="Descargar Proyecto"><a href="#" onclick="descargarEjecutableProyectos()"><img src="../Images/MenuBar/downloadJar.png" /></a><span id="s4" style="display:none;z-index:10004;">Descargar</span></li>
-                                    <li id="i5" class="menuLiP" idm="5" msj="Descargar Proyecto"><a href="#" onclick="descargarProyectos()"><img src="../Images/MenuBar/downloadZip.png" /></a><span id="s5" style="display:none;z-index:10004;">Descargar</span></li>
-                                    <li id="i6" class="menuLiP"  idm="6" msj="Ejecutar Proyecto"><a href="#" onclick="ejecutarProyectos()"><img src="../Images/MenuBar/play.png"/></a><span id="s6" style="display:none;z-index:10004;">Ejecutar</span></li>
-                                    <li id="i7" class="menuLiP" idm="7" msj="Chat"><a href="#" onclick="verChats()"><img src="../Images/MenuBar/chats.png" /></a><span id="s7" style="display:none;z-index:10004;">Descargar</span></li>
+                                    <li id="i2" class="menuLiP ttp disablingIcon" idm="2" msj="Compilar Proyecto"><a href="#" onclick="compilarProyectos($(this).parent())"><img src="../Images/MenuBar/compile.png"/></a><span id="s2" style="display:none;z-index:10004;">Compilar</span></li>
+                                    <li id="i4" class="menuLiP disablingIcon" idm="4" msj="Descargar Proyecto"><a href="#" onclick="descargarEjecutableProyectos($(this).parent())"><img src="../Images/MenuBar/downloadJar.png" /></a><span id="s4" style="display:none;z-index:10004;">Descargar</span></li>
+                                    <li id="i5" class="menuLiP disablingIcon" idm="5" msj="Descargar Proyecto"><a href="#" onclick="descargarProyectos($(this).parent())"><img src="../Images/MenuBar/downloadZip.png" /></a><span id="s5" style="display:none;z-index:10004;">Descargar</span></li>
+                                    <li id="i6" class="menuLiP disablingIcon"  idm="6" msj="Ejecutar Proyecto"><a href="#" onclick="ejecutarProyectos($(this).parent())"><img src="../Images/MenuBar/play.png"/></a><span id="s6" style="display:none;z-index:10004;">Ejecutar</span></li>
+                                    <li id="i7" class="menuLiP disablingIcon" idm="7" msj="Chat"><a href="#" onclick="verChats($(this).parent())"><img src="../Images/MenuBar/chats.png" /></a><span id="s7" style="display:none;z-index:10004;">Descargar</span></li>
                                     <li id="i3" class="menuLiP" msj="Cerrar Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
 
                                 </ul>
