@@ -204,8 +204,6 @@ window.guest=true;
         
                     }
  
- 
- 
                    function verChats(element){
                         if($(element).hasClass("disabledIcon")){
                           return;

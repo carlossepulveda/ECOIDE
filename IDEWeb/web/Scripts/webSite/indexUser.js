@@ -239,17 +239,7 @@ function verPerfil(){
                                             </div>\n\
                                         </div>');
     resizeImages();
-         
-        /** $("#divFotoPerfil").hover(
-                  function () {
-                    $('.menuFotoPerfil').show();
-                    $('.menuFotoPerfil').css('cursor','pointer');
-                  },
-                  function () {
-                     $('.menuFotoPerfil').hide();
-                  }
-                );**/
-                
+                    
                 $(".divP").click(function(){
                     $(this).addClass("divPS");
                     if(divPS!=''){
@@ -493,6 +483,19 @@ function refreshPhoto(){
      resizeImages();
       $('#fotoInicioPresentacion').show();
       $("#divFotoPerfil").show();
+ }
+
+ function dblclickProject(name,owner) {
+     var r=Math.random()*92919394959;
+     box_('Abriendo proyecto ... ','');
+     $.get("../IDE/loadProjectJSON.jsp?name="+name+"&owner="+owner+"&user="+user)
+     .done(function(){
+         cerrarBox();
+         window.location.href='../IDE/IDE.jsp?ran='+r;
+     }).error(function(){
+         cerrarBox();
+         alert('Ocurrio un error al intentar abrir el proyecto');
+     });
  }
  
  
