@@ -155,6 +155,20 @@ transform: scale(1.1);
 -moz-transform: scale(1.1); /* Firefox */
 }
 
+.panelAdmin{
+    position: absolute;
+    top:0px;
+    right:-170px;
+    z-index:9999;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+    background-color: rgba(240,240,240,0.3);
+    height: 30px;
+    width: 200px;
+    cursor: pointer;
+
+}
+
 </style>
         <script>
             
@@ -178,7 +192,11 @@ transform: scale(1.1);
                     }
                     
                 }
-                
+                $('.panelAdmin').hover(function(){
+                    $(this).animate({right:'0px'},100);
+                },function(){
+                    $(this).animate({right:'-170px'},50);
+                });
                 $('.buttonForm[method="iniciar"]').click(function(){
                     
                     getIDE();
@@ -361,6 +379,12 @@ transform: scale(1.1);
 </script>
     </head>
     <body>
+<div class="panelAdmin">
+    <img src="../Images/config.png" style="height:100%;float:left">
+    <a href="../IDE/index.html" style="margin:15px;color: rgba(225,0,0,0.7)">
+        <span>Inicio Programador</a>
+    </a>
+</div>
 <div class="iconos" style="position:absolute;top:2%;left:1%;z-index:9999;"><img src="../Images/optimizadaLogo.png"></div>
 <div class="iconos" style="position:absolute;bottom:40px;right:2%;z-index:9999;width:400px;height:50px"><img style="width:100%;height:100%" src="../Images/letras.png"></div>
 <div class="canvas" style="position: absolute;left:0px;width: 400%;height:100%"> 

@@ -153,17 +153,8 @@
                     divPS=$(this).attr("id");
                 });
         
-                 $('#campoBusquedaCorreo').keypress(function(event) {
-                    
-                    if ( event.which == 13 ) {
-                         return;
-                       }
-                    if(event.which == 8){
-                        filtrarUserByMail($(this).val().substr(0, $(this).val().length-1));
-                        return;
-                    }
-                        filtrarUserByMail($(this).val()+String.fromCharCode(event.which));
-
+                 $('#campoBusquedaCorreo').keyup(function(event) {
+                        filtrarUserByMail($(this).val());
                 });
             function filtrarUserByMail(mail){
               aux=new Array();          
