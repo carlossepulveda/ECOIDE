@@ -132,7 +132,7 @@ function verProyectosCompartidos(){
     box_('Cargando...','<div style="width:100px;height:100px;">Cargando...</div>');
     $("#itemDetalles").html("");
     $.get('../IDE/consultarProyectos.jsp?filter=2&admin=yes&width='+parseInt($('#divDespligue').css('width')),function(data){
-        dhxLayout.cells("b").setText("Proyectos que Comparto");
+        dhxLayout.cells("b").setText("Proyectos Compartidos");
          $('#divDespligue').html(data);
          vistaActual='verQCProyectosUsuario';
           cerrarBox();

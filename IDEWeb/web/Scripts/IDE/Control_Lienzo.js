@@ -764,8 +764,18 @@ function Control_Lienzo(jsp){
         console.log(idP+'\n'+nameComponent+'\n'+newValue+'\n'+idComponent+'\n'+usuario);
         var lienzo=getLienzo(idP);        
         if(lienzo.updateValue(nameComponent, newValue,usuario)){
-            $('#'+idComponent).attr("valor",newValue); $('#'+idComponent).resizable();
+            $('#'+idComponent).resizable('destroy');
+            $('#'+idComponent).attr("valor",newValue); 
             $('#'+idComponent).html(newValue);
+            $('#'+idComponent).resizable({
+                ghost: true,
+                autoHide: true,
+                stop:function(ev,ui){
+                    var ss=$(this).attr('idP').split(';');
+                    var msj='<xml><u>'+user+'</u><op>ml</op><data><m>rc</m><idC>'+$(this).attr('id')+'</idC><w>'+parseInt($(this).width())+'</w><h>'+parseInt($(this).height())+'</h></data></xml>';
+                    canalNotificaciones.emit("nuevoMsg",{c:ss[1]+';'+ss[2],msj:msj,u:user, s:idS});
+                }
+            });
         }else{
             if(usuario==user)
                 alert("Error al Intentar Cambiar el Nombre del Componente\n\nRazón:  * El nombre ya existe\n             * Error Interno");
