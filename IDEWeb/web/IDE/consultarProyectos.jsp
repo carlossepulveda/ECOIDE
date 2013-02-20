@@ -68,9 +68,6 @@
      
     }
     
-    
-    
-    
     ConverterJSON cj = new ConverterJSON();
     String misProyectos = cj.myProjectsXMLtoJSON(myP);
    
@@ -98,14 +95,18 @@
         }
         String ishare="";
         String renombrar="";
+        String eliminar="<div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oR"+i+"\" onclick=\"eliminarP(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\"><img src=\"../Images/SupportWindow/close.png\" title=\"Eliminar\" alt=\"Eliminar\"/></div>";
          if(!admin.equals("yes")){
             renombrar= "<div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oE"+i+"\" onclick=\"renombrarP(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\"><img src=\"../Images/SupportWindow/edit.png\" title=\"Renombrar\" alt=\"Renombrar\"/></div>";
+         } else {
+            eliminar="";
          }
         if(myP.getElementsByTagName("owner").item(i).getTextContent().equals(fwa.getUser()))
             ishare="<div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oC"+i+"\" onclick=\"compartirP(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\"><img src=\"../Images/ContextualMenu/share.png\" title=\"Compartir\" alt=\"Compartir\"/></div>";
         html += "<td align=\"center\" style=\"width: 60px; height:60px;\"  id=\"tR"+myP.getElementsByTagName("name").item(i).getTextContent()+";"+myP.getElementsByTagName("owner").item(i).getTextContent()+"\">"
                 + "<div align=\"center\" id=\""+i+"\" class=\"divP\" \" onhover=\"viewInfo(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\" onclick=\"viewInfo(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\" ondblclick=\"dblclickProject(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\" style=\"width: 80px; height:80px;padding-top:5px\">"
-                +"<div style=\"float:right;\"><div style=\"z-index:1001;width:20px;height:20px;display:none;\" id=\"oR"+i+"\" onclick=\"eliminarP(\'" + myP.getElementsByTagName("name").item(i).getTextContent() + "\',\'" + myP.getElementsByTagName("owner").item(i).getTextContent() + "\')\"><img src=\"../Images/SupportWindow/close.png\" title=\"Eliminar\" alt=\"Eliminar\"/></div>"
+                +"<div style=\"float:right;\">"
+                +eliminar
                 +renombrar
                 + ishare
                 + "</div>"
