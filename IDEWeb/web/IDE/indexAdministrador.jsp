@@ -38,6 +38,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" type="image/png" href="../Images/SupportWindow/favicon.png" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="cache-control" content="no-Store"/>
         <meta http-equiv="Pragma" content="no-cache"></meta>
@@ -172,6 +173,22 @@
                 text-align: justify;
 
             }
+            #logoUFPS{
+                width:auto;
+                height: 42px;
+                position:absolute;
+                left: 13px;
+                top:10px;
+                margin-bottom: 1px;
+            }
+            #logoING{
+                width:42px;
+                height: 42px;
+                position:absolute;
+                right: 13px;
+                top:10px;
+                margin-bottom: 1px;
+            }
 
         </style>
         <script>
@@ -184,21 +201,30 @@
     </head>
     <body>
         <div id="content" style="background-color: rgb(186, 186, 186);
-background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
 width: 1200px;height: 650px; border: groove;border: gainsboro 5px solid; background-repeat: repeat-x;margin: 4px auto ;">
+            <a id="logoUFPS" href="http://www.ufps.edu.co">
+                <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
+            </a>
+            <a id="logoING" href="http://ingsistemas.ufps.edu.co">
+                <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
+            </a>
             <div id="encabezado" style="background-color: rgb(186, 186, 186);
-background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
 height: 50px">
 
                 <div style="background-color: rgb(186, 186, 186);
-background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+background-image: url(../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
 ;width: 500px;height: 50px;float:right;">
-       
-                    <div style="width:100%">
-                        <div id="fotoInicioPresentacion" style="float: right;top: 0px;right: 0px;width:50px"><img src="../Images/SupportWindow/admin.png"  style="width:100%;height:100%;float:left"/></div>
-                        <div style="float:right;width:300px;text-align: right;margin-right: 5px;margin-top: 5px">Bienvenido ! <%=name%>&nbsp;<a href="#" onclick="logout()" style="color:#871528!important;text-decoration: underline">Cerrar sesion</a></div>
-                        
+
+            <div style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
+                    <div>
+                        <pre>Bienvenido !!</pre>
                     </div>
+                    <div>
+                        <pre><%=name%></pre>
+                    </div>
+            </div>
+                    <div class="menuLiP" msj="Cerrar Sesion" onclick='logout()' style="float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/personal.png" class="imge" style="height:100%" /></div>
+           
               
                     
 

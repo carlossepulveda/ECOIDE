@@ -16,7 +16,7 @@ $(document).ready(function(){
                 }
                 var text = $(this).attr('msj');
                 var left=$(this).offset().left;//-(2.2*(text.length/2));
-                var top=$(this).offset().top+25;
+                var top=$(this).offset().top+$(this).height()+5;
                 $('.viewPortTooltip').html( text ).css({top:top,left:left}).fadeIn(100);
                 var w = $(this).width();
                 var nw = $('.viewPortTooltip').width();

@@ -285,7 +285,7 @@
                         <pre>Bienvenido !!</pre>
                     </div>
                     <div>
-                        <pre><%=user%></pre>
+                        <pre><%=name%></pre>
                     </div>
             </div>
             
