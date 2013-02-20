@@ -92,7 +92,7 @@ public class Control_WebSite {
     public boolean createProgrammer(String id){
         if(myPerson.createProgrammer(id,pathPhotoProgrammerDefault)){
             String text=Facade_FileManager.getReference().readFilePlain(this.pathApp+Separator.getSystemSeparator()+this.matchFileNodeJS);
-            text+=id+":xxxx;";
+            text+=id+":*.*;";
             ArrayList<String> ar=new ArrayList<String>();
             ar.add(text);
             Facade_FileManager.getReference().writeFile(this.pathApp+Separator.getSystemSeparator()+this.matchFileNodeJS, ar);
