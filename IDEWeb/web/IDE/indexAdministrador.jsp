@@ -228,7 +228,7 @@
 
                     <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
                         <div style="height:13px;">
-                            <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right;position:relative; top:-3px;">
+                            <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right;position:relative; top:-3px;margin-left:3px">
                             <pre style="position:relative;float:right;">Bienvenido !!</pre>
                         </div>
                         <div>

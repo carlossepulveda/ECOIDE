@@ -247,8 +247,8 @@
                 }
 
                 if(filter!=2){
-                    $("#itemDetalles").html("<div align='center' class='divFoto'>\n\
-                                         <img src='../photo/"+p.email+"/"+p.photo+"' style='display:none;' imgResizable='true' mw='102' mh='102'>\n\
+                    $("#itemDetalles").html("<div align='center'>\n\
+                                         <img src='../Images/SupportWindow/userProgrammer.png' style='height:64px'>\n\
                                     </div><br/>\n\
                                     &nbsp;&nbsp;<b>Email</b> : <input class='inputForm' type='text' size='7' value='"+p.email+"' readonly/><br>&nbsp;\n\
                                     <b>Nombre</b> : <input class='inputForm' type='text' size='7' value='"+p.name+"' readonly/><br>&nbsp;\n\

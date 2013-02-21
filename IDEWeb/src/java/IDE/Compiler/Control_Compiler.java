@@ -47,22 +47,23 @@ public class Control_Compiler {
 
         
         String[] classes=new String[sourceXML.getDocumentElement().getChildNodes().getLength()];
-        int op=2;
-        if(libXML.getDocumentElement().getChildNodes().getLength()>0)
-        {op++;
-            op+=libXML.getDocumentElement().getChildNodes().getLength();}
+        int op=4;
         String[] options=new String[op];
         options[0]="-d";
         options[1]=outputFolder;
         
         
         NodeList nl=libXML.getDocumentElement().getChildNodes();
+
         for(int i=0;i<nl.getLength();i++){
-            if(i==0)options[2]="-cp";
-            String aux="";
+            if(i==0){
+                options[2]="-cp";
+                options[3]="";
+            }
+           String aux="";
             if(i!=nl.getLength()-1)aux=Separator.getJARCompilerSeparator();
-            options[i+3]=pathLib+Separator.getSystemSeparator()+nl.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
-      
+
+            options[3] += pathLib+Separator.getSystemSeparator()+nl.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
         }
        
         nl=sourceXML.getDocumentElement().getChildNodes();
@@ -96,7 +97,7 @@ public class Control_Compiler {
          StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
          Iterable<? extends JavaFileObject> compilationUnits = fileManager
         .getJavaFileObjectsFromStrings(Arrays.asList(classes));
-   
+   System.out.println(Arrays.asList(options));
          JavaCompiler.CompilationTask task =
          compiler.getTask(null, fileManager, diagnostics, Arrays.asList(options) , null, compilationUnits);
           
@@ -228,21 +229,18 @@ public class Control_Compiler {
        
        /***************************************************************************************/
      
-        int op=2;
-        if(libs.getDocumentElement().getChildNodes().getLength()>0)
-        {op++;
-            op+=libs.getDocumentElement().getChildNodes().getLength();}
+        int op=4;
         String[] options=new String[op];
         options[0]="-d";
         options[1]=pathOut;
         
         
         NodeList nlL=libs.getDocumentElement().getChildNodes();
+        options[2]="-cp";
         for(int i=0;i<nlL.getLength();i++){
-            if(i==0)options[2]="-cp";
             String aux="";
             if(i!=nlL.getLength()-1)aux=Separator.getJARCompilerSeparator();
-            options[i+3]=pathLib+Separator.getSystemSeparator()+nlL.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
+            options[3]=pathLib+Separator.getSystemSeparator()+nlL.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
         }
        
         Iterable optionsI = Arrays.asList(options);//"-d", pathOut,"-cp",pathLib+Separator.getSystemSeparator()+"AbsoluteLayout.jar");
