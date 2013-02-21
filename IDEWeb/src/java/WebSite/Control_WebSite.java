@@ -27,6 +27,7 @@ public class Control_WebSite {
     private String pathPhotoProgrammerDefault;
     private String mail;
     private String passMail;
+	private String contenidoHtmlCorreo;
     
     public Control_WebSite(String pathApp){
          System.out.println("control web site: "+pathApp);
@@ -38,6 +39,7 @@ public class Control_WebSite {
         pathPhotoProgrammerDefault=properties.getString("photoDefaultUser");
         mail=properties.getString("email");
         passMail=properties.getString("passEmail");
+		contenidoHtmlCorreo=properties.getString("htmlCorreo");
         
         properties = ResourceBundle.getBundle("Properties.RegisterUserProperties");
         pageMailActivation=properties.getString("page");
@@ -140,8 +142,11 @@ public class Control_WebSite {
         String ran=Random.getRandom(50);
         if(myPerson.registerProgrammer(id, name, profile, password,ran)){
             SendMail mail=new SendMail("74.125.134.109","587",this.mail,this.passMail);
+			String tmp=contenidoHtmlCorreo;
+			tmp=tmp.replace("@titulo","Correo de Activación de Cuenta");
+			tmp=tmp.replace("@contenido","ECO IDE  ha registrado temporalmente su cuenta, pero es necesario completar su registro. A través del siguiente enlace podrá activar su cuenta: <a href='http://"+server+"/"+pageMailActivation+"?email="+id+"&id="+ran+"'>De click para activar</a>.");
             try{
-                mail.sendMail(this.mail,id,"Confirmacion cuenta IDE", "<a href='http://"+server+"/"+pageMailActivation+"?email="+id+"&id="+ran+"'>De click para activar</a>",true,null);
+                mail.sendMail(this.mail,id,"Confirmacion cuenta IDE", tmp,true,null);
             }
             catch(Exception e){
                 System.err.print("Error al intentar enviar email: "+e.toString());
@@ -225,8 +230,11 @@ public class Control_WebSite {
         if(myPerson.deleteProgrammer(email)){
            try{
               SendMail mail=new SendMail("74.125.134.109","587",this.mail,this.passMail);
+			  String tmp=contenidoHtmlCorreo;
+			  tmp=tmp.replace("@titulo","Correo de Eliminación");
+			  tmp=tmp.replace("@contenido","Su cuenta en ECO IDE ha sido eliminada. Para mayor información contactese con el Administrador");
          
-                mail.sendMail(this.mail,email,"Su cuenta en LittleIDE ha sido eliminada", "Su cuenta en LittleIDE ha sido eliminada por el administrador, para mas informacion pongase en contacto con este.",true,null);
+              mail.sendMail(this.mail,email,"Su cuenta en ECO IDE ha sido eliminada",tmp,true,null);
         
             return true; 
            } catch(Exception e){
@@ -239,9 +247,12 @@ public class Control_WebSite {
     public boolean deleteProgrammerOnHold(String email) {
         if(myPerson.deleteProgrammerOnHold(email)){
             try{
-              SendMail mail=new SendMail("74.125.134.109","587",this.mail,this.passMail);
+				SendMail mail=new SendMail("74.125.134.109","587",this.mail,this.passMail);
+				String tmp=contenidoHtmlCorreo;
+				tmp=tmp.replace("@titulo","Correo de Eliminación");
+				tmp=tmp.replace("@contenido","Su cuenta en ECO IDE temporal ha sido eliminada. Para mayor información contactese con el Administrador");
          
-                mail.sendMail(this.mail,email,"Su cuenta en espera LittleIDE ha sido eliminada", "Su cuenta en LittleIDE ha sido eliminada por el administrador, para mas informacion pongase en contacto con este.",true,null);
+                mail.sendMail(this.mail,email,"Su cuenta en espera ECO IDE ha sido eliminada", tmp,true,null);
         
             return true; 
            } catch(Exception e){
@@ -267,7 +278,10 @@ public class Control_WebSite {
         String pass=this.myPerson.getPass(user);
         SendMail mail=new SendMail("74.125.134.109","587",this.mail,this.passMail);
             try{
-                mail.sendMail(this.mail,user,"Solicitud de contraseña IDE", "<h3>Su contraseña es: </h3> "+pass,true,null);
+				String tmp=contenidoHtmlCorreo;
+				tmp=tmp.replace("@titulo","Restablecer Contraseña");
+				tmp=tmp.replace("@contenido","ECO IDE ha detectado una solicitud de restablece contraseña. <h3>Su contraseña es: </h3> "+pass");
+                mail.sendMail(this.mail,user,"Solicitud de contraseña IDE", tmp ,true,null);
                 return true;
             }
             catch(Exception e){

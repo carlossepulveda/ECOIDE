@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: LittleIDE
+Class-Path: lib/AbsoluteLayout.jar lib/mongo-2.10.1.jar
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: Mundo.ControlMundo
