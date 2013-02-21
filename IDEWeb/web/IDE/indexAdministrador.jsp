@@ -189,6 +189,16 @@
                 top:10px;
                 margin-bottom: 1px;
             }
+            .lostConexionBall{
+                background-color: rgba(255,0,0,0.3);
+                z-index:99999;
+                top:15px;
+                position:absolute;
+                border-radius : 10px;
+                display: none;
+                padding: 15px 20px;
+                font-size: 10px;
+            }
 
         </style>
         <script>
@@ -215,16 +225,22 @@
                      background-image: url(../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
                      ;width: 500px;height: 50px;float:right;">
 
-                    <div class="menuLiP" msj="Ayuda" onclick='verAyuda()' style="margin-right: 70px;float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/help.png" class="imge" style="height:100%" /></div>
-                    <div style="float:right;margin-right: 5px;margin-left: 5px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
-                        <div>
-                            <pre>Bienvenido !!</pre>
+
+                    <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
+                        <div style="height:13px;">
+                            <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right;position:relative; top:-3px;">
+                            <pre style="position:relative;float:right;">Bienvenido !!</pre>
                         </div>
                         <div>
+
                             <pre><%=name%></pre>
+
                         </div>
                     </div>
+
+                    <div class="menuLiP" msj="Ayuda" onclick='verAyuda()' style="margin-right: 8px;float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/help.png" class="imge" style="height:100%" /></div>
                     <div class="menuLiP" msj="Cerrar Sesion" onclick='logout()' style="float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/personal.png" class="imge" style="height:100%" /></div>
+
 
 
 

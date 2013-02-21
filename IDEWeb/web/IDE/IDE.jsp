@@ -7,6 +7,7 @@
 --%>
 
 
+<%@page import="org.w3c.dom.Document"%>
 <%@page import="WEBApplication.Facade_WEBApplication"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
@@ -36,6 +37,10 @@
 
     String idSession = fwa.getIdSession();
     String user = fwa.getUser();
+
+    Document d = fwa.getProgrammerDataXML(user);
+    String name = d.getElementsByTagName("name").item(0).getTextContent();
+
     String p = fwa.toStringProjects();
 
     if (p == null) {
@@ -317,12 +322,13 @@
                     <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
                 </a>
                 <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important">
-                    <div>
-                        <pre>Bienvenido !!</pre>
+                    <div style="height:13px;">
+                        <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right;position:relative; top:-3px;">
+                        <pre style="position:relative;float:right;">Bienvenido !!</pre>
                     </div>
                     <div>
-                        <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right">
-                        <pre><%=user%></pre>
+                        
+                        <pre><%=name%></pre>
                         
                     </div>
                 </div>

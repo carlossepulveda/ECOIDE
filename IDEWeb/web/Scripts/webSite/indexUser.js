@@ -19,6 +19,7 @@
                 canalNotificaciones.on('connect', function (data) {//alert('se conecto   '+user);
                    
                     canalNotificaciones.emit('conexionSession', {c:user,s:idS} );
+                    setIconConexionState(true);
                 });
                                
                 canalNotificaciones.on("recibirMsg", function(data)
@@ -83,7 +84,9 @@
                     location.href='../IDE/index.html';
                 });
                  
-              
+              canalNotificaciones.on('disconnect', function () {
+                    lostConexion();
+                });
                 
               
               
@@ -498,6 +501,29 @@ function refreshPhoto(){
      });
  }
 
+ function lostConexion(){
+        setIconConexionState(false);
+        $('body').append('<div class="lostConexionBall" style="color:rgb(70,70,70)">Conexion perdida</div>');
+        var right = parseInt( $('.divUserInfo').css('width') ) + parseInt( $('.divUserInfo').css('marginRight') );
+        $('.lostConexionBall').css('right',right);
+        $('.lostConexionBall').show(200);
+        setTimeout(function(){
+            $('.lostConexionBall').hide(200, function(){
+                $('.lostConexionBall').remove();
+            });
+
+        },3000);
+    }
+    
+function setIconConexionState(state){
+        if (state) {
+            $('.lostConexionBall').remove();
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/greenBall.png');
+        } else {
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/redBall.png');
+        }
+    }
+    
  function verAyuda(){
   box('Ayuda','../IDE/ayudaProgramador.html');
  }

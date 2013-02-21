@@ -205,6 +205,16 @@
             #cnot[noti="0"]{
                 display:none!important;
             }
+             .lostConexionBall{
+                background-color: rgba(255,0,0,0.3);
+                z-index:99999;
+                top:10px;
+                position:absolute;
+                border-radius : 10px;
+                display: none;
+                padding: 15px 20px;
+                font-size: 10px;
+            }
 
 
         </style> 
@@ -280,14 +290,17 @@
             <a id="logoING" href="http://ingsistemas.ufps.edu.co" target="_blank">
                 <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
             </a>
-            <div style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
-                <div>
-                    <pre>Bienvenido !!</pre>
+             <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
+                    <div style="height:13px;">
+                        <img class="iconConexionState" src="../Images/SupportWindow/redBall.png" style="height:17px;width:17px;float:right;position:relative; top:-3px;">
+                        <pre style="position:relative;float:right;">Bienvenido !!</pre>
+                    </div>
+                    <div>
+
+                        <pre><%=name%></pre>
+
+                    </div>
                 </div>
-                <div>
-                    <pre><%=name%></pre>
-                </div>
-            </div>
 
             <div id="encabezado" style="height: 35px;margin-bottom: 3px">
 

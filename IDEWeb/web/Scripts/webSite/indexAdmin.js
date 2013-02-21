@@ -15,6 +15,7 @@
                 
                 canalNotificaciones.on('connect', function (data) {
                     canalNotificaciones.emit('conexionSession', {c:user,s:idS} );
+                    setIconConexionState(true);
                 });
                                
                 canalNotificaciones.on("recibirMsg", function(data)
@@ -27,6 +28,10 @@
                     //if($xml.find('id').text()==user){
                     alert('Se ha iniciado otra session de esta cuenta en otro lugar');
                     location.href='../IDE/index.html?msj=se';//}
+                });
+
+                canalNotificaciones.on('disconnect', function () {
+                    lostConexion();
                 });
                     
                 function manejadorNotificaciones(data){
@@ -335,6 +340,29 @@ $.get('../IDE/consultarIngresos.jsp?fecha='+fecha+'&admin=yes'+fecha+'&width='+p
 });
 }
 
+ function lostConexion(){
+        setIconConexionState(false);
+        $('body').append('<div class="lostConexionBall" style="color:rgb(70,70,70)">Conexion perdida</div>');
+        var right = parseInt( $('.divUserInfo').css('width') ) + parseInt( $('.divUserInfo').css('marginRight') );
+        $('.lostConexionBall').css('right',right+100);
+        $('.lostConexionBall').show(200);
+        setTimeout(function(){
+            $('.lostConexionBall').hide(200, function(){
+                $('.lostConexionBall').remove();
+            });
+
+        },3000);
+    }
+
+function setIconConexionState(state){
+        if (state) {
+            $('.lostConexionBall').remove();
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/greenBall.png');
+        } else {
+            $('.iconConexionState').attr("src", '../Images/SupportWindow/redBall.png');
+        }
+    }
+    
  function verAyuda(){
         box('Ayuda','../IDE/ayudaAdministrador.html');
  }
