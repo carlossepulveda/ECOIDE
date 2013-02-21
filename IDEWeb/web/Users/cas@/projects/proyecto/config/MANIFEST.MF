@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: LittleIDE
+Class-Path: lib/AbsoluteLayout.jar
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: clase

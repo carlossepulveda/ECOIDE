@@ -335,4 +335,8 @@ $.get('../IDE/consultarIngresos.jsp?fecha='+fecha+'&admin=yes'+fecha+'&width='+p
 });
 }
 
+ function verAyuda(){
+        box('Ayuda','../IDE/ayudaAdministrador.html');
+ }
+
 

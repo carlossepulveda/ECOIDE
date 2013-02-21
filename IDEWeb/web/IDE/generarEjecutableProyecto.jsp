@@ -34,14 +34,34 @@ if(!fwa.isValidSession()){
 String name=request.getParameter("name");
 String owner=request.getParameter("owner");
 String answ="wrong";
-Document r=fwa.cleanAndBuild(name,owner);
+String mainClass=fwa.getMainClass(name, owner);
+if(mainClass==null || mainClass.isEmpty()){
+    answ = "<xml><answ>noMain</answ></xml>";
+} else {
+    Document r=fwa.cleanAndBuild(name,owner);
 if(r!=null){
-    answ=ConverterJSON.answsCompilerToJson(r);
-       }
-else{
-    answ="{ \"answ\": \"wrong\" }";
-}
+    String rr="<answ>"+r.getElementsByTagName("result").item(0).getAttributes().getNamedItem("answer").getTextContent()+"</answ>";
 
+        for(int i=0;i<r.getElementsByTagName("diagnostic").getLength();i++){
+            if(i==0)rr+="<diagnostics>";
+            String s=",";
+            if(i==0)
+                s="";
+            rr+=s+"<diagnostic><message>"+r.getElementsByTagName("message").item(i).getTextContent()+"</message>"
+                    + " <line>"+r.getElementsByTagName("line").item(i).getTextContent()+"</line>"
+                    + "<kind>"+r.getElementsByTagName("kind").item(i).getTextContent()+"</kind>"
+                    + "<source>"+r.getElementsByTagName("source").item(i).getTextContent()+"</source></diagnostic>";
+
+            if(i==r.getElementsByTagName("diagnostic").getLength()-1)
+                rr+="</diagnostics>";
+
+        }
+     answ="<xml>"+rr+"</xml>";
+       }
+    else{
+        answ = "<xml><answ>wrong</answ></xml>";
+    }
+}
 
 %>
 <%=answ%>

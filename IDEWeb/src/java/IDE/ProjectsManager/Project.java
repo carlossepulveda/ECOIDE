@@ -1440,7 +1440,6 @@ public class Project {
     
     public boolean setMainClass(String ruta,String name,String pack) {
   
-        
         Class c=this.getClass(ruta+Separator.getSystemSeparator()+this.nameP, name, pack);
         String cp=null;
         if(name.isEmpty() && pack.isEmpty()){

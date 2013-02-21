@@ -26,8 +26,8 @@
 
 <%        }
     String user = fwa.getUser();
- 
-  //  Document d = fwa.getProgrammerDataXML(user);
+
+    //  Document d = fwa.getProgrammerDataXML(user);
     String email = "admin";//d.getElementsByTagName("email").item(0).getTextContent();
     String name = "admin";//d.getElementsByTagName("name").item(0).getTextContent();
     String profile = "admin";//d.getElementsByTagName("profile").item(0).getTextContent();
@@ -42,7 +42,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="cache-control" content="no-Store"/>
         <meta http-equiv="Pragma" content="no-cache"></meta>
-         <script src="../Scripts/config.js"></script>
+        <script src="../Scripts/config.js"></script>
         <script type="text/javascript" src="../Scripts/json/json_sans_eval.js"></script>
         <script type="text/javascript" src="../Scripts/jquery/jquery.min.js"></script> 
         <script  src="../Scripts/jquery/jquery-ui.min.js"></script>
@@ -109,10 +109,10 @@
         <script src="../Scripts/dhtmlxSuite/dhtmlxForm/codebase/dhtmlxform.js"></script>
 
 
-         <script src="../Scripts/webSite/indexAdmin.js"></script>
+        <script src="../Scripts/webSite/indexAdmin.js"></script>
         <link rel="stylesheet" href="../CSS/SupportWindow/viewIndex.css" type="text/css" media="screen" />
 
-         <script src="../Scripts/jquery/tooltip.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery/tooltip.js" type="text/javascript"></script>
         <style type="text/css">
 
             html,body{
@@ -124,7 +124,7 @@
             }
 
         </style> 
-         <style>
+        <style>
             fieldset{
                 background: none repeat scroll 0 0 #EBF4FB;
                 border: none;
@@ -139,7 +139,7 @@
                 width: 100px;
 
             }
-            
+
             .botonForm{
                 background: none repeat scroll 0 0 #B6CBDD;
                 border-radius: 5px 5px 5px 5px;
@@ -196,12 +196,12 @@
             var user='<%=email%>';
             
         </script>
-        
+
         <title>Index-IDE</title>
     </head>
     <body>
         <div id="content" style="background-color: rgb(186, 186, 186);
-width: 1200px;height: 650px; border: groove;border: gainsboro 5px solid; background-repeat: repeat-x;margin: 4px auto ;">
+             width: 1200px;height: 650px; border: groove;border: gainsboro 5px solid; background-repeat: repeat-x;margin: 4px auto ;">
             <a id="logoUFPS" href="http://www.ufps.edu.co">
                 <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
             </a>
@@ -209,36 +209,37 @@ width: 1200px;height: 650px; border: groove;border: gainsboro 5px solid; backgro
                 <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
             </a>
             <div id="encabezado" style="background-color: rgb(186, 186, 186);
-height: 50px">
+                 height: 50px">
 
                 <div style="background-color: rgb(186, 186, 186);
-background-image: url(../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
-;width: 500px;height: 50px;float:right;">
+                     background-image: url(../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+                     ;width: 500px;height: 50px;float:right;">
 
-            <div style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
-                    <div>
-                        <pre>Bienvenido !!</pre>
+                    <div class="menuLiP" msj="Ayuda" onclick='verAyuda()' style="margin-right: 70px;float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/help.png" class="imge" style="height:100%" /></div>
+                    <div style="float:right;margin-right: 5px;margin-left: 5px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
+                        <div>
+                            <pre>Bienvenido !!</pre>
+                        </div>
+                        <div>
+                            <pre><%=name%></pre>
+                        </div>
                     </div>
-                    <div>
-                        <pre><%=name%></pre>
-                    </div>
-            </div>
                     <div class="menuLiP" msj="Cerrar Sesion" onclick='logout()' style="float:right;position:relative;top: 5px;height:40px;cursor:pointer"><img src="../Images/MenuBar/personal.png" class="imge" style="height:100%" /></div>
-           
-              
-                    
+
+
+
 
                 </div>
 
                 <div style="background-color: rgb(186, 186, 186);
-background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
-width: 100px;height: 50px;float:left;">
-                    
+                     background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+                     width: 100px;height: 50px;float:left;">
+
                 </div>
 
                 <div style="background-color: rgb(186, 186, 186);
-background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
-height: 50px;">
+                     background-image: url(http://localhost:8084/IDEWeb/Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif);
+                     height: 50px;">
 
                 </div>
 
@@ -248,7 +249,7 @@ height: 50px;">
 
             <div id="parentId" style="position: relative;width: 1195px; height: 585px; border: #bababa 1px solid; margin: 0px auto;" ></div>
             <div id="listadoSecciones">
-                
+
                 <div id="menuUsuarios" class="divMenuList" >
                     <div class="barMenu"></div>
                     <ul align='left' class="ulOption">
@@ -272,25 +273,14 @@ height: 50px;">
                         </li>
                     </ul>
                 </div>
-            
-                <div id="menuAyuda" class="divMenuList">
-                    <div class="barMenu"></div>
-                    <ul align='left' class="ulOption" >
-                        <li align='left' ><div  class='titleList'><b>Ayuda</b></div>
-                            <ul align='left'>
-                                <li align='left' class='itemList'><img src="../Images/SupportWindow/help.png" alt="verVideos"/>&nbsp;Ver Videos</li>
-                            
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+
                 <div id="menuDetalles" class="divMenuList" >
                     <div class="barMenu"></div>
-                 <ul align='left' class="ulOption">
+                    <ul align='left' class="ulOption">
                         <li align='left' ><div  class='titleList'><b>Detalles</b></div>
                             <ul>
                                 <li>
-                                     <div id="itemDetalles" class='itemList' style="margin-bottom: 5px;overflow: auto;font: 70% sans-serif; "></div>
+                                    <div id="itemDetalles" class='itemList' style="margin-bottom: 5px;overflow: auto;font: 70% sans-serif; "></div>
                                 </li>
                             </ul>
                         </li>
@@ -298,103 +288,103 @@ height: 50px;">
                 </div>
             </div>
             <div id="divDespligue" style="width: 100%">
-              
+
             </div>
             <script>
            
-               function TamVentana() {
-              var Tamanyo = [0, 0];
-              if (typeof window.innerWidth != 'undefined')
-              {
-                Tamanyo = [
-                    window.innerWidth,
-                    window.innerHeight
-                ];
-              }
-              else if (typeof document.documentElement != 'undefined'
-                  && typeof document.documentElement.clientWidth !=
-                  'undefined' && document.documentElement.clientWidth != 0)
-              {
-             Tamanyo = [
-                    document.documentElement.clientWidth,
-                    document.documentElement.clientHeight
-                ];
-              }
-              else   {
-                Tamanyo = [
-                    document.getElementsByTagName('body')[0].clientWidth,
-                    document.getElementsByTagName('body')[0].clientHeight
-                ];
-              }
-              return Tamanyo;
-            }
+                function TamVentana() {
+                    var Tamanyo = [0, 0];
+                    if (typeof window.innerWidth != 'undefined')
+                    {
+                        Tamanyo = [
+                            window.innerWidth,
+                            window.innerHeight
+                        ];
+                    }
+                    else if (typeof document.documentElement != 'undefined'
+                        && typeof document.documentElement.clientWidth !=
+                        'undefined' && document.documentElement.clientWidth != 0)
+                    {
+                        Tamanyo = [
+                            document.documentElement.clientWidth,
+                            document.documentElement.clientHeight
+                        ];
+                    }
+                    else   {
+                        Tamanyo = [
+                            document.getElementsByTagName('body')[0].clientWidth,
+                            document.getElementsByTagName('body')[0].clientHeight
+                        ];
+                    }
+                    return Tamanyo;
+                }
             
-               $(document).ready(function (){
+                $(document).ready(function (){
                    
-                  function resizeWindow(){
-                   var Tam=TamVentana();
+                    function resizeWindow(){
+                        var Tam=TamVentana();
 
-                    var h=Tam[1]*0.97;
-                    var w=Tam[0]*0.98;
-                    $('#content').css('width',w);
-                    $('#content').css('height',h);
-                    $('#parentId').css('width',w);
-                    $('#parentId').css('height',parseInt((h-50)));
-                    return Tam;
+                        var h=Tam[1]*0.97;
+                        var w=Tam[0]*0.98;
+                        $('#content').css('width',w);
+                        $('#content').css('height',h);
+                        $('#parentId').css('width',w);
+                        $('#parentId').css('height',parseInt((h-50)));
+                        return Tam;
 
-                   }
+                    }
       
-            $('#mide li').hover(function(){
+                    $('#mide li').hover(function(){
              
-                var index=parseInt($(this).attr('idm'));
+                        var index=parseInt($(this).attr('idm'));
               
-              $(this).css('-moz-transform','scale(1.7)' );
-              $(this).css('-webkit-transform','scale(1.7)' );
-              $(this).css('-o-transform','scale(1.7)' );
+                        $(this).css('-moz-transform','scale(1.7)' );
+                        $(this).css('-webkit-transform','scale(1.7)' );
+                        $(this).css('-o-transform','scale(1.7)' );
         
            
             
-            },function(){
+                    },function(){
              
-                var index=parseInt($(this).attr('idm'));
-               // $('#mide li span').css('display','none');
-                $(this).css('-moz-transform','scale(1)' );
-                $(this).css('-webkit-transform','scale(1)' );
-                $(this).css('-o-transform','scale(1)' );
+                        var index=parseInt($(this).attr('idm'));
+                        // $('#mide li span').css('display','none');
+                        $(this).css('-moz-transform','scale(1)' );
+                        $(this).css('-webkit-transform','scale(1)' );
+                        $(this).css('-o-transform','scale(1)' );
           
-            });
-                var t=resizeWindow();
-                var w=t[0];
-                var h=t[1]-50;
-                
-                
-                window.dhxLayout = new dhtmlXLayoutObject("parentId", "2U");
-                  
-                dhxLayout.cells("a").setHeight(h);
-                dhxLayout.cells("a").setWidth(parseInt(w*0.2));
-                dhxLayout.cells("a").attachObject("listadoSecciones");
-                dhxLayout.cells("a").setText("Opciones");
-                
-                dhxLayout.cells("b").setHeight(h);
-                dhxLayout.cells("b").setWidth(parseInt(w*0.8));
-                dhxLayout.cells("b").attachObject("divDespligue");
-                //dhxLayout.cells("b").hideHeader();
-                dhxLayout.cells("b").setText(""); 
-                   
-                 $(window).resize(function (event) { 
+                    });
                     var t=resizeWindow();
-                    dhxLayout.cells("a").setHeight(t[1]-50);
-                    dhxLayout.cells("a").setWidth(parseInt((t[0])*0.2));
-                    dhxLayout.cells("b").setHeight(t[1]-50);
-                    dhxLayout.cells("b").setWidth(parseInt((t[0])*0.8));
-                    dhxLayout.setSizes();
+                    var w=t[0];
+                    var h=t[1]-50;
+                
+                
+                    window.dhxLayout = new dhtmlXLayoutObject("parentId", "2U");
+                  
+                    dhxLayout.cells("a").setHeight(h);
+                    dhxLayout.cells("a").setWidth(parseInt(w*0.2));
+                    dhxLayout.cells("a").attachObject("listadoSecciones");
+                    dhxLayout.cells("a").setText("Opciones");
+                
+                    dhxLayout.cells("b").setHeight(h);
+                    dhxLayout.cells("b").setWidth(parseInt(w*0.8));
+                    dhxLayout.cells("b").attachObject("divDespligue");
+                    //dhxLayout.cells("b").hideHeader();
+                    dhxLayout.cells("b").setText("");
+                   
+                    $(window).resize(function (event) {
+                        var t=resizeWindow();
+                        dhxLayout.cells("a").setHeight(t[1]-50);
+                        dhxLayout.cells("a").setWidth(parseInt((t[0])*0.2));
+                        dhxLayout.cells("b").setHeight(t[1]-50);
+                        dhxLayout.cells("b").setWidth(parseInt((t[0])*0.8));
+                        dhxLayout.setSizes();
                     
-                });   
+                    });
                    
                    
-                  verUsuarios(); 
+                    verUsuarios();
                    
-               });
+                });
                 
             </script>
 

@@ -250,8 +250,8 @@
                     $("#itemDetalles").html("<div align='center' class='divFoto'>\n\
                                          <img src='../photo/"+p.email+"/"+p.photo+"' style='display:none;' imgResizable='true' mw='102' mh='102'>\n\
                                     </div><br/>\n\
-                                    &nbsp;&nbsp;<b>Email</b> : <input class='inputForm' type='text' size='7' value='"+p.email+"'/><br>&nbsp;\n\
-                                    <b>Nombre</b> : <input class='inputForm' type='text' size='7' value='"+p.name+"'/><br>&nbsp;\n\
+                                    &nbsp;&nbsp;<b>Email</b> : <input class='inputForm' type='text' size='7' value='"+p.email+"' readonly/><br>&nbsp;\n\
+                                    <b>Nombre</b> : <input class='inputForm' type='text' size='7' value='"+p.name+"' readonly/><br>&nbsp;\n\
                                     <b>Suscripcion</b> : "+p.dateMembership+"<br>&nbsp;\n\
                                     <b>Ultimo ingreso</b> : "+p.lastEntry+"<br/>");
                    

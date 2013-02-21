@@ -29,6 +29,8 @@
     position: absolute;
     /**top: 25%;
     left: 25%;*/
+    width:auto;
+    height:auto;
     padding: 1px 6px 6px 6px;
     border-top: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
@@ -91,8 +93,9 @@
 }
 
 #contentBoxInter{
-    overflow: auto;
     cursor: pointer;
     background-color: white;
     border: 1px solid #a4bed4;
+    height:auto;
+    width:auto;
 }

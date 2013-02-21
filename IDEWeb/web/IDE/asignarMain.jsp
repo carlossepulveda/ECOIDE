@@ -10,7 +10,6 @@
 <%@page import="org.w3c.dom.Document"%>
 <%@page import="WEBApplication.Facade_WEBApplication"%>
 <%
-
 Facade_WEBApplication fwa=(Facade_WEBApplication)request.getSession().getAttribute("fwa");
 
 if(fwa==null){

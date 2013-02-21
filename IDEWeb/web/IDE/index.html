@@ -172,10 +172,11 @@ transform: scale(1.1);
 
 </style>
         <script>
-            
+
             $(document).ready(function (){
-             
-              
+                //$('#form').submit();
+
+
                 var measureViews=new Array();
                 measureViews['inicio']={left:'0'};
                 measureViews['registro']={left:'-100%'};
@@ -435,36 +436,6 @@ transform: scale(1.1);
       });
 
       function printMenu(menu){
-        /**
-          var text='';
-          switch(menu){
-              case 'qs':{
-                $('.switchFooter[menu="qs"]').attr('picked','true');
-                text="<div style='text-align:justify;position:absolute;height:90%;width:90%;margin-top:10%;margin-left:7px'<span>Entorno </span><span>de </span><span>Desarrollo </span><span>Colaborativo </span><span>Online </span><span>que </span><span>permite </span><span>la </span><span>construccion </span><span>de </span><span>proyectos </span><span>JAVA </span><span>de </span><span>manera </span><span>simultanea </span><span>y </span><span>en </span><span>tiempo </span><span>real </span><span>entre </span><span>un </span><span>grupo </span><span>de </span><span>programadores</span></div>";
-                break;
-              }
-              case 'pq':{
-                $('.switchFooter[menu="pq"]').attr('picked','true');
-                text="<div style='position:absolute;height:100%;width:100%'>para usarlo</div>";
-                break;
-              }
-              case 'dev':{
-                $('.switchFooter[menu="dev"]').attr('picked','true');
-                text="<div style='position:absolute;height:100%;width:100%'>Desarrolladores</div>";
-                break;
-              }
-              default:{
-                var ns=$('.switchFooter[selected="true"]').length;
-                if(ns==0){
-                  $('.switchFooter[menu="qs"]').attr('picked','true');  
-                  text="<div style='position:absolute;height:100%;width:100%'>que es</div>";
-                  break;
-                }else{
-                  return printMenu($('.switchFooter[picked="true"]').attr('menu'));
-                }
-                
-              }
-          }**/
           $('.backAux').css({display:'block'});
           $('.iconos').hide();
           $('.slidedown').css({display:'inline-block'});
@@ -478,7 +449,7 @@ transform: scale(1.1);
     <body>
 <div class="panelAdmin">
     <img src="../Images/config.png" style="height:100%;float:left">
-    <a href="../IDE/admin.html" style="margin:15px;color: rgba(225,0,0,0.7)">
+    <a href="../IDE/admin.html" style="top:5px;position:relative;margin:15px;color: rgba(160,0,0,0.7)">
         <span>Inicio Administrador</a>
     </a>
 </div>
@@ -497,14 +468,14 @@ transform: scale(1.1);
                 <div style="width:100%;height:100%;position:absolute;z-index:2;border-top-left-radius:8px;border-top-right-radius:8px;">
                     
                     <div style="float:left;position:relative;width:53%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.5);border-top-left-radius:6px;border-top-right-radius:8px;background-color:#f0f0f0">
-                     <a href="http://www.ufps.edu.co"> 
+                     <a href="http://www.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logoufps.png" style="width:130px;height:23px;margin-top:3px;margin-left:3px"/>
                      </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
                     </div>
 
                     <div style="float:left;width:45%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.7);border-top-right-radius:8px;border-top-left-radius:6px;background-color:#f0f0f0">
-                      <a href="http://ingsistemas.ufps.edu.co">
+                      <a href="http://ingsistemas.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logosistemas.png" style="width:70%;height:23px;margin-top:5px;margin-left:3px"/>
                     </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
@@ -628,14 +599,14 @@ transform: scale(1.1);
                 <div style="width:100%;height:100%;position:absolute;z-index:2;border-top-left-radius:8px;border-top-right-radius:8px;">
                     
                     <div style="float:left;position:relative;width:53%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.5);border-top-left-radius:6px;border-top-right-radius:8px;background-color:#f0f0f0">
-                     <a href="http://www.ufps.edu.co"> 
+                     <a href="http://www.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logoufps.png" style="width:130px;height:23px;margin-top:3px;margin-left:3px"/>
                      </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
                     </div>
 
                     <div style="float:left;width:45%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.7);border-top-right-radius:8px;border-top-left-radius:6px;background-color:#f0f0f0">
-                      <a href="http://ingsistemas.ufps.edu.co">
+                      <a href="http://ingsistemas.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logosistemas.png" style="width:70%;height:23px;margin-top:5px;margin-left:3px"/>
                     </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
@@ -760,14 +731,14 @@ transform: scale(1.1);
                 <div style="width:100%;height:100%;position:absolute;z-index:2;border-top-left-radius:8px;border-top-right-radius:8px;">
                     
                     <div style="float:left;position:relative;width:53%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.5);border-top-left-radius:6px;border-top-right-radius:8px;background-color:#f0f0f0">
-                     <a href="http://www.ufps.edu.co"> 
+                     <a href="http://www.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logoufps.png" style="width:130px;height:23px;margin-top:3px;margin-left:3px"/>
                      </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
                     </div>
 
                     <div style="float:left;width:45%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.7);border-top-right-radius:8px;border-top-left-radius:6px;background-color:#f0f0f0">
-                      <a href="http://ingsistemas.ufps.edu.co">
+                      <a href="http://ingsistemas.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logosistemas.png" style="width:70%;height:23px;margin-top:5px;margin-left:3px"/>
                     </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
@@ -886,14 +857,14 @@ transform: scale(1.1);
                 <div style="width:100%;height:100%;position:absolute;z-index:2;border-top-left-radius:8px;border-top-right-radius:8px;">
                     
                     <div style="float:left;position:relative;width:53%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.5);border-top-left-radius:6px;border-top-right-radius:8px;background-color:#f0f0f0">
-                     <a href="http://www.ufps.edu.co"> 
+                     <a href="http://www.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logoufps.png" style="width:130px;height:23px;margin-top:3px;margin-left:3px"/>
                      </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>
                     </div>
 
                     <div style="float:left;width:45%;height:100%;position:relative;bottom:0px;border-style:solid;border-width:1px;border-color:rgba(190,190,190,0.7);border-top-right-radius:8px;border-top-left-radius:6px;background-color:#f0f0f0">
-                      <a href="http://ingsistemas.ufps.edu.co">
+                      <a href="http://ingsistemas.ufps.edu.co" target="_blank">
                       <img align="left" src="../Images/logosistemas.png" style="width:70%;height:23px;margin-top:5px;margin-left:3px"/>
                     </a>
                       <div style="position:absolute;right:0px;top:0px;margin:4px"><img src="../Images/botonCerrar.png"/></div>

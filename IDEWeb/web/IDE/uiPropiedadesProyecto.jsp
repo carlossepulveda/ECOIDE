@@ -190,11 +190,7 @@ if(mc.equals(".java"))mc="null";
                 privIni=[<%=javSpriv%>];
             }console.log(correos);console.log(privIni);
             function guardarCambios(){
-             /**
-                if(false)cerrarBox();
-                else{**/
-       
-                    var name='*.*';
+                     var name='*.*';
                     var pack='*.*';
                     if($(document.getElementById(classAux)).attr('id')!='for'){
                       
@@ -206,7 +202,7 @@ if(mc.equals(".java"))mc="null";
                             nc=pack+'.'+name;
                     }
                 if('<%=type%>'=='Write' || '<%=owner%>'==user) {   
-                  
+                  alert('llego a modificar la clase principal');
                   if(name!=null && name!=undefined && pack!=null && pack!=undefined){
                       $.get("../IDE/asignarMain.jsp?name=<%=name%>&owner=<%=owner%>&clase="+name+"&pack="+pack,function(data){
 

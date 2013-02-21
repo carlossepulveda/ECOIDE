@@ -497,6 +497,10 @@ function refreshPhoto(){
          alert('Ocurrio un error al intentar abrir el proyecto');
      });
  }
+
+ function verAyuda(){
+  box('Ayuda','../IDE/ayudaProgramador.html');
+ }
  
  
  

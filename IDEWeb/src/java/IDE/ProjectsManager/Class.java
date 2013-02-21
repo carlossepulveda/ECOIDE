@@ -66,6 +66,9 @@ public class Class {
 
     @Override
     public String toString() {
+        if (packageName==null || packageName.isEmpty()) {
+            return name;
+        }
         return packageName + "." + name ;
     }
     

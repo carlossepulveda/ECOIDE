@@ -232,13 +232,38 @@ window.guest=true;
                       
                           $.get("../IDE/generarEjecutableProyecto.jsp?name="+s[1]+"&owner="+s[2], function(data) {
 
-                                var r = jsonParse(data).answ;
-                                var d= jsonParse(data).diagnostic;
-                                var msj='';
-                                for(var i in d){
-                                   msj+="<br/><div style='background-color: green;border-style:solid;'><h6>Tipo</h6>:"+d[i].kind+"<br/><h6>Fuente</h6>:"+d[i].source+"<br/><h6>Linea</h6>:"+d[i].line+"<br/><h6>Mensaje</h6>:"+d[i].message+"</div>"; 
+                                console.log(data);
+                                var xmlDoc = $.parseXML( data );
+                                var $xml = $( xmlDoc );
+                                var r = $xml.find('answ').text();
+                                var diag=$xml.find('diagnostics');console.log(diag.text());
+                                var msj=construirMensajeCompilacion(diag,s[1],s[2]);
+                                var msjs = [];
+                                msjs["true"] = "Exitoso !! ";
+                                msjs["false"] = "Fallido"
+                                $("#objIdOutput").html("<div class='compilationTitle' align='center' style='margin-top:5px'>Resultado limpiar y construir del proyecto:  "+s[1]+"-"+s[2]+" :  "+msjs[r]+"</div><br/>"+msj);
+
+                               if(r=="true"){
+                                   $('.compilationTitle').addClass('successCompilationTitle');
+                                   descargarArchivoEjecutableProyecto(id);
+                                    return false;
                                 }
-                                $("#objIdOutput").html("<h5>Resultado generacion de ejecutable</h5> : "+r+"<br/>"+msj);
+                                if(r=='noMain'){
+                                                $('.compilationTitle').addClass('errorCompilationTitle');
+                                                $("#objIdOutput").html("<div class='compilationTitle failExecute' align='center' style='margin-top:5px'>No fue posible ejecutar proyecto "+s[1]+"-"+s[2]+"</div><br>\n\
+                                                                        <div class='itemErrorCompilacion ' style='font-size:13px'>El proyecto "+s[1]+"-"+s[2]+", no tiene una clase main asignada o la clase que se definio como 'Principal', no tiene un metodo main, ademas es necesario verificar que esta clase no tenga errores de compilacion\n\
+                                                                        Para ver la clase principal del proyecto,por favor dar click derecho en la carpeta fuente, y luego click en propiedades</br></div> ");
+                                                return false;
+                                 }
+                                if(diag.lenght!=0){
+                                    $('.compilationTitle').addClass('errorCompilationTitle');
+                                    alert('El proceso de la compilacion del proyecto "'+s[1]+'-'+s[2]+'" arrojo errores o advertencias');
+                                }
+
+                                else{
+                                    $('.compilationTitle').addClass('successCompilation');
+                                    
+                                }
 
                           }); 
                             
@@ -263,7 +288,7 @@ window.guest=true;
 
                                 var r = jsonParse(data).answ;
                                if(r=='ok'){
-                                   window.open('../Users/'+user+'/temporal/'+s[1]+'-'+s[2]+'/'+s[1]+'_'+s[2]+'.zip','Descarga proyecto: '+s[1],'width=700,height=550,menubar=0,scrollbars=0,toolbar=0,directories=0,resizable=0,top=0,left=0');
+                                   downloadFile('../Users/'+user+'/temporal/'+s[1]+'-'+s[2]+'/'+s[1]+'_'+s[2]+'.zip')
                                }
                                else{
                                    alert('Error al generar el zip');
@@ -284,15 +309,18 @@ window.guest=true;
                        abrirVentana("../IDE/uiDescargarEjecutableProyectos.jsp","Descargar Proyectos",false);
                    }
                    function descargarEjecutableProyecto(id){
+
+                      generarEjecutableProyecto(id);
+                   }
+                   function descargarArchivoEjecutableProyecto(id){
                        
                        var s=id.split(';');
-                      
-                          $.get("../IDE/descargarEjecutableProyecto.jsp?name="+s[1]+"&owner="+s[2], function(data) {
+                       $.get("../IDE/descargarEjecutableProyecto.jsp?name="+s[1]+"&owner="+s[2], function(data) {
 
                                 var json=jsonParse(data)
                                 var r = jsonParse(data).answ;
                                if(r=='ok'){
-                                    window.open('../Users/'+user+'/temporal/'+s[1]+'-'+s[2]+'/'+s[1]+'_'+s[2]+'_JAR.zip','Descarga proyecto: '+s[1],'width=700,height=550,menubar=0,scrollbars=0,toolbar=0,directories=0,resizable=0,top=0,left=0');
+                                   downloadFile('../Users/'+user+'/temporal/'+s[1]+'-'+s[2]+'/'+s[1]+'_'+s[2]+'_JAR.zip');
                                }
                                else{
                                    alert(r)
@@ -2919,5 +2947,13 @@ function getImagenFichero(tf){
             $('.iconConexionState').attr("src", '../Images/SupportWindow/redBall.png');
         }
     }
+
+    function downloadFile(url){
+         $('#downloadFrame').attr('src',url);
+    }
+
+     function verAyuda(){
+        box('Ayuda','../IDE/ayudaProgramador.html');
+     }
 
      

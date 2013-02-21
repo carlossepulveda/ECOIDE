@@ -310,10 +310,10 @@
 
 
             <div id="content" style="width: 100%!important;height: 100%!important;margin: 0!important;background-image: url('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif'); background-repeat: repeat-x; border-: groove;border: gainsboro 5px solid;margin: 4px auto ;">
-                <a id="logoUFPS" href="http://www.ufps.edu.co">
+                <a id="logoUFPS" href="http://www.ufps.edu.co" target="_blank">
                     <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
                 </a>
-                <a id="logoING" href="http://ingsistemas.ufps.edu.co">
+                <a id="logoING" href="http://ingsistemas.ufps.edu.co" target="_blank">
                     <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
                 </a>
                 <div class="divUserInfo" style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important">
@@ -339,6 +339,7 @@
                                     <li id="i5" class="menuLiP disablingIcon" idm="5" msj="Descargar Proyecto"><a href="#" onclick="descargarProyectos($(this).parent())"><img src="../Images/MenuBar/downloadZip.png" /></a><span id="s5" style="display:none;z-index:10004;">Descargar</span></li>
                                     <li id="i6" class="menuLiP disablingIcon"  idm="6" msj="Ejecutar Proyecto"><a href="#" onclick="ejecutarProyectos($(this).parent())"><img src="../Images/MenuBar/play.png"/></a><span id="s6" style="display:none;z-index:10004;">Ejecutar</span></li>
                                     <li id="i7" class="menuLiP disablingIcon" idm="7" msj="Chat"><a href="#" onclick="verChats($(this).parent())"><img src="../Images/MenuBar/chats.png" /></a><span id="s7" style="display:none;z-index:10004;">Descargar</span></li>
+                                    <li id="i1" idm="1" class="menuLiP" statico="false" msj="Ayuda"><a href="#" onclick="verAyuda()"><img src="../Images/MenuBar/help.png" class="imge"/></a></li>
                                     <li id="i3" class="menuLiP" msj="Cerrar Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
 
                                 </ul>
@@ -373,9 +374,10 @@
     <div id="menu">
         <div id="ULmenu"></div>               
     </div> 
-
+                        
+    <iframe id="downloadFrame" style="z-index: 0;display: none">
+    </iframe>
     <script>
-     
        // box_('cargando...','<div style="width:200px;height:100px;">Cargando...</div>');
         var elementoFoco=null;   
         var misLienzos=new Array();

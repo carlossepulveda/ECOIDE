@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang='es'>
+<head>
+	<meta charset="utf-8" />
+<style type="text/css"> 
+.bodyHelpAdministrator{
+		width: 600px !important;
+		height:500px !important;
+		
+	   font: 8pt Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	   
+	    
+	   background-color: #ebebeb; 
+    }
+ .bodyHelpAdministrator h3{
+        font-size: 16px;
+        line-height:200%;
+        text-align: center;
+    }
+ .bodyHelpAdministrator img{
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+.bodyHelpAdministrator nav{
+	width: 198px;
+	height:410px;
+	border: 1px solid black;
+	overflow:auto;
+	float:left;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.bodyHelpAdministrator nav ol{
+	padding:5px;
+}
+.bodyHelpAdministrator nav li{
+	padding-left: 8px;
+	padding-bottom: 5px;
+	list-style: none;
+}
+
+.bodyHelpAdministrator #panelContenido{
+	width:380px;
+	height: 410px;
+	overflow: auto;
+	padding: 10px;
+}
+
+.bodyHelpAdministrator section{
+	text-align: justify;
+}
+
+.bodyHelpAdministrator #tablaIconos{
+	width:350px;
+	
+}
+
+.bodyHelpAdministrator #tablaIconos ul{
+	padding-left: 10px;
+	
+}
+.bodyHelpAdministrator #tablaIconos td{
+	border: 1px solid black;
+	margin:0px;
+}
+.bodyHelpAdministrator .izq{
+	width:50px;
+	padding:0px;
+	text-align:center;
+	
+}
+.bodyHelpAdministrator .der{
+	width:300px;
+}
+
+.bodyHelpAdministrator .der li{
+	margin-left:10px;
+}
+
+
+.bodyHelpAdministrator footer{
+   background-color: #cccccc; 
+   text-align:center; 
+   height:30px;
+   font-weight:bold;
+   margin:0px;
+   padding:0px;
+} 
+
+.bodyHelpAdministrator header{
+	background-color: #cccccc; 
+    text-align:center; 
+	height:18px;
+	padding:10px;
+	text-style:bold;
+	border: 1px solid white;
+	font-weight:bold;
+}
+</style>
+</head>
+<div class="bodyHelpAdministrator">
+<header> CONTENIDO DE AYUDA </header>
+<div id='contenidoAyuda'>
+	<nav>
+		<ol type='1'>
+			<li><a href='#pantallasPrincipales'>Pantalla Principal</a>
+				<ol type='a'>
+					<li><a href='#pantallaadministrador'>Pantalla Home del Administrador</a></li>
+					
+				</ol>
+			</li>
+			<li><a href='#funcionesPrin'>Función Principal</a>
+				<ol type='a'>
+					<li><a href='#eliminarusuarios'>Eliminar Usuarios</a></li>
+					<li><a href='#visualizarProyectos'>Ver Proyectos</a></li>
+					<li><a href='#accesos'>Accesos de la Aplicación</a></li>
+					
+				</ol>
+			</li>
+		</ol>
+	</nav><!--End menu-->
+	
+	<div id='panelContenido'>
+		<article>
+			<header id='pantallasPrincipales'>Pantalla Principal</header>
+			<section>
+								
+				<h3 id='pantallaadministrador'>Pantalla de Home del Administrador</h3>
+				<p>ECO IDE cuenta con un usuario administrador, encargado de todas las operaciones de gestión de alto nivel. El administrador podrá eliminar usuarios tanto registrados como aquellos que está en proceso de activación. Tiene a disposición un componente que le permite tener un control de acceso a la aplicación, es decir, tendrá la posibilidad de conocer los tiempos de inactividad de los usuarios en la aplicación</p>
+				<p><img src='../Images/Ayuda/icono46.jpg'></p>
+				<p>La figura anterior corresponde a la pantalla que visualiza el administrador una vez ingresa a la aplicación. Básicamente consiste en dos paneles:</p>
+				<p>
+					<ul style='padding-left:10px'>
+						
+						<li><b>Izquierdo: </b>Panel que contiene información sobre el perfil del programador, 
+						algunos filtros básicos para los proyectos, y un recuadro dispuesto 
+						para visualizar los detalle de un proyecto cuando alguno ha sido 
+						seleccionado.</li><br>
+						<table id='tablaIconos'>
+							<tr>
+								<td class='izq'><img src='../Images/Ayuda/icono44.jpg' width='170px'></td>
+								<td class='der'>El panel de Usuarios le permitirá al administrador visualizar los usuarios activos de la aplicación, además de aquellos que aún se encuentran en espera de activación. El administrador tendrá acceso desde aqui a un componente que le permite verificar los últimos ingresos hasta determinada fecha.</td>
+							</tr>
+							<tr>
+								<td class='izq'><img src='../Images/Ayuda/icono45.jpg' width='170px'></td>
+								<td class='der'>
+									Panel de Proyectos que permite, realizar un filtro básico.
+									<ul>
+										<li>Ver Todos: Visualiza todos los proyectos de la aplicación sin aplicar ningú filtro.</li>
+										<li>Compartidos: Visualiza todos los proyectos que están siendo compartidos en la aplicación</li>
+									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td class='izq'><img src='../Images/Ayuda/icono50.jpg' width='170px'></td>
+								<td class='der'>Panel de Detalles de los datos de un Usuario seleccionado en el panel derecho.</td>
+							</tr>
+						</table><br>
+						<li>
+							<p><b>Derecho: </b>Panel donde se observarán los usuarios y proyectos según se haya solicitado desde alguna opción del panel izquierdo.</p>
+							<p>Por ejemplo, en caso de que el administrador se decida en filtrar por usuarios activos desde el panel izquierdo. La aplicación hará la respectiva consulta y visualizará los usuarios como se puede apreciar en la siguiente imagen:</p>
+							<p align='center'><img src='../Images/Ayuda/icono47.jpg'></p>
+							<p>A través de este icono el administrador podrá ver dos pequeños iconos al costado derecho siempre y cuando pose el cursor sobre la imagen del usuario. Estos pequeños iconos le permitirán eliminar el usuarios, tal y como lo indica la 'X', y también es posible ver los proyecto que tiene este usuario en la aplicación.</p>
+							<p><b>Nota:</b> Algo similar sucede cuando el adminitrador dá clic en la opción "En Espera"</p>
+							<p>Si el adminitrador usa las opciones del panel de Proyectos, podrá visualizar si asi lo requiere, todos los proyectos de la aplicación sin tener en cuenta el propietario o si es compartido o no. TAmbién es posible para el administrador filtrar por los proyectos que son compartidos en la aplicación.</p>
+						</li>						
+					</ul>
+				</p>
+				
+			</section>
+		</article>
+		<article>
+			<header id='funcionesPrin'>FUNCIONES PRINCIPALES</header>
+			<section>
+				<h3 id='eliminarusuarios'>Eliminar Usuarios</h3>
+				<p>Desde el Home del administrador es posible eliminar ya sean usuarios activos de la aplicación, o también aquellos que están en espera de activación. Esta operación la puede realizar el administrador sin ningún tipo de restricción. Eliminar un Usuario implica borrar todo registro de la aplicación, incluyendo sus proyectos.</p>
+								
+				<h3 id='visualizarProyectos'>Ver Proyectos</h3>
+				<p>El administrador tendrá a su disposición la consulta de todos los proyectos de la aplicación e incluso aquellos que son compartidos. Desde esa funcionalidad el administrador podrá filtrar por el nombre de un proyecto si así lo requiere.</p>
+				
+				<h3 id='accesos'>Accesos de la Aplicación</h3>
+				<p>El administrador cuenta con un componente que le permite consultar aquellos usuario activos que no han ingresado a la aplicación hasta una fecha determinada por él. El administrador una vez pulsa clic en la opción "Informe de Acceso" del panel izquierdo, cargará el componente de filtros de acceso como lo muestra la siguiente figura:</p>
+				<p><img src='../Images/Ayuda/icono48.jpg'></p>
+				<p>En la anterior figura se puede apreciar en el panel derecho y en la parte superior, una caja de texto que dice "último acceso antes de...". Cuando se pulsa clic en esta caja de inmediato aparecerá un componente de calendario en donde se podrá seleccionar una fecha que indica la necesidad de consultar aquellos usuarios que no han ingresado a la aplicación hasta dicha fecha. La siguiente figura muestra un ejemplo de la consulta de los usuarios activos que no han ingresado a la aplicación desde antes del 20 de febrero de 2013.</p>
+				<p><img src='../Images/Ayuda/icono49.jpg'></p>
+				<p>Desde este resultado el administrador puede realizar la eliminación de dichos usuarios, si determina que un usuario desde hace mucho tiempo no ingresa a la aplicación.</p>
+				
+				
+						
+			</section>
+		</article>
+	</div><!--End ContenidoManual-->
+</div><!--End contenidoAyuda-->
+<footer><span style="position:relative;top: 9px;">Eco IDE @author Wilson Rivera 1150010 - Carlos Sepúlveda 1150068</span></footer>
+
+</div>
+</html>

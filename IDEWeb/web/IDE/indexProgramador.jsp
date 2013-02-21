@@ -117,7 +117,7 @@
         <script src="../Scripts/webSite/indexUser.js"></script>
         <link rel="stylesheet" href="../CSS/SupportWindow/viewIndex.css" type="text/css" media="screen" />
 
- <script src="../Scripts/jquery/tooltip.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery/tooltip.js" type="text/javascript"></script>
 
         <style type="text/css">
 
@@ -181,8 +181,8 @@
                 overflow: hidden;
                 font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,Arial,Helvetica,sans-serif!important;
             }
-         
-          
+
+
             .titleList{
                 font-weight:  normal;
             }
@@ -272,55 +272,39 @@
         <title>Index-IDE</title>
     </head>
     <body>
-        
+
         <div id="content" style="width: 100%!important;height: 100%!important;margin: 0!important; background-color: #bababa;background-image: url('../Scripts/dhtmlxSuite/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_skyblue/dhxlayout_bg50.gif'); background-repeat: repeat-x; border: groove;border: gainsboro 5px solid;margin: 4px auto ;">
-            <a id="logoUFPS" href="http://www.ufps.edu.co">
+            <a id="logoUFPS" href="http://www.ufps.edu.co" target="_blank">
                 <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ufpshorizontal.png"/>
             </a>
-            <a id="logoING" href="http://ingsistemas.ufps.edu.co">
+            <a id="logoING" href="http://ingsistemas.ufps.edu.co" target="_blank">
                 <img style="position:relative;width:100%;height:100%" src="../Images/SupportWindow/ing_sistemas.png"/>
             </a>
             <div style="float:right;margin-right: 70px;margin-top:15px;color: #871528!important;text-align: center;font-size: 12px">
-                    <div>
-                        <pre>Bienvenido !!</pre>
-                    </div>
-                    <div>
-                        <pre><%=name%></pre>
-                    </div>
+                <div>
+                    <pre>Bienvenido !!</pre>
+                </div>
+                <div>
+                    <pre><%=name%></pre>
+                </div>
             </div>
-            
+
             <div id="encabezado" style="height: 35px;margin-bottom: 3px">
 
-                <!--  <div style="width: 300px;height: 50px;float:right;">
-      
-                      <div>
-                          <div style="float:right;margin-top: 3px;margin-right: 3px;margin-bottom: 3px;" id="fotoInicioPresentacion">
-                              <img src="../photo/<%=email%>/<%=photo%>"  imgResizable="true" mw="40" mh="40"/>
-                          </div>
-                          <div style="float:right;margin-right: 10px;margin-top: 10px;">
-                              <div align="right"><%=name%></div>
-                              <a href="#" onclick="logout()">Cerrar sesion</a>
-                          </div>
-                          
-                      </div>
-                
-                      
-  
-                  </div>-->
-
-                <div style="width:200px;height: 30px;margin: 10px auto;z-index:700;">
+                <div style="width:270px;height: 30px;margin: 10px auto;z-index:700;">
 
                     <ul class="bubblewrap" id="mide" idm="mide" style="width:100%">
 
-                        <li id="i0" idm="0" class="menuLiP" statico="false" msj="Iniciar IDE"><a href="#" onclick="getIDE()"><img src="../Images/logoMini.png" class="imge"/></a></li>
+                        <li id="i0" idm="0" class="menuLiP" statico="false" msj="Iniciar IDE"><a href="#" onclick="getIDE()"><img src="../Images/logoMini2.png" class="imge" style="height:30px;width:auto"/></a></li>
                         <li id="i1" idm="1" class="menuLiP" statico="false" msj="Crear Proyecto"><a href="#" onclick="uiCrearProyecto()"><img src="../Images/MenuBar/pack.png" class="imge"/></a></li>
                         <li id="i2" idm="2" class="menuLiP" statico="false" msj="Ver Notificaciones">
-                            
+
                             <a href="#" onclick="verNotificaciones()">
                                 <img src="../Images/MenuBar/notification.png" class="imge"/>
                             </a>
-                           
+
                         </li>
+                        <li id="i1" idm="1" class="menuLiP" statico="false" msj="Ayuda"><a href="#" onclick="verAyuda()"><img src="../Images/MenuBar/help.png" class="imge"/></a></li>
                         <li id="i3" idm="3" class="menuLiP" msj="Cerrar Sesion" onclick='logout()' ><a href="#" onclick=""><img src="../Images/MenuBar/personal.png" class="imge"/></a></li>
                     </ul>
                 </div>
@@ -353,16 +337,16 @@
                         </li>
                     </ul>
                 </div>
-               <!-- <div id="menuAyuda" class="divMenuList">
-                    <div class="barMenu"></div>
-                    <ul align='left' class="ulOption" >
-                        <li align='left' ><div  class='titleList'><b>Ayuda</b></div>
-                            <ul align='left'>
-                                <li align='left' class='itemList'><img src="../Images/SupportWindow/help.png" alt="verVideos"/>&nbsp;Ver Videos</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>-->
+                <!-- <div id="menuAyuda" class="divMenuList">
+                     <div class="barMenu"></div>
+                     <ul align='left' class="ulOption" >
+                         <li align='left' ><div  class='titleList'><b>Ayuda</b></div>
+                             <ul align='left'>
+                                 <li align='left' class='itemList'><img src="../Images/SupportWindow/help.png" alt="verVideos"/>&nbsp;Ver Videos</li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div>-->
                 <div id="menuDetalles" class="divMenuList" >
                     <div class="barMenu"></div>
                     <ul align='left' class="ulOption">
@@ -425,8 +409,8 @@
                         return Tam;
 
                     }
-                   $('#cnot').corner().hover(function(){
-                         $(this).parent().css('-moz-transform','scale(1)' );
+                    $('#cnot').corner().hover(function(){
+                        $(this).parent().css('-moz-transform','scale(1)' );
                         $(this).parent().css('-webkit-transform','scale(1)' );
                         $(this).parent().css('-o-transform','scale(1)' );
                     });
@@ -461,26 +445,26 @@
                         dhxLayout.cells("b").setWidth(parseInt((t[0])*0.8));
                         dhxLayout.setSizes();
            
-    }).click(function(){
+                    }).click(function(){
         
         
-    var left =document.getElementById('i2').offsetLeft+15;
-	var top = document.getElementById('i2').offsetTop-15;
+                        var left =document.getElementById('i2').offsetLeft+15;
+                        var top = document.getElementById('i2').offsetTop-15;
        
-        $('#cnot').css('display','block');
-        $('#cnot').css('top',top);
-        $('#cnot').css('left',left);
-        $('#cnot').css('position','absolute');
+                        $('#cnot').css('display','block');
+                        $('#cnot').css('top',top);
+                        $('#cnot').css('left',left);
+                        $('#cnot').css('position','absolute');
         
-    }); 
+                    });
                     verProyectos();
                 });
             </script>
 
         </div>
-     
-       
-       <div id="cnot" style="display:none;background-color: red;" noti="0">0</div>
-       
+
+
+        <div id="cnot" style="display:none;background-color: red;" noti="0">0</div>
+
     </body>
 </html>
