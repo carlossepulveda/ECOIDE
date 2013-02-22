@@ -1115,32 +1115,6 @@ this.resizeComponent=function(idC,w,h,usuario){
     };
     
     this.generarCodigoJava=function(){
-
-        for(var i in misLienzos){
-       
-
-        }
-       
-       
-    /**    var info='';
-    
-        for(var i in misLienzos){
-        
-            if(misLienzos[i].isModified){
-       
-                info+='æðđßcanvasßđðæ'+misLienzos[i].getInfo();
-     
-            }
-        
-        }
-
-    
-      **/
-        
-        
-        
-        
-        
     };
     
     this.createAction=function(idP, idC){

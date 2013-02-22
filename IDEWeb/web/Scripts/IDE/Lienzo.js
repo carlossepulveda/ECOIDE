@@ -129,18 +129,7 @@ function Lienzo(id,width,height,dJava,dFrml){
             dJava.remover(dJava.rango.start.row+lines[i].nl,li.length,false);
             
         }
-        
-       //"name":"button0",
-       //"x":15,"y":16,
-       //"width":100,"height":21,
-       //"value":"button0",
-       //"type":"button",
-       //"lines":[
-       //       {"nl":7,"line":"button0= new javax.swing.JButton();"},
-       //       {"nl":8,"line":"getContentPane().add(button0, new org.netbeans.lib.awtextra.AbsoluteConstraints(36,196, 100, 21));"},
-       //       {"nl":9,"line":"button0.setText(\"button0\");"}
-       //       ]
-   
+
         dFrml.submitOp([{p:['components',ind,'lines'], od: dFrml.snapshot.components[ind].lines,oi: c.getLineasAfectadas()},
                         {p:['components',ind,'x'], od: dFrml.snapshot.components[ind].x,oi: c.getCoordenada().getX()},
                         {p:['components',ind,'y'], od: dFrml.snapshot.components[ind].x,oi: c.getCoordenada().getY()},
