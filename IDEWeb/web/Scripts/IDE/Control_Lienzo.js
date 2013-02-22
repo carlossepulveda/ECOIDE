@@ -173,7 +173,6 @@ function Control_Lienzo(jsp){
            
             
             var tipo=componentes[i].type;
-           
             switch(tipo){
        
                 case 'button':{
@@ -274,7 +273,6 @@ function Control_Lienzo(jsp){
                     break;
                 }
                 case 'label':{
-                    
                     nc.className='labelComponente';
                     nc.style.lineHeight=componentes[i].height+'px'
                     $('#'+nc.id).mousedown(function(e){

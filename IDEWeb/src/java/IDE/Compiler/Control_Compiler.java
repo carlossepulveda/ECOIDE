@@ -170,7 +170,6 @@ public class Control_Compiler {
                                                 String generateClass,
                                                 String pathOut,String pathHide,String nameClassGenerate){
         
-        
         NodeList nl=javaFiles.getDocumentElement().getChildNodes();
     
         ArrayList<File> acom=new ArrayList<File>();
@@ -237,16 +236,17 @@ public class Control_Compiler {
         
         NodeList nlL=libs.getDocumentElement().getChildNodes();
         options[2]="-cp";
+        options[3]="";
         for(int i=0;i<nlL.getLength();i++){
             String aux="";
             if(i!=nlL.getLength()-1)aux=Separator.getJARCompilerSeparator();
-            options[3]=pathLib+Separator.getSystemSeparator()+nlL.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
+            options[3]+=pathLib+Separator.getSystemSeparator()+nlL.item(i).getAttributes().getNamedItem("name").getTextContent()+aux;
         }
        
         Iterable optionsI = Arrays.asList(options);//"-d", pathOut,"-cp",pathLib+Separator.getSystemSeparator()+"AbsoluteLayout.jar");
         //Arrays.asList(un array string )
         
-        
+       
         
         
         

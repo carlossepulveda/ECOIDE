@@ -280,7 +280,7 @@ public class Control_WebSite {
             try{
 				String tmp=contenidoHtmlCorreo;
 				tmp=tmp.replace("@titulo","Restablecer Contraseña");
-				tmp=tmp.replace("@contenido","ECO IDE ha detectado una solicitud de restablece contraseña. <h3>Su contraseña es: </h3> "+pass");
+				tmp=tmp.replace("@contenido","ECO IDE ha detectado una solicitud de restablece contraseña. <h3>Su contraseña es: </h3> "+pass+"<br/>");
                 mail.sendMail(this.mail,user,"Solicitud de contraseña IDE", tmp ,true,null);
                 return true;
             }

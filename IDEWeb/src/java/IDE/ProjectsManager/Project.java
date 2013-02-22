@@ -2181,7 +2181,7 @@ public class Project {
 
     private ArrayList<String> getTemplateJSONGUIJava() {
         ArrayList<String> lines = new ArrayList<String>();
-        lines.add("{\"width\":300,\"height\":300,\"li\":16,\"cl\":12,\"lai\":7,\"components\":[]}");
+        lines.add("{\"width\":300,\"height\":300,\"li\":18,\"cl\":12,\"lai\":7,\"components\":[]}");
         return lines;
     }
 
